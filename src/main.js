@@ -1,0 +1,1 @@
+console.log('HELLO TEAM (from src/main.js)!');

@@ -10,7 +10,14 @@ Set things up!
 ```
 npm install
 ```
+
+Start things up!
+---
  
+```
+npm start
+```
+
  
 Compile w/ Webpack
 ---

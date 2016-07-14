@@ -1,24 +1,23 @@
 {
-  "name": "HALIBUT",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "compile": "webpack"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/QuinKinser/desultoryhalibut.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "CCQT",
   "dependencies": {
-    "babel-core": "^6.10.4",
+    "babel-core": "^6.9.1",
     "babel-loader": "^6.2.4",
-    "babel-preset-es2016": "^6.11.3",
-    "babel-preset-react": "^6.11.1",
-    "webpack": "^1.13.1"
-  }
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.5.0",
+    "express": "^4.13.4",
+    "webpack": "^1.13.1",
+    "webpack-dev-middleware": "^1.6.1"
+  },
+  "description": "greenfield project",
+  "keywords": [],
+  "license": "ISC",
+  "main": "index.js",
+  "name": "HALIBUT",
+  "scripts": {
+    "compile": "webpack",
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.0.0"
 }

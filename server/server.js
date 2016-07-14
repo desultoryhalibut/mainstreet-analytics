@@ -11,7 +11,7 @@ require('./config/express')(app);
 require('./config/routes')(app);
 
 // set static page
-app.use(express.static(__dirname + '/../www'));
+app.use(express.static(__dirname + '/../client/www'));
 
 // boilerplate code, investigate further
 app.use(webpackDevMiddleware(compiler, {

@@ -1,4 +1,6 @@
+require('./config/config.js')
 var express = require('express');
+var twitterStream = require('./twitter/twitter-controller');
 var webpackDevMiddleware = require('webpack-dev-middleware');
 var webpack = require('webpack');
 var webpackConfig = require('../webpack.config.js');
@@ -30,4 +32,5 @@ var server = app.listen(3000, function() {
   console.log('app listening at host, port:', host, port);
 });
 
+twitterStream.twitterConnect();
 module.exports = app;

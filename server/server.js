@@ -29,3 +29,5 @@ var server = app.listen(3000, function() {
   var port = server.address().port;
   console.log('app listening at host, port:', host, port);
 });
+
+module.exports = app;

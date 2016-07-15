@@ -7,9 +7,12 @@
     "babel-preset-react": "^6.5.0",
     "body-parser": "^1.15.2",
     "express": "^4.13.4",
+    "mocha": "^2.5.3",
     "mongoose": "^4.5.4",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
+    "react-router": "^2.5.2",
+    "request": "^2.73.0",
     "webpack": "^1.13.1",
     "webpack-dev-middleware": "^1.6.1"
   },
@@ -21,10 +24,12 @@
   "scripts": {
     "compile": "webpack",
     "start": "nodemon server/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --compilers js:babel-core/register"
   },
   "version": "1.0.0",
   "devDependencies": {
+    "chai": "^3.2.0",
+    "chai-http": "^1.0.0",
     "nodemon": "^1.9.2"
   }
 }

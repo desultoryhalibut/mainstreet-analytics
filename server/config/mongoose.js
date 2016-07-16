@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 module.exports = function() {
 
   // DigitalOcean MongoDB droplet
-  mongoose.connect('mongodb://root:mainstreet@138.68.8.220:27017/mainstreet');
+  mongoose.connect('mongodb://localhost:27017/mainstreet');
 
   const db = mongoose.connection;
 

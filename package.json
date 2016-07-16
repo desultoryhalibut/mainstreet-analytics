@@ -7,7 +7,7 @@
     "babel-preset-react": "^6.5.0",
     "body-parser": "^1.15.2",
     "express": "^4.13.4",
-    "mocha": "^2.5.3",
+    "mocha": "^2.5.3", 
     "express-partial": "^0.1.0",
     "express-session": "^1.14.0",
     "mongoose": "^4.5.4",

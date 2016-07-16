@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
 var tSentimentSchema = new Schema({
   newsTopic: {type: String},
-  relevance: {type: Number},
+  volume: {type: Number},
   sentimentScore: {type: String},
   type: {type: String},
   interval: {type: Number}
@@ -11,6 +11,6 @@ var tSentimentSchema = new Schema({
 
 tSentimentSchema.set('timestamps', true);
 
-var TSentiment = mongoose.model('TSeniment', tSentimentSchema);
+var TSentiment = mongoose.model('TSentiment', tSentimentSchema);
 
 module.exports = TSentiment;

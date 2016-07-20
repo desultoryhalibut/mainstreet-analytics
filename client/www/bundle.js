@@ -61,14 +61,14 @@
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _SampleComponent = __webpack_require__(173);
+	var _app = __webpack_require__(173);
 
-	var _SampleComponent2 = _interopRequireDefault(_SampleComponent);
+	var _app2 = _interopRequireDefault(_app);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	document.addEventListener('DOMContentLoaded', function () {
-	  _reactDom2.default.render(_react2.default.createElement(_SampleComponent2.default), document.getElementById('mount'));
+	  _reactDom2.default.render(_react2.default.createElement(_app2.default), document.getElementById('mainstreet'));
 	});
 
 /***/ },
@@ -21119,6 +21119,10 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _googletrends = __webpack_require__(174);
+
+	var _googletrends2 = _interopRequireDefault(_googletrends);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -21127,33 +21131,98 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var SampleComponent = function (_React$Component) {
-	  _inherits(SampleComponent, _React$Component);
+	var AppComponent = function (_Component) {
+	  _inherits(AppComponent, _Component);
 
-	  function SampleComponent() {
-	    _classCallCheck(this, SampleComponent);
+	  function AppComponent(props) {
+	    _classCallCheck(this, AppComponent);
 
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(SampleComponent).call(this));
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(AppComponent).call(this, props));
 
-	    _this.state = {};
+	    _this.state = {
+	      googleTrendsData: {
+	        carsData: [],
+	        realEstateData: [],
+	        inflationData: [],
+	        restaurantData: [],
+	        unemploymentData: [],
+	        dowData: [],
+	        panicData: [],
+	        hedgeData: []
+	      }
+	    };
 	    return _this;
 	  }
 
-	  _createClass(SampleComponent, [{
+	  _createClass(AppComponent, [{
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      var _this2 = this;
+
+	      fetch('api/googletrends', { method: 'GET' }).then(function (res) {
+	        return res.json();
+	      }).then(function (data) {
+	        console.log('googleTrends BLOB', data);
+	        _this2.setState({ carsData: data[0].searchVolume });
+	        _this2.setState({ realEstateData: data[1].searchVolume });
+	        _this2.setState({ inflationData: data[2].searchVolume });
+	        _this2.setState({ restaurantData: data[3].searchVolume });
+	        _this2.setState({ unemploymentData: data[4].searchVolume });
+	        _this2.setState({ dowData: data[5].searchVolume });
+	        _this2.setState({ panicData: data[6].searchVolume });
+	        _this2.setState({ hedgeData: data[7].searchVolume });
+	      }).catch(function (err) {
+	        console.log(err);
+	      });
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'div',
-	        null,
-	        'Hellooo Team!! (from src/SampleComponent.js)'
+	        { className: 'container' },
+	        _react2.default.createElement(
+	          'h1',
+	          null,
+	          'Main Street Analytics'
+	        ),
+	        _react2.default.createElement(_googletrends2.default, { googleTrendsData: this.state.googleTrendsData })
 	      );
 	    }
 	  }]);
 
-	  return SampleComponent;
-	}(_react2.default.Component);
+	  return AppComponent;
+	}(_react.Component);
 
-	exports.default = SampleComponent;
+	exports.default = AppComponent;
+
+/***/ },
+/* 174 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var GoogleTrends = function GoogleTrends(props) {
+	  console.log(props.googleTrendsData);
+
+	  return _react2.default.createElement(
+	    "div",
+	    { className: "google-trends-chart" },
+	    "Google Trends Data Here"
+	  );
+	};
+
+	exports.default = GoogleTrends;
 
 /***/ }
 /******/ ]);

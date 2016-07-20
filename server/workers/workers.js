@@ -1,146 +1,110 @@
+const _ = require('lodash');
 const googleTrends = require('google-trends-api');
 const GoogleTrends = require('../googletrends/google-trends.model');
 // future CronJob implementation to run monthly
-
 // const CronJob = require('cron').CronJob;
 
-// collect Google Trends data from Google Trends API and update the database
+// Keywords for Dashboard Summary view
+const KEYWORDS = ['car', 'real estate agent', 'inflation', 'restaurant', 'unemployment', 'dow jones', 'hedge', 'panic'];
 
-googleTrends.trendData(['car', 'real estate agent', 'inflation', 'restaurant', 'unemployment', 'dow jones', 'hedge', 'panic'])
+/**
+ * QueryGoogleTrends - Helper function to seed data from GoogleTrends API to database
+ * @param {[string]} keyword         [keyword to search for]
+ * @param {[Array]} googleTrendData [return data from googleTrends search]
+ */
+
+function QueryGoogleTrends(keyword, googleTrendResults) {
+  let newData = {
+    keyword: keyword,
+    searchVolume: googleTrendResults
+  };
+
+  GoogleTrends.find({keyword: keyword}).exec()
+    .then(function(found) {
+      if (found.length > 0) {
+        GoogleTrends.update({keyword: keyword}, newData);
+        console.log(`Updated Google Trends for ${keyword}`);
+      } else {
+        GoogleTrends.create(newData);
+      }
+    });
+}
+
+/**
+ * Updates database for GoogleTrends Summary keywords for dashboard view
+ * @param  {[Array]} KEYWORDS [Array of keywords]
+ */
+
+googleTrends.trendData(KEYWORDS)
   .then(function(results) {
 
-    let carTrend = {
-      keyword: 'car',
-      searchVolume: results[0]
-    };
+    _(KEYWORDS).forEach((keyword, index) => {
+      QueryGoogleTrends(keyword, results[index]);
+    });
 
-    let realEstateTrend = {
-      keyword: 'real estate agent',
-      searchVolume: results[1]
-    };
-
-    let inflationTrend = {
-      keyword: 'inflation',
-      searchVolume: results[2]
-    };
-
-    let restaurantTrend = {
-      keyword: 'restaurant',
-      searchVolume: results[3]
-    };
-
-    let unemploymentTrend = {
-      keyword: 'unemployment',
-      searchVolume: results[4]
-    };
-
-    let dowTrend = {
-      keyword: 'dow jones',
-      searchVolume: results[5]
-    };
-
-    let hedgeTrend = {
-      keyword: 'hedge',
-      searchVolume: results[6]
-    };
-
-    let panicTrend = {
-      keyword: 'panic',
-      searchVolume: results[7]
-    };
-
-    GoogleTrends.find().exec()
-      .then(function(found) {
-        if (found) {
-          GoogleTrends.update({keyword: 'car'}, carTrend);
-          console.log('Updated Google Trends cars');
-        } else {
-          GoogleTrends.create(carTrend);
-          console.log('Created cartrends', carTrend);
-        }
-      });
-
-    GoogleTrends.find({keyword: 'car'}).exec()
-      .then(function(found) {
-        if (found) {
-          GoogleTrends.update({keyword: 'car'}, carTrend);
-          console.log('Updated Google Trends cars');
-        } else {
-          GoogleTrends.create(carTrend);
-        }
-      });
-
-    GoogleTrends.find({keyword: 'real estate agent'}).exec()
-      .then(function(found) {
-        if (found) {
-          GoogleTrends.update({keyword: 'real estate agent'}, realEstateTrend);
-          console.log('Updated Google Trends Real Estate Agent');
-        } else {
-          GoogleTrends.create(realEstateTrend);
-        }
-      });
-
-    GoogleTrends.find({keyword: 'inflation'}).exec()
-      .then(function(found) {
-        if (found) {
-          GoogleTrends.update({keyword: 'inflation'}, inflationTrend);
-          console.log('Updated Google Trends Inflation');
-        } else {
-          GoogleTrends.create(inflationTrend);
-        }
-      });
-
-    GoogleTrends.find({keyword: 'restaurant'}).exec()
-      .then(function(found) {
-        if (found) {
-          GoogleTrends.update({keyword: 'restaurant'}, restaurantTrend);
-          console.log('Updated Google Trends Restaurant');
-        } else {
-          GoogleTrends.create(restaurantTrend);
-        }
-      });
-
-    GoogleTrends.find({keyword: 'unemployment'}).exec()
-      .then(function(found) {
-        if (found) {
-          GoogleTrends.update({keyword: 'unemployment'}, unemploymentTrend);
-          console.log('Updated Google Trends unemployment');
-        } else {
-          GoogleTrends.create(unemploymentTrend);
-        }
-      });
-
-    GoogleTrends.find({keyword: 'dow jones'}).exec()
-      .then(function(found) {
-        if (found) {
-          GoogleTrends.update({keyword: 'dow jones'}, dowTrend);
-          console.log('Updated Google Trends Dow Jones');
-        } else {
-          GoogleTrends.create(dowTrend);
-        }
-      });
-
-    GoogleTrends.find({keyword: 'hedge'}).exec()
-      .then(function(found) {
-        if (found) {
-          GoogleTrends.update({keyword: 'hedge'}, hedgeTrend);
-          console.log('Updated Google Trends hedge');
-        } else {
-          GoogleTrends.create(hedgeTrend);
-          console.log('Created Google Trends hedge');
-        }
-      });
-
-    GoogleTrends.find({keyword: 'panic'}).exec()
-      .then(function(found) {
-        if (found) {
-          GoogleTrends.update({keyword: 'panic'}, panicTrend);
-          console.log('Updated Google Trends Panic');
-        } else {
-          GoogleTrends.create(panicTrend);
-        }
-      });
   })
   .catch(function(err) {
     console.error('Error updating Google Trends ', err);
   });
+
+
+
+  // googleTrends.trendData(['car', 'real estate agent', 'inflation', 'restaurant', 'unemployment', 'dow jones', 'hedge', 'panic'])
+  //   .then(function(results) {
+  //     let carsTrend = results[0];
+  //     let realEstateTrend = results[1];
+  //     let inflationTrend = results[2];
+  //     let restaurantTrend = results[3];
+  //     let unemploymentTrend = results[4];
+  //     let dowTrend = results[5];
+  //     let hedgeTrend = results[6];
+  //     let panicTrend = results[7];
+  //
+  //     console.log(results);
+  //
+  //     GoogleTrends.create({
+  //       keyword: 'car',
+  //       searchVolume: carsTrend
+  //     });
+  //
+  //     GoogleTrends.create({
+  //       keyword: 'real estate agent',
+  //       searchVolume: realEstateTrend
+  //     });
+  //
+  //     GoogleTrends.create({
+  //       keyword: 'inflation',
+  //       searchVolume: inflationTrend
+  //     });
+  //
+  //     GoogleTrends.create({
+  //       keyword: 'restaurant',
+  //       searchVolume: restaurantTrend
+  //     });
+  //
+  //     GoogleTrends.create({
+  //       keyword: 'unemployment',
+  //       searchVolume: unemploymentTrend
+  //     });
+  //
+  //     GoogleTrends.create({
+  //       keyword: 'dow jones',
+  //       searchVolume: dowTrend
+  //     });
+  //
+  //     GoogleTrends.create({
+  //       keyword: 'hedge',
+  //       searchVolume: hedgeTrend
+  //     });
+  //
+  //     GoogleTrends.create({
+  //       keyword: 'panic',
+  //       searchVolume: panicTrend
+  //     });
+  //
+  //
+  //
+  //   })
+  //   .catch(function(err) {
+  //     console.error('trendData_debt', err);
+  //   });

@@ -1,4 +1,4 @@
-require('./config/config.js')
+// require('./config/config.js')
 var express = require('express');
 var twitterStream = require('./twitter/twitter-controller');
 var webpackDevMiddleware = require('webpack-dev-middleware');
@@ -12,7 +12,7 @@ var compiler = webpack(webpackConfig);
 require('./config/mongoose')();
 require('./config/express')(app);
 require('./config/routes')(app);
-//require('./workers/workers.js');
+//require('./workers/worker2.js');
 
 // set static page
 app.use(express.static(__dirname + '/../client/www'));

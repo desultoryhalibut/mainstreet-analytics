@@ -1,9 +1,10 @@
 const googleTrends = require('google-trends-api');
 const GoogleTrends = require('../googletrends/google-trends.model');
+// future CronJob implementation to run monthly
+
 // const CronJob = require('cron').CronJob;
 
-// collect Google Trends data from Google Trends API
-
+// collect Google Trends data from Google Trends API and update the database
 
 googleTrends.trendData(['car', 'real estate agent', 'inflation', 'restaurant', 'unemployment', 'dow jones', 'hedge', 'panic'])
   .then(function(results) {
@@ -48,9 +49,16 @@ googleTrends.trendData(['car', 'real estate agent', 'inflation', 'restaurant', '
       searchVolume: results[7]
     };
 
-    console.log('Seed database with Google Trends', results);
-
-    GoogleTrends.create(carTrend);
+    GoogleTrends.find().exec()
+      .then(function(found) {
+        if (found) {
+          GoogleTrends.update({keyword: 'car'}, carTrend);
+          console.log('Updated Google Trends cars');
+        } else {
+          GoogleTrends.create(carTrend);
+          console.log('Created cartrends', carTrend);
+        }
+      });
 
     GoogleTrends.find({keyword: 'car'}).exec()
       .then(function(found) {

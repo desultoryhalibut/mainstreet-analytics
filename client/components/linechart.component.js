@@ -25,6 +25,7 @@ class LineChart extends Component {
       <div>
         <h3>Google Searches for {this.props.keyword}</h3>
         <svg width={this.props.width} height={this.props.height}>
+
           <VictoryLine
             data={this.props.data}
             x={this.props.x}
@@ -40,6 +41,7 @@ class LineChart extends Component {
               }
             }}
           />
+
           <VictoryAxis
             height={this.props.height}
             width={this.props.width}
@@ -69,6 +71,7 @@ class LineChart extends Component {
             }}
           />
         </svg>
+
       </div>
     );
   }

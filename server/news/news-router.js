@@ -1,20 +1,8 @@
 //express middleware to help route
-var NewsController = require('./news-controller');
-var NewsRouter = require('express').Router();
+const NewsController = require('./news-controller');
+const NewsRouter = require('express').Router();
 
-NewsRouter.get('/', function(req, res) {  //relative route from api/news
-  request({
-    method: 'GET',
-    uri: '',
-    auth: {} //example properties here - REPLACE
-  }, function(err, response, body) {
-    if (err) throw err;
-    else {
-      console.log('News Router call was successful.');
-      res.end(JSON.stringify(body));
-    }
-  });
-});
+// NewsRouter.get('/', NewsController.getFromAPI);
 
 
 module.exports = NewsRouter;

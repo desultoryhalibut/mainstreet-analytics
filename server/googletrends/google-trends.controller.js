@@ -1,4 +1,5 @@
 const GoogleTrends = require('./google-trends.model');
+const googleTrends = require('google-trends-api');
 
 module.exports = {
 
@@ -11,6 +12,19 @@ module.exports = {
     .catch(function(err) {
       res.send('Error getting Google Trends', err);
     });
+  },
+
+  // finish this routing
+  getCompany: function(company, req, res) {
+
+    googleTrends.trendData(company)
+      .then(function(results) {
+
+        res.json(results);
+      })
+      .catch(function(err) {
+        console.error('Error retrieving Google Trends data', err);
+      });
   }
 
 };

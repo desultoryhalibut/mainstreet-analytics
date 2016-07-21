@@ -32,3 +32,6 @@ Run tests
 ```
 npm test
 ```
+
+
+Text analysis provided by AlchemyAPI: www.alchemyapi.com 

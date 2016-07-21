@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 let googleTrends = new Schema({
-  keyword: {type: String, unique: true},
-  searchVolume: {type: Array, unique: true}
+  keyword: {type: String},
+  searchVolume: {type: Array}
 });
 
 let GoogleTrends = mongoose.model('GoogleTrends', googleTrends);

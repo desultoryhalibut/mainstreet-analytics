@@ -12,7 +12,8 @@ var compiler = webpack(webpackConfig);
 require('./config/mongoose')();
 require('./config/express')(app);
 require('./config/routes')(app);
-//require('./workers/worker2.js');
+// Update GoogleTrends data
+//require('./workers/workers.js');
 
 // set static page
 app.use(express.static(__dirname + '/../client/www'));

@@ -6,16 +6,7 @@ export default class AppComponent extends Component {
     super(props);
 
     this.state = {
-      googleTrendsData: {
-        carsData: [],
-        realEstateData: [],
-        inflationData: [],
-        restaurantData: [],
-        unemploymentData: [],
-        dowData: [],
-        panicData: [],
-        hedgeData: []
-      }
+      googleTrendsData: null
     };
   }
 
@@ -25,15 +16,8 @@ export default class AppComponent extends Component {
         return res.json();
       })
       .then((data) => {
-        console.log('googleTrends BLOB', data);
-        this.setState({carsData: data[0].searchVolume});
-        this.setState({realEstateData: data[1].searchVolume});
-        this.setState({inflationData: data[2].searchVolume});
-        this.setState({restaurantData: data[3].searchVolume});
-        this.setState({unemploymentData: data[4].searchVolume});
-        this.setState({dowData: data[5].searchVolume});
-        this.setState({panicData: data[6].searchVolume});
-        this.setState({hedgeData: data[7].searchVolume});
+        this.setState({googleTrendsData: data});
+
       })
       .catch((err) => {
         console.log(err);

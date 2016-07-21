@@ -27,6 +27,9 @@ var config = {
     root: [
       path.join(__dirname, 'node_modules'),
     ],
+    alias: {
+    victory: require.resolve("victory/dist/victory")
+    }
   }
 };
 

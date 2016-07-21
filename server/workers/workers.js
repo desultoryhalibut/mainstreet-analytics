@@ -1,4 +1,3 @@
-const _ = require('lodash');
 const googleTrends = require('google-trends-api');
 const GoogleTrends = require('../googletrends/google-trends.model');
 // future CronJob implementation to run monthly
@@ -13,19 +12,33 @@ const KEYWORDS = ['car', 'real estate agent', 'inflation', 'restaurant', 'unempl
  * @param {[Array]} googleTrendData [return data from googleTrends search]
  */
 
-function QueryGoogleTrends(keyword, googleTrendResults) {
+ function reformatTrendsData(trendsData) {
+   return trendsData.map(item => {
+     for (var key in item) {
+       let obj = {};
+       obj['date'] = key;
+       obj['volume'] = item[key];
+       return obj;
+     }
+   });
+ }
+
+function queryGoogleTrends(key, googleTrendResults) {
+  let reformatData = reformatTrendsData(googleTrendResults);
+
   let newData = {
-    keyword: keyword,
-    searchVolume: googleTrendResults
+    'keyword': key,
+    'searchVolume': reformatData
   };
 
-  GoogleTrends.find({keyword: keyword}).exec()
+  GoogleTrends.find({'keyword': key})
     .then(function(found) {
       if (found.length > 0) {
-        GoogleTrends.update({keyword: keyword}, newData);
-        console.log(`Updated Google Trends for ${keyword}`);
+        GoogleTrends.update({'keyword': key}, newData);
+        console.log(`Updated Google Trends for ${key}`, newData);
       } else {
         GoogleTrends.create(newData);
+        console.log('created data', newData);
       }
     });
 }
@@ -38,73 +51,11 @@ function QueryGoogleTrends(keyword, googleTrendResults) {
 googleTrends.trendData(KEYWORDS)
   .then(function(results) {
 
-    _(KEYWORDS).forEach((keyword, index) => {
-      QueryGoogleTrends(keyword, results[index]);
+    KEYWORDS.forEach((key, index) => {
+      queryGoogleTrends(key, results[index]);
     });
 
   })
   .catch(function(err) {
     console.error('Error updating Google Trends ', err);
   });
-
-
-
-  // googleTrends.trendData(['car', 'real estate agent', 'inflation', 'restaurant', 'unemployment', 'dow jones', 'hedge', 'panic'])
-  //   .then(function(results) {
-  //     let carsTrend = results[0];
-  //     let realEstateTrend = results[1];
-  //     let inflationTrend = results[2];
-  //     let restaurantTrend = results[3];
-  //     let unemploymentTrend = results[4];
-  //     let dowTrend = results[5];
-  //     let hedgeTrend = results[6];
-  //     let panicTrend = results[7];
-  //
-  //     console.log(results);
-  //
-  //     GoogleTrends.create({
-  //       keyword: 'car',
-  //       searchVolume: carsTrend
-  //     });
-  //
-  //     GoogleTrends.create({
-  //       keyword: 'real estate agent',
-  //       searchVolume: realEstateTrend
-  //     });
-  //
-  //     GoogleTrends.create({
-  //       keyword: 'inflation',
-  //       searchVolume: inflationTrend
-  //     });
-  //
-  //     GoogleTrends.create({
-  //       keyword: 'restaurant',
-  //       searchVolume: restaurantTrend
-  //     });
-  //
-  //     GoogleTrends.create({
-  //       keyword: 'unemployment',
-  //       searchVolume: unemploymentTrend
-  //     });
-  //
-  //     GoogleTrends.create({
-  //       keyword: 'dow jones',
-  //       searchVolume: dowTrend
-  //     });
-  //
-  //     GoogleTrends.create({
-  //       keyword: 'hedge',
-  //       searchVolume: hedgeTrend
-  //     });
-  //
-  //     GoogleTrends.create({
-  //       keyword: 'panic',
-  //       searchVolume: panicTrend
-  //     });
-  //
-  //
-  //
-  //   })
-  //   .catch(function(err) {
-  //     console.error('trendData_debt', err);
-  //   });

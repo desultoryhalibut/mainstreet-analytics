@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import GoogleTrends from './googletrends.component';
+import LineGraph from './googletrends.component.test';
 
 export default class AppComponent extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      googleTrendsData: {}
+      googleTrendsData: null
     };
   }
 
@@ -17,6 +18,7 @@ export default class AppComponent extends Component {
       })
       .then((data) => {
         this.setState({googleTrendsData: data});
+
       })
       .catch((err) => {
         console.log(err);
@@ -27,7 +29,8 @@ export default class AppComponent extends Component {
     return (
       <div className="container">
         <h1>Main Street Analytics</h1>
-        <GoogleTrends googleTrendsData={this.state.googleTrendsData} />
+        <LineGraph />
+        // <GoogleTrends googleTrendsData={this.state.googleTrendsData} />
       </div>
     );
   }

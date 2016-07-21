@@ -34,7 +34,6 @@
   "name": "HALIBUT",
   "scripts": {
     "compile": "webpack",
-    "XdeployTEST": "cp /distelli/_apps/desultoryhalibut.DigitalOcean.d-g6xtmuzbf4b0824fc91f/client/www/bundle.js /var/www/html",
     "start": "nodemon server/server.js",
     "test": "mocha --compilers js:babel-core/register"
   },

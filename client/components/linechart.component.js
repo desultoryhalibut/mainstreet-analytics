@@ -15,10 +15,11 @@ class LineChart extends Component {
           height={this.props.height}
           width={this.props.width}
           style={{
-            tickLabels: {
-              fill: 'red',
-              fontSize: 8
-            }
+            axis: {stroke: "black"},
+            grid: {strokeWidth: 2},
+            ticks: {stroke: "red"},
+            tickLabels: {fontSize: 8},
+            axisLabel: {fontsize: 8}
           }}
         >
           <VictoryLine
@@ -28,9 +29,22 @@ class LineChart extends Component {
           />
 
           <VictoryAxis
-            label='x-axis'
+            label="x-axis"
             standalone={false}
+            orientation="bottom"
           />
+
+          <VictoryAxis dependentAxis
+            tickValues={[0, 1.5, 3, 4.5]}
+            style={{
+              grid: {
+                stroke: "grey",
+                strokeWidth: 1
+              },
+              axis: {stroke: "transparent"},
+              ticks: {stroke: "transparent"}
+            }}
+           />
 
         </VictoryChart>
 

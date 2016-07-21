@@ -21304,12 +21304,22 @@
 	          _victory.VictoryChart,
 	          {
 	            height: this.props.height,
-	            width: this.props.width
+	            width: this.props.width,
+	            style: {
+	              tickLabels: {
+	                fill: 'red',
+	                fontSize: 8
+	              }
+	            }
 	          },
 	          _react2.default.createElement(_victory.VictoryLine, {
 	            data: this.props.data,
 	            x: this.props.x,
 	            y: this.props.y
+	          }),
+	          _react2.default.createElement(_victory.VictoryAxis, {
+	            label: 'x-axis',
+	            standalone: false
 	          })
 	        )
 	      );

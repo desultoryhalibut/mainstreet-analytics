@@ -7,21 +7,27 @@ const GoogleTrends = require('../googletrends/google-trends.model');
 const KEYWORDS = ['car', 'real estate agent', 'inflation', 'restaurant', 'unemployment', 'dow jones', 'hedge', 'panic'];
 
 /**
- * QueryGoogleTrends - Helper function to seed data from GoogleTrends API to database
- * @param {[string]} keyword         [keyword to search for]
- * @param {[Array]} googleTrendData [return data from googleTrends search]
+ * function reformatTrendsData - reformats Google Trends data to have date and volume properties
+ * @param  {[Array]} trendsData [description]
+ * @return {[Array]}            [description]
  */
+function reformatTrendsData(trendsData) {
+ return trendsData.map(item => {
+   for (var key in item) {
+     let obj = {};
+     obj['date'] = key;
+     obj['volume'] = item[key];
+     return obj;
+   }
+ });
+}
 
- function reformatTrendsData(trendsData) {
-   return trendsData.map(item => {
-     for (var key in item) {
-       let obj = {};
-       obj['date'] = key;
-       obj['volume'] = item[key];
-       return obj;
-     }
-   });
- }
+
+ /**
+  * function QueryGoogleTrends - Helper function to seed data from GoogleTrends API to database
+  * @param {[string]} keyword         [keyword to search for]
+  * @param {[Array]} googleTrendData [return data from googleTrends search]
+  */
 
 function queryGoogleTrends(key, googleTrendResults) {
   let reformatData = reformatTrendsData(googleTrendResults);
@@ -44,7 +50,7 @@ function queryGoogleTrends(key, googleTrendResults) {
 }
 
 /**
- * Updates database for GoogleTrends Summary keywords for dashboard view
+ * function googleTrends.trendData - Updates database for GoogleTrends Summary keywords for dashboard view
  * @param  {[Array]} KEYWORDS [Array of keywords]
  */
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import GoogleTrends from './googletrends.component';
-import LineGraph from './googletrends.component.test';
+import LineChart from './linechart.component';
 
 export default class AppComponent extends Component {
   constructor(props) {
@@ -29,8 +29,7 @@ export default class AppComponent extends Component {
     return (
       <div className="container">
         <h1>Main Street Analytics</h1>
-        <LineGraph />
-        // <GoogleTrends googleTrendsData={this.state.googleTrendsData} />
+        <GoogleTrends googleTrendsData={this.state.googleTrendsData} />
       </div>
     );
   }

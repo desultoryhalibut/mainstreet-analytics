@@ -9,12 +9,6 @@ const GoogleTrends = (props) => {
   }
 
   let chartData = [100, 20, 67, 80];
-  //
-  // d3.select("svg")
-  //   .append("circle")
-  //     .attr("cx", 20)
-  //     .attr("cy", 20)
-  //     .attr("r", 30);
 
   return (
     <div className="google-trends-chart">

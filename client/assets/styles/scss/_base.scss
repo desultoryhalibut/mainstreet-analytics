@@ -1,0 +1,110 @@
+* {
+    box-sizing: border-box;
+}
+body {
+  background: #f5ead6;
+}
+.center-content {
+  max-width: 1240px;
+  margin: 0 auto;
+}
+header {
+  border-bottom: 1px solid $border-color;
+  background: $white;
+  padding: 25px 0 0;
+  margin-bottom: 50px;
+  h1 {
+    padding: 0;
+  }
+  form {
+    padding: 0;
+  }
+  .textfield {
+    margin-bottom: 0;
+    input {
+      padding-top: .8rem;
+    }
+  }
+}
+.trends {
+  border: 1px solid $border-color;
+  background: $white;
+  padding: 10px 30px;
+  max-width: 410px;
+  margin-right: 0 !important;
+  article {
+    margin: 5px;
+    height: 170px;
+    padding: 15px 0;
+  }
+  p {
+    color: $white;
+    font: 600 14px $font1;
+  }
+  span {
+    font: 600 57px $font1;
+    margin-top: 30px;
+    display: inline-block;
+    color: $white;
+  }
+}
+
+.graph {
+  width: 600px;
+  height: 380px;
+  background: $white;
+  margin-right: 20px;
+  border: 1px solid $border-color;
+}
+
+.results-copy {
+  margin-top: 45px;
+  font-size: 30px;
+}
+
+section {
+  padding: 0 0 40px;
+}
+.google-trends {
+  .graph {
+    height: 300px;
+  }
+  .google-summary {
+    padding: 0 0 0 50px;
+  }
+}
+
+.sentiments {
+  .graph {
+    height: 300px;
+  }
+}
+
+
+// Helper Classes
+.section-headline {
+  color: $black;
+  background: $white;
+  padding-top: 15px;
+  margin-bottom: 35px;
+  h3 {
+    line-height: 0.85714285714286em;
+  }
+}
+.orange {
+  background: $alpha-orange;
+}
+.red {
+  background: $alpha-red;
+}
+.gray {
+  background: $alpha-gray;
+}
+.brown {
+  background:$alpha-brown;
+}
+.stand-out {
+  font-size: 30px;
+  color: $alpha-red;
+  font-weight: 700;
+}

@@ -21423,7 +21423,9 @@
 	              },
 	              axis: { stroke: "transparent" },
 	              ticks: { stroke: "transparent" }
-	            }
+	            },
+	            label: 'x-axis',
+	            standalone: false
 	          })
 	        )
 	      );

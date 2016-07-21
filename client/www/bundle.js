@@ -21119,17 +21119,9 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _googletrends = __webpack_require__(174);
+	var _summary = __webpack_require__(174);
 
-	var _googletrends2 = _interopRequireDefault(_googletrends);
-
-	var _sentiment = __webpack_require__(177);
-
-	var _sentiment2 = _interopRequireDefault(_sentiment);
-
-	var _news = __webpack_require__(178);
-
-	var _news2 = _interopRequireDefault(_news);
+	var _summary2 = _interopRequireDefault(_summary);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21145,17 +21137,88 @@
 	  function AppComponent(props) {
 	    _classCallCheck(this, AppComponent);
 
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(AppComponent).call(this, props));
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(AppComponent).call(this, props));
+	  }
+
+	  _createClass(AppComponent, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'container' },
+	        _react2.default.createElement(
+	          'h1',
+	          null,
+	          'Main Street Analytics'
+	        ),
+	        _react2.default.createElement(_summary2.default, null)
+	      );
+	    }
+	  }]);
+
+	  return AppComponent;
+	}(_react.Component);
+
+	exports.default = AppComponent;
+
+/***/ },
+/* 174 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _googletrends = __webpack_require__(175);
+
+	var _googletrends2 = _interopRequireDefault(_googletrends);
+
+	var _sentiment = __webpack_require__(178);
+
+	var _sentiment2 = _interopRequireDefault(_sentiment);
+
+	var _news = __webpack_require__(179);
+
+	var _news2 = _interopRequireDefault(_news);
+
+	var _twitter = __webpack_require__(180);
+
+	var _twitter2 = _interopRequireDefault(_twitter);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var SummaryComponent = function (_Component) {
+	  _inherits(SummaryComponent, _Component);
+
+	  function SummaryComponent(props) {
+	    _classCallCheck(this, SummaryComponent);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(SummaryComponent).call(this, props));
 
 	    _this.state = {
 	      googleTrendsData: null,
 	      newsData: null,
 	      sentimentData: null
 	    };
+
 	    return _this;
 	  }
 
-	  _createClass(AppComponent, [{
+	  _createClass(SummaryComponent, [{
 	    key: 'componentWillMount',
 	    value: function componentWillMount() {
 	      var _this2 = this;
@@ -21190,14 +21253,11 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
+
 	      return _react2.default.createElement(
 	        'div',
-	        { className: 'container' },
-	        _react2.default.createElement(
-	          'h1',
-	          null,
-	          'Main Street Analytics'
-	        ),
+	        null,
+	        _react2.default.createElement(_twitter2.default, null),
 	        _react2.default.createElement(_googletrends2.default, { googleTrendsData: this.state.googleTrendsData }),
 	        _react2.default.createElement(_sentiment2.default, { sentimentData: this.state.sentimentData }),
 	        _react2.default.createElement(_news2.default, { newsData: this.state.newsData })
@@ -21205,13 +21265,13 @@
 	    }
 	  }]);
 
-	  return AppComponent;
+	  return SummaryComponent;
 	}(_react.Component);
 
-	exports.default = AppComponent;
+	exports.default = SummaryComponent;
 
 /***/ },
-/* 174 */
+/* 175 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21226,7 +21286,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _linechart = __webpack_require__(175);
+	var _linechart = __webpack_require__(176);
 
 	var _linechart2 = _interopRequireDefault(_linechart);
 
@@ -21291,7 +21351,7 @@
 	exports.default = GoogleTrends;
 
 /***/ },
-/* 175 */
+/* 176 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21306,7 +21366,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _victory = __webpack_require__(176);
+	var _victory = __webpack_require__(177);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21376,7 +21436,7 @@
 	exports.default = LineChart;
 
 /***/ },
-/* 176 */
+/* 177 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function webpackUniversalModuleDefinition(root, factory) {
@@ -51043,7 +51103,7 @@
 	//# sourceMappingURL=victory.js.map
 
 /***/ },
-/* 177 */
+/* 178 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -51073,7 +51133,7 @@
 	exports.default = SentimentTrends;
 
 /***/ },
-/* 178 */
+/* 179 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -51101,6 +51161,62 @@
 	};
 
 	exports.default = NewsTrends;
+
+/***/ },
+/* 180 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _victory = __webpack_require__(177);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var TwitterChart = function (_Component) {
+	  _inherits(TwitterChart, _Component);
+
+	  function TwitterChart(props) {
+	    _classCallCheck(this, TwitterChart);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(TwitterChart).call(this, props));
+	  }
+
+	  _createClass(TwitterChart, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'h2',
+	          null,
+	          'Twitter Chart'
+	        ),
+	        _react2.default.createElement(_victory.VictoryChart, null)
+	      );
+	    }
+	  }]);
+
+	  return TwitterChart;
+	}(_react.Component);
+
+	exports.default = TwitterChart;
 
 /***/ }
 /******/ ]);

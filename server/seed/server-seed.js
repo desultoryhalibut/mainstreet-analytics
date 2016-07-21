@@ -1,5 +1,5 @@
 var News = require('../news/news-model');
-var Sentiment = require('../sentiment/sentiment-model');
+var NSentiment = require('../sentiment/news-sentiment-model');
 var Twitter = require('../twitter/twitter-model');
 var Users = require('../users/users-model');
 // var Finance = require('../finance/finance-model');
@@ -81,7 +81,7 @@ var Users = require('../users/users-model');
 
 
 
-Sentiment.find().exec()
+NSentiment.find().exec()
 .then(function(results) {
   if (results.length === 0) {
     News.create({

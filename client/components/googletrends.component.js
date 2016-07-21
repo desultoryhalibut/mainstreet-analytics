@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Sparklines, SparklinesBars, SparklinesLine } from 'react-sparklines';
+import LineChart from './linechart.component';
 
 const GoogleTrends = (props) => {
   console.log('Google Trends Component ', props.googleTrendsData);
@@ -8,14 +8,11 @@ const GoogleTrends = (props) => {
     return <div>Loading...</div>
   }
 
-  let chartData = [100, 20, 67, 80];
 
   return (
     <div className="google-trends-chart">
       Google Trends Data Here
-      <Sparklines data={chartData} width={180} height={120}>
-        <SparklinesLine color="blue" />
-      </Sparklines>
+      <LineChart data={props.googleTrendsData}/>
     </div>
   );
 }

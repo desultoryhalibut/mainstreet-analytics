@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import GoogleTrends from './googletrends.component';
-import LineChart from './linechart.component';
 
 export default class AppComponent extends Component {
   constructor(props) {

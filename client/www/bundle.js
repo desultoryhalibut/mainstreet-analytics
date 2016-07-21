@@ -21123,6 +21123,14 @@
 
 	var _googletrends2 = _interopRequireDefault(_googletrends);
 
+	var _sentiment = __webpack_require__(177);
+
+	var _sentiment2 = _interopRequireDefault(_sentiment);
+
+	var _news = __webpack_require__(178);
+
+	var _news2 = _interopRequireDefault(_news);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -21140,7 +21148,9 @@
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(AppComponent).call(this, props));
 
 	    _this.state = {
-	      googleTrendsData: null
+	      googleTrendsData: null,
+	      newsData: null,
+	      sentimentData: null
 	    };
 	    return _this;
 	  }
@@ -21157,6 +21167,25 @@
 	      }).catch(function (err) {
 	        console.log(err);
 	      });
+
+	      ////////NEWS VOLUME////////
+	      fetch('api/news', { method: 'GET' }).then(function (res) {
+	        return res.json();
+	      }).then(function (data) {
+	        _this2.setState({ newsData: data });
+	      }).catch(function (err) {
+	        console.log(err);
+	      });
+
+	      ////////NEWS SENTIMENT////////
+	      fetch('api/news/sentiment', { method: 'GET' }).then(function (res) {
+	        console.log('fetch is working. Response:', res);
+	        return res.json();
+	      }).then(function (data) {
+	        _this2.setState({ sentimentData: data });
+	      }).catch(function (err) {
+	        console.log(err);
+	      });
 	    }
 	  }, {
 	    key: 'render',
@@ -21169,7 +21198,9 @@
 	          null,
 	          'Main Street Analytics'
 	        ),
-	        _react2.default.createElement(_googletrends2.default, { googleTrendsData: this.state.googleTrendsData })
+	        _react2.default.createElement(_googletrends2.default, { googleTrendsData: this.state.googleTrendsData }),
+	        _react2.default.createElement(_sentiment2.default, { sentimentData: this.state.sentimentData }),
+	        _react2.default.createElement(_news2.default, { newsData: this.state.newsData })
 	      );
 	    }
 	  }]);
@@ -51010,6 +51041,66 @@
 	});
 	;
 	//# sourceMappingURL=victory.js.map
+
+/***/ },
+/* 177 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var SentimentTrends = function SentimentTrends(props) {
+
+	  return(
+	    // insert jsx here
+	    _react2.default.createElement(
+	      'h2',
+	      null,
+	      'Sentiment Chart'
+	    )
+	  );
+	};
+
+	exports.default = SentimentTrends;
+
+/***/ },
+/* 178 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var NewsTrends = function NewsTrends(props) {
+
+	  return(
+	    // insert jsx here
+	    _react2.default.createElement(
+	      'h2',
+	      null,
+	      'News Chart'
+	    )
+	  );
+	};
+
+	exports.default = NewsTrends;
 
 /***/ }
 /******/ ]);

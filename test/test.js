@@ -10,9 +10,9 @@ const db = require('../server/config/mongoose');
 // TO DO: edit tests once database and routing is set up
 
 describe('GET /api/users', function() {
-  it('should list ALL users on /api/users GET', function(done) {
+  it('should retrieve Google Trends on /api/googletrends GET', function(done) {
     chai.request(app)
-      .get('/users')
+      .get('/api/googletrends')
       .end(function(err, res){
         res.should.have.status(200);
         done();

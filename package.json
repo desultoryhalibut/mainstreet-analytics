@@ -10,6 +10,7 @@
     "express": "^4.13.4",
     "express-partial": "^0.1.0",
     "express-session": "^1.14.0",
+    "google-trends-api": "^1.2.5",
     "mocha": "^2.5.3",
     "mongoose": "^4.5.4",
     "morgan": "^1.7.0",

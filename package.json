@@ -5,6 +5,7 @@
     "babel-loader": "^6.2.4",
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-react": "^6.5.0",
+    "bluebird": "^3.4.1",
     "body-parser": "^1.15.2",
     "cutestrap": "^1.3.1",
     "express": "^4.13.4",
@@ -20,6 +21,7 @@
     "request": "^2.73.0",
     "twitter": "^1.3.0",
     "victory": "^0.9.0",
+    "watson-developer-cloud": "^1.12.2",
     "webpack": "^1.13.1",
     "webpack-dev-middleware": "^1.6.1"
   },

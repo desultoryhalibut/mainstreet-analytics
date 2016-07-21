@@ -21306,10 +21306,11 @@
 	            height: this.props.height,
 	            width: this.props.width,
 	            style: {
-	              tickLabels: {
-	                fill: 'red',
-	                fontSize: 8
-	              }
+	              axis: { stroke: "black" },
+	              grid: { strokeWidth: 2 },
+	              ticks: { stroke: "red" },
+	              tickLabels: { fontSize: 8 },
+	              axisLabel: { fontsize: 8 }
 	            }
 	          },
 	          _react2.default.createElement(_victory.VictoryLine, {
@@ -21319,7 +21320,19 @@
 	          }),
 	          _react2.default.createElement(_victory.VictoryAxis, {
 	            label: 'x-axis',
-	            standalone: false
+	            standalone: false,
+	            orientation: 'bottom'
+	          }),
+	          _react2.default.createElement(_victory.VictoryAxis, { dependentAxis: true,
+	            tickValues: [0, 1.5, 3, 4.5],
+	            style: {
+	              grid: {
+	                stroke: "grey",
+	                strokeWidth: 1
+	              },
+	              axis: { stroke: "transparent" },
+	              ticks: { stroke: "transparent" }
+	            }
 	          })
 	        )
 	      );

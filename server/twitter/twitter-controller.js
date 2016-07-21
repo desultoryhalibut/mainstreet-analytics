@@ -48,6 +48,7 @@ var channels = {
 var stream = client.streamChannels({track:channels});
 
 stream.on('channels/pokemon',function(tweet){
+  console.log(tweet);
   var tag = 'pokemon';
   var sentimentData = sentiment(tweet.text);
   var next = new Tweet({ tweet: tweet.text, sentiment: sentimentData.score, tag: tag  });

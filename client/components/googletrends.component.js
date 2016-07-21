@@ -23,7 +23,7 @@ class GoogleTrends extends Component {
 
     return (
       <div className="google-trends-chart">
-        Google Trends Data Here
+        <h3>Google Trends Data for Cars</h3>
         <LineChart
           data={this.props.googleTrendsData[0].searchVolume}
           x={'date'}

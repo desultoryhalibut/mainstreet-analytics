@@ -21238,7 +21238,11 @@
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'google-trends-chart' },
-	        'Google Trends Data Here',
+	        _react2.default.createElement(
+	          'h3',
+	          null,
+	          'Google Trends Data for Cars'
+	        ),
 	        _react2.default.createElement(_linechart2.default, {
 	          data: this.props.googleTrendsData[0].searchVolume,
 	          x: 'date',

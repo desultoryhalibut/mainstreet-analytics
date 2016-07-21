@@ -1,12 +1,15 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-var newsSchema = new Schema({
-  
+let newsSchema = new Schema({
+  timestamp: { type: Date, required: true },
+  title: { type: String, required: true, unique: true }
 })
 
-newsSchema.set('timestamps', true);
+// newsSchema.set('timestamps', true);
 
-var News = mongoose.model('News', newsSchema);
+let News = mongoose.model('News', newsSchema);
 
 module.exports = News;
+
+

@@ -8,12 +8,7 @@ class TwitterChart extends Component {
   }
 
   render() {
-    return (
-      <div>
-        <h2>Twitter Chart</h2>
-        <VictoryChart />
-      </div>
-    );
+    
   }
 }
 

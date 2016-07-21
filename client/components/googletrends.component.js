@@ -1,20 +1,40 @@
 import React, { Component } from 'react';
 import LineChart from './linechart.component';
 
-const GoogleTrends = (props) => {
-  console.log('Google Trends Component ', props.googleTrendsData);
+class GoogleTrends extends Component {
 
-  if (!props.googleTrendsData) {
-    return <div>Loading...</div>
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      currentChart: this.props.googleTrendsData,
+      data: this.props.googleTrendsData
+    };
+
   }
 
+  render() {
 
-  return (
-    <div className="google-trends-chart">
-      Google Trends Data Here
-      <LineChart data={props.googleTrendsData}/>
-    </div>
-  );
+    if (!this.props.googleTrendsData) {
+      return (
+        <div>Loading Google Trends data...</div>
+      );
+    }
+
+    return (
+      <div className="google-trends-chart">
+        Google Trends Data Here
+        <LineChart
+          data={this.props.googleTrendsData[0].searchVolume}
+          x={'date'}
+          y={'volume'}
+          height={300}
+          width={400}
+        />
+      </div>
+    );
+  }
+
 }
 
 export default GoogleTrends;

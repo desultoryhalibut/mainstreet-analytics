@@ -10,11 +10,19 @@ class LineChart extends Component {
 
   render() {
     return (
-      <div>
-        <VictoryChart>
-        <VictoryLine
-  y={(data) => 0.5 * data.x * data.x}/>
+      <div className="line-chart">
+        <VictoryChart
+          height={this.props.height}
+          width={this.props.width}
+        >
+          <VictoryLine
+            data={this.props.data}
+            x={this.props.x}
+            y={this.props.y}
+          />
+
         </VictoryChart>
+
       </div>
     );
   }

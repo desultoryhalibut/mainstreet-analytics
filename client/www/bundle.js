@@ -21189,6 +21189,8 @@
 	  value: true
 	});
 
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 	var _react = __webpack_require__(2);
 
 	var _react2 = _interopRequireDefault(_react);
@@ -21199,24 +21201,57 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var GoogleTrends = function GoogleTrends(props) {
-	  console.log('Google Trends Component ', props.googleTrendsData);
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	  if (!props.googleTrendsData) {
-	    return _react2.default.createElement(
-	      'div',
-	      null,
-	      'Loading...'
-	    );
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var GoogleTrends = function (_Component) {
+	  _inherits(GoogleTrends, _Component);
+
+	  function GoogleTrends(props) {
+	    _classCallCheck(this, GoogleTrends);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(GoogleTrends).call(this, props));
+
+	    _this.state = {
+	      currentChart: _this.props.googleTrendsData,
+	      data: _this.props.googleTrendsData
+	    };
+
+	    return _this;
 	  }
 
-	  return _react2.default.createElement(
-	    'div',
-	    { className: 'google-trends-chart' },
-	    'Google Trends Data Here',
-	    _react2.default.createElement(_linechart2.default, { data: props.googleTrendsData })
-	  );
-	};
+	  _createClass(GoogleTrends, [{
+	    key: 'render',
+	    value: function render() {
+
+	      if (!this.props.googleTrendsData) {
+	        return _react2.default.createElement(
+	          'div',
+	          null,
+	          'Loading Google Trends data...'
+	        );
+	      }
+
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'google-trends-chart' },
+	        'Google Trends Data Here',
+	        _react2.default.createElement(_linechart2.default, {
+	          data: this.props.googleTrendsData[0].searchVolume,
+	          x: 'date',
+	          y: 'volume',
+	          height: 300,
+	          width: 400
+	        })
+	      );
+	    }
+	  }]);
+
+	  return GoogleTrends;
+	}(_react.Component);
 
 	exports.default = GoogleTrends;
 
@@ -21260,14 +21295,18 @@
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'div',
-	        null,
+	        { className: 'line-chart' },
 	        _react2.default.createElement(
 	          _victory.VictoryChart,
-	          null,
+	          {
+	            height: this.props.height,
+	            width: this.props.width
+	          },
 	          _react2.default.createElement(_victory.VictoryLine, {
-	            y: function y(data) {
-	              return 0.5 * data.x * data.x;
-	            } })
+	            data: this.props.data,
+	            x: this.props.x,
+	            y: this.props.y
+	          })
 	        )
 	      );
 	    }

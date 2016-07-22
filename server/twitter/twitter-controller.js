@@ -1,6 +1,8 @@
 require('../config/config.js');
+const twitterModels = require('./twitter-model.js');
 var sentiment = require('sentiment');
 var TwitterStreamChannels = require('twitter-stream-channels');
+
 var credentials = {
   "consumer_key": process.env['consumer_key'],
   "consumer_secret": process.env['consumer_secret'] ,
@@ -8,65 +10,6 @@ var credentials = {
   "access_token_secret": process.env['access_token_secret']
 };
 
-/*********************************************************
-* mongoDB setup --> replace with digital ocean setup
-*********************************************************/
-mongoose = require('mongoose');
-var uri = 'mongodb://QuinKinser:Ron1680.@ds031608.mlab.com:31608/leaderboards';
-db = mongoose.connect(uri);
-
-var conn = mongoose.connection;
-conn.on('error', console.error.bind(console, 'connection error:'));
-conn.once('open', function() {
-  console.log('connected to the DB')
-});
-
-Schema = mongoose.Schema;
-
-var tSchema = mongoose.Schema({
-  tweet: {
-    type: String,
-    required: true
-  },
-  sentiment: {
-    type: Number,
-    required: true
-  },
-  tag: {
-    type: String,
-    required: true
-  }
-});
-
-var tAverageSchema = mongoose.Schema({
-  keyword: {
-    type: String,
-    required: true
-  },
-  numTweets: {
-    type: Number,
-    required: true
-  },
-  sentAverage: {
-    type: Number,
-    required: true
-  },
-  interval: {
-    type: Date,
-    default: Date.now
-  }
-});
-
-var tAverageColSchema = mongoose.Schema({
-  keyword: {
-    type: String,
-    data: Array
-  }
-});
-
-var Tweet = mongoose.model('Tweet', tSchema);
-var TweetAverage = mongoose.model('TweetAverage', tAverageSchema);
-var TweetAverageCol = mongoose.model('TweetAverageCol', tAverageColSchema);
 
 var client = new TwitterStreamChannels(credentials);
 
@@ -98,7 +41,7 @@ for(topic in channels) {
     // var sentimentData = sentiment(tweet.text);
     // console.log(typeof sentimentData.score, sentimentData.score);
     // if(sentimentData.score !== 0 ) {
-    //   Tweet.create({ tweet: tweet.text, sentiment: sentimentData.score, tag: tag});
+    //   twitterModels.Tweet.create({ tweet: tweet.text, sentiment: sentimentData.score, tag: tag});
     // }
   });
 }

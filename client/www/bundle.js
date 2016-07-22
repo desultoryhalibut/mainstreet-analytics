@@ -21423,7 +21423,9 @@
 	              },
 	              axis: { stroke: "transparent" },
 	              ticks: { stroke: "transparent" }
-	            }
+	            },
+	            label: 'x-axis',
+	            standalone: false
 	          })
 	        )
 	      );
@@ -51199,18 +51201,7 @@
 
 	  _createClass(TwitterChart, [{
 	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement(
-	          'h2',
-	          null,
-	          'Twitter Chart'
-	        ),
-	        _react2.default.createElement(_victory.VictoryChart, null)
-	      );
-	    }
+	    value: function render() {}
 	  }]);
 
 	  return TwitterChart;

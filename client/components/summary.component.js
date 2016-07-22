@@ -29,31 +29,31 @@ class SummaryComponent extends Component {
       });
 
       ////////NEWS VOLUME////////
-    fetch('api/news', {method: 'GET'})
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        this.setState({newsData: data});
-
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    // fetch('api/news', {method: 'GET'})
+    //   .then((res) => {
+    //     return res.json();
+    //   })
+    //   .then((data) => {
+    //     this.setState({newsData: data});
+    //
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
 
     ////////NEWS SENTIMENT////////
-    fetch('api/news/sentiment', {method: 'GET'})
-      .then((res) => {
-        console.log('fetch is working. Response:',res)
-        return res.json();
-      })
-      .then((data) => {
-        this.setState({sentimentData: data});
-
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    // fetch('api/news/sentiment', {method: 'GET'})
+    //   .then((res) => {
+    //     console.log('fetch is working. Response:',res)
+    //     return res.json();
+    //   })
+    //   .then((data) => {
+    //     this.setState({sentimentData: data});
+    //
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
 
   }
 

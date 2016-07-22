@@ -34,7 +34,7 @@
   "main": "index.js",
   "name": "HALIBUT",
   "scripts": {
-    "compile": "webpack",
+    "compile": "webpack --watch",
     "start": "nodemon server/server.js",
     "test": "mocha --compilers js:babel-core/register"
   },

@@ -8,7 +8,11 @@ class TwitterChart extends Component {
   }
 
   render() {
-    
+    return(
+      <div>
+        <h2>Twitter Chart Data</h2>
+      </div>
+    );
   }
 }
 

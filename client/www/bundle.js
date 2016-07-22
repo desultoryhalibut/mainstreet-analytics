@@ -21232,23 +21232,31 @@
 	      });
 
 	      ////////NEWS VOLUME////////
-	      fetch('api/news', { method: 'GET' }).then(function (res) {
-	        return res.json();
-	      }).then(function (data) {
-	        _this2.setState({ newsData: data });
-	      }).catch(function (err) {
-	        console.log(err);
-	      });
+	      // fetch('api/news', {method: 'GET'})
+	      //   .then((res) => {
+	      //     return res.json();
+	      //   })
+	      //   .then((data) => {
+	      //     this.setState({newsData: data});
+	      //
+	      //   })
+	      //   .catch((err) => {
+	      //     console.log(err);
+	      //   });
 
 	      ////////NEWS SENTIMENT////////
-	      fetch('api/news/sentiment', { method: 'GET' }).then(function (res) {
-	        console.log('fetch is working. Response:', res);
-	        return res.json();
-	      }).then(function (data) {
-	        _this2.setState({ sentimentData: data });
-	      }).catch(function (err) {
-	        console.log(err);
-	      });
+	      // fetch('api/news/sentiment', {method: 'GET'})
+	      //   .then((res) => {
+	      //     console.log('fetch is working. Response:',res)
+	      //     return res.json();
+	      //   })
+	      //   .then((data) => {
+	      //     this.setState({sentimentData: data});
+	      //
+	      //   })
+	      //   .catch((err) => {
+	      //     console.log(err);
+	      //   });
 	    }
 	  }, {
 	    key: 'render',
@@ -21307,16 +21315,23 @@
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(GoogleTrends).call(this, props));
 
 	    _this.state = {
-	      currentChart: _this.props.googleTrendsData,
+	      currentChart: 'car',
 	      data: _this.props.googleTrendsData
 	    };
 
+	    _this.handleClick = _this.handleClick.bind(_this);
 	    return _this;
 	  }
 
 	  _createClass(GoogleTrends, [{
+	    key: 'handleClick',
+	    value: function handleClick(event) {
+	      this.setState({ currentChart: event.target.value });
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var partial = void 0;
 
 	      if (!this.props.googleTrendsData) {
 	        return _react2.default.createElement(
@@ -21326,21 +21341,57 @@
 	        );
 	      }
 
+	      if (this.state.currentChart === 'car') {
+	        partial = _react2.default.createElement(_linechart2.default, {
+	          data: this.props.googleTrendsData[0].searchVolume,
+	          keyword: this.props.googleTrendsData[0].keyword,
+	          x: 'date',
+	          y: 'volume',
+	          height: 300,
+	          width: 600,
+	          color: 'pink'
+	        });
+	      } else if (this.state.currentChart === 'hedge') {
+	        partial = _react2.default.createElement(_linechart2.default, {
+	          data: this.props.googleTrendsData[2].searchVolume,
+	          keyword: this.props.googleTrendsData[2].keyword,
+	          x: 'date',
+	          y: 'volume',
+	          height: 300,
+	          width: 600,
+	          color: 'blue'
+	        });
+	      } else if (this.state.currentChart === 'dow jones') {
+	        partial = _react2.default.createElement(_linechart2.default, {
+	          data: this.props.googleTrendsData[1].searchVolume,
+	          keyword: this.props.googleTrendsData[1].keyword,
+	          x: 'date',
+	          y: 'volume',
+	          height: 300,
+	          width: 600,
+	          color: 'orange'
+	        });
+	      }
+
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'google-trends-chart' },
 	        _react2.default.createElement(
-	          'h3',
-	          null,
-	          'Google Trends Data for Cars'
+	          'button',
+	          { onClick: this.handleClick, value: 'car' },
+	          'Car'
 	        ),
-	        _react2.default.createElement(_linechart2.default, {
-	          data: this.props.googleTrendsData[0].searchVolume,
-	          x: 'date',
-	          y: 'volume',
-	          height: 300,
-	          width: 400
-	        })
+	        _react2.default.createElement(
+	          'button',
+	          { onClick: this.handleClick, value: 'dow jones' },
+	          'Dow Jones'
+	        ),
+	        _react2.default.createElement(
+	          'button',
+	          { onClick: this.handleClick, value: 'hedge' },
+	          'Hedge'
+	        ),
+	        partial
 	      );
 	    }
 	  }]);
@@ -21376,56 +21427,80 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+	// LineChart component to be reused for Google Trends chart
+
 	var LineChart = function (_Component) {
 	  _inherits(LineChart, _Component);
 
 	  function LineChart(props) {
 	    _classCallCheck(this, LineChart);
 
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(LineChart).call(this, props));
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(LineChart).call(this, props));
+
+	    console.log(_this.computeDomain());
+	    return _this;
 	  }
 
 	  _createClass(LineChart, [{
+	    key: 'computeDomain',
+	    value: function computeDomain() {
+	      var volumeArray = this.props.data.map(function (item) {
+	        return item['volume'];
+	      });
+	      var max = Math.max.apply(null, volumeArray);
+	      var min = Math.min.apply(null, volumeArray);
+
+	      return [min, max];
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'div',
-	        { className: 'line-chart' },
+	        null,
 	        _react2.default.createElement(
-	          _victory.VictoryChart,
-	          {
-	            height: this.props.height,
-	            width: this.props.width,
-	            style: {
-	              axis: { stroke: "black" },
-	              grid: { strokeWidth: 2 },
-	              ticks: { stroke: "red" },
-	              tickLabels: { fontSize: 8 },
-	              axisLabel: { fontsize: 8 }
-	            }
-	          },
+	          'h3',
+	          null,
+	          'Google Searches for ',
+	          this.props.keyword
+	        ),
+	        _react2.default.createElement(
+	          'svg',
+	          { width: this.props.width, height: this.props.height },
 	          _react2.default.createElement(_victory.VictoryLine, {
 	            data: this.props.data,
 	            x: this.props.x,
-	            y: this.props.y
+	            y: this.props.y,
+	            label: this.props.keyword,
+	            standalone: false,
+	            height: this.props.height,
+	            width: this.props.width,
+	            style: {
+	              data: {
+	                stroke: this.props.color,
+	                strokeWidth: 2
+	              }
+	            }
 	          }),
 	          _react2.default.createElement(_victory.VictoryAxis, {
-	            label: 'x-axis',
-	            standalone: false,
-	            orientation: 'bottom'
+	            height: this.props.height,
+	            width: this.props.width,
+	            tickValues: ['2004', '2006', '2008', '2010', '2012', '2014', '2016'],
+	            standalone: false
 	          }),
 	          _react2.default.createElement(_victory.VictoryAxis, { dependentAxis: true,
-	            tickValues: [0, 1.5, 3, 4.5],
+	            height: this.props.height,
+	            width: this.props.width,
+	            label: 'Volume',
+	            standalone: false,
+	            domain: this.computeDomain(),
+	            scale: "linear",
 	            style: {
 	              grid: {
 	                stroke: "grey",
 	                strokeWidth: 1
-	              },
-	              axis: { stroke: "transparent" },
-	              ticks: { stroke: "transparent" }
-	            },
-	            label: 'x-axis',
-	            standalone: false
+	              }
+	            }
 	          })
 	        )
 	      );
@@ -51201,7 +51276,17 @@
 
 	  _createClass(TwitterChart, [{
 	    key: 'render',
-	    value: function render() {}
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'h2',
+	          null,
+	          'Twitter Chart Data'
+	        )
+	      );
+	    }
 	  }]);
 
 	  return TwitterChart;

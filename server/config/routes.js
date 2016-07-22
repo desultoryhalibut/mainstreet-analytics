@@ -14,7 +14,7 @@ var GoogleTrendsRouter = require('../googletrends/google-trends.routes');
 
 module.exports = function(app) {
 
-  // app.use('/api/news', NewsRouter);
+  app.use('/api/news', NewsRouter);
   app.use('/api/news/sentiment', NewsSentimentRouter);
   app.use('/api', GoogleTrendsRouter);  //should be api/google?
 

@@ -1,7 +1,7 @@
 const googleTrends = require('google-trends-api');
 const GoogleTrends = require('../googletrends/google-trends.model');
 
-const NSentiment = require('./news-sentiment-model');
+const NSentiment = require('../sentiment/news-sentiment-model');
 const News = require('../news/news-model');
 const request = require('request');
 const config = require('../config/config');
@@ -91,12 +91,12 @@ googleTrends.trendData(KEYWORDS)
       start: 'now-60d',
       end: 'now',
       rank: 'high',
-      maxResults: 10,  //change once database is up
+      maxResults: 50,  //change once database is up
       'q.enriched.url.enrichedTitle.keywords.keyword.text': 'unemployment^inflation^real estate^acquisition^restaurants^dow jones^economy^panic',
       return: 'enriched.url.title'
     };
     let paramsSentiment = {
-      text: string,
+      
       targets: ['inflation','unemployment','real estate', 'acquisition','restaurants','dow jones','economy']
     };
 
@@ -136,10 +136,11 @@ googleTrends.trendData(KEYWORDS)
         newsString = newsArray.reduce(function(prev, cur) {
           return prev += '. ' + cur.title;
         }, '');
+        paramsSentiment.text = newsString;
         //Feed alchemy news data into sentiment API
         alchemyGetSentiment(paramsSentiment)
         .then(function(sentiment) {
-          var sentimentArr = sent.results.map(function(obj) {
+          var sentimentArr = sentiment.results.map(function(obj) {
             return {
               newsTopic: obj.text,
               sentimentScore: obj.sentiment.score,
@@ -147,15 +148,19 @@ googleTrends.trendData(KEYWORDS)
               // relevance: obj.relevance
             }
           })
-          NSentiment.create(sentimentArr, function(err, sentiment) {
-            if (err) console.error('Error, not able to save: ',err );
-            else {
-              console.log('Sentiment saved in database:',JSON.stringify(sent, null, 2))
-            }
-          })
+          console.log('inside worker. sentiment arr:',sentimentArr)
+
+          // for (var i = 0; i < sentimentArr; i++) {
+          //   NSentiment.findOneAndUpdate({newsTopic: sentimentArr.newsTopic}, {sentimentScore: sentimentArr.sentimentScore}, {new: true, upsert: true})
+          // }
+          for (var i = 0; i < sentimentArr; i++) {
+            NSentiment.findOneAndUpdate({newsTopic: sentimentArr[i].newsTopic},
+              { $set: { sentimentScore: sentimentArr[i].sentimentScore }}, 
+              { new: true,
+                upsert:true })
+          }
+        })
+        .catch(function(err) {
+          console.log(err);
         })
       })
-      .catch(function(err) {
-        console.log(err);
-      })
-

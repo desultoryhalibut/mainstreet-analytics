@@ -58,10 +58,10 @@ for (var i = 0; i < quantity; i++) {
     var rand2 = Math.random();
 
     var sentiment = {
-        "topic": queries[ Math.floor(rand1 * numQueries) ],
+        "topic": queries[ i % queries.length ],
         "volume": (rand2 * 1000) + 100,
         "score": (rand1 * 5) - (rand2 * 5),
-        "time": Math.floor(i / 10)
+        "time": Math.floor(i / queries.length)
     }
 
     entries.push(sentiment)
@@ -69,7 +69,12 @@ for (var i = 0; i < quantity; i++) {
 //////////////////////////////////////////////////////////
 for (var i = 0; i < entries.length; i++) {
      // not sure what the name of our collection is
-     var twitterSent = new tSentiment(entries[i]);
+     var twitterSent = new tSentiment({
+       topic: entries[i].topic,
+       volume: entries[i].volume,
+       score: entries[i].score,
+       interval: entries[i].time
+     });
      twitterSent.save();
  }
 

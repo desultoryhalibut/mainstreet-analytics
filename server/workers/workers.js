@@ -21,16 +21,15 @@ const KEYWORDS = ['car', 'real estate agent', 'inflation', 'restaurant', 'unempl
  * @return {[Array]}            [description]
  */
 function reformatTrendsData(trendsData) {
- return trendsData.map(item => {
-   for (var key in item) {
-     let obj = {};
-     obj['date'] = key;
-     obj['volume'] = item[key];
-     return obj;
-   }
- });
+   return trendsData.map(item => {
+     for (var key in item) {
+       let obj = {};
+       obj['date'] = key;
+       obj['volume'] = item[key];
+       return obj;
+     }
+   });
 }
-
 
  /**
   * function QueryGoogleTrends - Helper function to seed data from GoogleTrends API to database

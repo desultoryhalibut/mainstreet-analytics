@@ -2,10 +2,9 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var tSentimentSchema = new Schema({
-  newsTopic: {type: String},
+  topic: {type: String},
   volume: {type: Number},
-  sentimentScore: {type: String},
-  type: {type: String},
+  score: {type: String},
   interval: {type: Number}
 })
 

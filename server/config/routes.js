@@ -4,7 +4,7 @@ var NewsRouter = require('../news/news-router');
 var NewsSentimentRouter = require('../sentiment/news-sentiment-router');
 var GoogleTrendsRouter = require('../googletrends/google-trends.routes');
 
-// var twitterRouter = require('../twitter/twitter-router');
+// var TwitterRouter = require('../twitter/twitter-router');
 // var sentimentRouter = require('../sentiment/sentiment-router');
 // var financeRouter = require('../finance/finance-router')
 

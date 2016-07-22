@@ -1,53 +1,74 @@
 import React, { Component } from 'react';
 import { VictoryPie, VictoryChart, VictoryLine, VictoryAxis } from 'victory';
 
+// LineChart component to be reused for Google Trends chart
+
 class LineChart extends Component {
 
   constructor(props) {
     super(props);
+    console.log(this.computeDomain());
+  }
 
+  computeDomain() {
+    let volumeArray = this.props.data.map(item => {
+      return item['volume'];
+    });
+    let max = Math.max.apply(null, volumeArray);
+    let min = Math.min.apply(null, volumeArray);
+
+    return [min, max];
   }
 
   render() {
     return (
-      <div className="line-chart">
-        <VictoryChart
-          height={this.props.height}
-          width={this.props.width}
-          style={{
-            axis: {stroke: "black"},
-            grid: {strokeWidth: 2},
-            ticks: {stroke: "red"},
-            tickLabels: {fontSize: 8},
-            axisLabel: {fontsize: 8}
-          }}
-        >
+      <div>
+        <h3>Google Searches for {this.props.keyword}</h3>
+        <svg width={this.props.width} height={this.props.height}>
           <VictoryLine
             data={this.props.data}
             x={this.props.x}
             y={this.props.y}
-          />
-
-          <VictoryAxis
-            label="x-axis"
+            label={this.props.keyword}
             standalone={false}
-            orientation="bottom"
+            height={this.props.height}
+            width={this.props.width}
+            style={{
+              data: {
+                stroke: this.props.color,
+                strokeWidth: 2
+              }
+            }}
           />
-
+          <VictoryAxis
+            height={this.props.height}
+            width={this.props.width}
+            tickValues={[
+              '2004',
+              '2006',
+              '2008',
+              '2010',
+              '2012',
+              '2014',
+              '2016'
+            ]}
+            standalone={false}
+          />
           <VictoryAxis dependentAxis
-            tickValues={[0, 1.5, 3, 4.5]}
+            height={this.props.height}
+            width={this.props.width}
+            label="Volume"
+            standalone={false}
+            domain={this.computeDomain()}
+            scale={"linear"}
             style={{
               grid: {
                 stroke: "grey",
                 strokeWidth: 1
-              },
-              axis: {stroke: "transparent"},
-              ticks: {stroke: "transparent"}
+              }
             }}
-           />
-
-        </VictoryChart>
-
+          />
+        </svg>
       </div>
     );
   }

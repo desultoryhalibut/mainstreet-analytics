@@ -31,17 +31,11 @@ app.use(webpackDevMiddleware(compiler, {
   historyApiFallback: true,
 }));
 
-var server = app.listen(3000, function() {
+var server = app.listen(3001, function() {
   var host = server.address().address;
   var port = server.address().port;
   console.log('app listening at host, port:', host, port);
 });
-
-
-
-
-
-
 
 
 ////////////////////////////////////////////////////////////////

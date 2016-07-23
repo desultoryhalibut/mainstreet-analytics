@@ -41,19 +41,19 @@ class SummaryComponent extends Component {
     //     console.log(err);
     //   });
 
-    ////////NEWS SENTIMENT////////
-    // fetch('api/news/sentiment', {method: 'GET'})
-    //   .then((res) => {
-    //     console.log('fetch is working. Response:',res)
-    //     return res.json();
-    //   })
-    //   .then((data) => {
-    //     this.setState({sentimentData: data});
-    //
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    //////NEWS SENTIMENT////////
+    fetch('api/news/sentiment', {method: 'GET'})
+      .then((res) => {
+        console.log('fetch is working. Response:',res)
+        return res.json();
+      })
+      .then((data) => {
+        this.setState({sentimentData: data});
+    
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
   }
 

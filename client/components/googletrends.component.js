@@ -61,11 +61,15 @@ class GoogleTrends extends Component {
 
     return (
       <div className="google-trends-chart">
-        <button onClick={this.handleClick} value="car">Car</button>
-        <button onClick={this.handleClick} value="dow jones">Dow Jones</button>
-        <button onClick={this.handleClick} value="hedge">Hedge</button>
-
+        <h2>Google Trends Overview</h2>
+        <nav className="google-trends-nav">
+          <button onClick={this.handleClick} value="car">Car</button>
+          <button onClick={this.handleClick} value="dow jones">Dow Jones</button>
+          <button onClick={this.handleClick} value="hedge">Hedge</button>
+        </nav>
+        <article>
           {partial}
+        </article>
 
       </div>
     );

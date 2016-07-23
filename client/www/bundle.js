@@ -21373,21 +21373,34 @@
 	        'div',
 	        { className: 'google-trends-chart' },
 	        _react2.default.createElement(
-	          'button',
-	          { onClick: this.handleClick, value: 'car' },
-	          'Car'
+	          'h2',
+	          null,
+	          'Google Trends Overview'
 	        ),
 	        _react2.default.createElement(
-	          'button',
-	          { onClick: this.handleClick, value: 'dow jones' },
-	          'Dow Jones'
+	          'nav',
+	          { className: 'google-trends-nav' },
+	          _react2.default.createElement(
+	            'button',
+	            { onClick: this.handleClick, value: 'car' },
+	            'Car'
+	          ),
+	          _react2.default.createElement(
+	            'button',
+	            { onClick: this.handleClick, value: 'dow jones' },
+	            'Dow Jones'
+	          ),
+	          _react2.default.createElement(
+	            'button',
+	            { onClick: this.handleClick, value: 'hedge' },
+	            'Hedge'
+	          )
 	        ),
 	        _react2.default.createElement(
-	          'button',
-	          { onClick: this.handleClick, value: 'hedge' },
-	          'Hedge'
-	        ),
-	        partial
+	          'article',
+	          null,
+	          partial
+	        )
 	      );
 	    }
 	  }]);
@@ -51438,7 +51451,8 @@
 	          'h2',
 	          null,
 	          'Twitter Chart Data'
-	        )
+	        ),
+	        _react2.default.createElement(_victory.VictoryChart, null)
 	      );
 	    }
 	  }]);

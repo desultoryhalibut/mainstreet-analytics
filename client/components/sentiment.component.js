@@ -11,6 +11,7 @@ class SentimentTrends extends Component {
     this.state = {
       data: this.props.sentimentData,
       topic: 'economic'
+      xAxis: 1
     }
     this.handleClick = this.handleClick.bind(this);
   }

@@ -38,17 +38,16 @@ class CentralAxis extends Component {
       }
       return data;
     }
+  }
 
   render() {
     var topic = this.props.currentCompany || 'economic';
     console.log("This is the topic: ",topic, this.props.currentCompany );
+
     return (
 
       <div className='bar-chart'>
-
-
       <svg width={650} height={350}>
-
        <VictoryChart horizontal
          height={375}
          width={550}
@@ -59,7 +58,6 @@ class CentralAxis extends Component {
            right: 40
          }}
          domainPadding={{x: 15}}
-
         >
         <VictoryAxis
 
@@ -90,15 +88,28 @@ class CentralAxis extends Component {
                 x: idx,
                 y: 0
               }
-
             })}
           />
 
        </VictoryChart>
-
       </svg>
-
       </div>
+      //
+      //       }}
+      //       data={this.props.data.map(function(obj, idx) {
+      //
+      //         return {
+      //           x: 1+idx,
+      //           y: + obj.sentimentScore,
+      //           label: obj.newsTopic.toUpperCase()
+      //         }
+      //       })}
+      //     />
+      //   </VictoryChart>
+      //
+      // </svg>
+
+      // </div>
     );
   }
 }

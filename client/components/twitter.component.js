@@ -11,7 +11,7 @@ class TwitterChart extends Component {
     return(
       <div>
         <h2>Twitter Chart Data</h2>
-        <VictoryChart />
+        <VictoryChart height={200} width={300}/>
       </div>
     );
   }

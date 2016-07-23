@@ -2,12 +2,10 @@
     box-sizing: border-box;
 }
 body {
-  background: #f5ead6;
+  background: $black;
+  font-size: 14px;
 }
-.center-content {
-  max-width: 1240px;
-  margin: 0 auto;
-}
+
 header {
   border-bottom: 1px solid $border-color;
   background: $white;
@@ -26,6 +24,16 @@ header {
     }
   }
 }
+
+section {
+  padding: 0 0 40px;
+}
+
+.center-content {
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
 .trends {
   border: 1px solid $border-color;
   background: $white;
@@ -57,14 +65,6 @@ header {
   border: 1px solid $border-color;
 }
 
-.results-copy {
-  margin-top: 45px;
-  font-size: 30px;
-}
-
-section {
-  padding: 0 0 40px;
-}
 .google-trends {
   .graph {
     height: 300px;
@@ -72,6 +72,16 @@ section {
   .google-summary {
     padding: 0 0 0 50px;
   }
+}
+
+.main-content {
+  background: $tan;
+  padding: 2em 3em 2em 3em;
+}
+
+.results-copy {
+  margin-top: 45px;
+  font-size: 30px;
 }
 
 .sentiments {

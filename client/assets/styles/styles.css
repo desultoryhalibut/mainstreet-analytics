@@ -6,7 +6,7 @@
 }
 
 body {
-  background: #000;
+  background: #f5ead6;
   font-size: 14px;
 }
 
@@ -34,8 +34,9 @@ section {
 }
 
 .center-content {
-  max-width: 1240px;
+  max-width: 80%;
   margin: 0 auto;
+  padding: 0;
 }
 
 .trends {
@@ -76,9 +77,13 @@ section {
   padding: 0 0 0 50px;
 }
 
+.header-image {
+  margin: 0 auto;
+  max-width: 100%;
+}
+
 .main-content {
-  background: #f5ead6;
-  padding: 2em 3em 2em 3em;
+  background: #fff;
 }
 
 .results-copy {
@@ -90,14 +95,23 @@ section {
   height: 300px;
 }
 
+.tweet-square {
+  height: 100px;
+  width: 100px;
+}
+
 .section-headline {
+  background: gray;
   color: #000;
-  background: #fff;
-  padding-top: 15px;
+  padding: 2em;
   margin-bottom: 35px;
 }
 .section-headline h3 {
+  color: #fff;
+  font-size: 3em;
+  font-weight: 500;
   line-height: 0.85714285714286em;
+  text-transform: uppercase;
 }
 
 .orange {

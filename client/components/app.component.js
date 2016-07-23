@@ -9,12 +9,12 @@ export default class AppComponent extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div>
         <header>
           <NavBar />
         </header>
         <div className="main-content">
-          <h1>Main Street Analytics</h1>
+          <img className="header-image" src="http://previews.123rf.com/images/ashdesign/ashdesign1010/ashdesign101000010/8127340-3D-Stock-Market-Data-Blue-Background-Stock-Photo.jpg" alt="Main Street Analytics"/>
           <SummaryComponent />
         </div>
       </div>

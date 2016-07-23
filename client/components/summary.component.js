@@ -49,7 +49,7 @@ class SummaryComponent extends Component {
       })
       .then((data) => {
         this.setState({sentimentData: data});
-    
+
       })
       .catch((err) => {
         console.log(err);
@@ -60,11 +60,46 @@ class SummaryComponent extends Component {
   render() {
 
     return (
-      <div>
+      <div className="container">
+        <div className="row">
+          <div className="section-headline col-md-12">
+            <h3 className="ta-center"><i className="fa fa-twitter" aria-hidden="true"></i>What's Tweeting</h3>
+          </div>
+        </div>
+
         <TwitterChart />
+
+        <div className="row">
+          <div className="section-headline col-md-12">
+            <h3 className="ta-center">What's Being Searched</h3>
+          </div>
+        </div>
+
         <GoogleTrends googleTrendsData={this.state.googleTrendsData} />
+
+        <div className="row">
+          <div className="section-headline col-md-12">
+            <h3 className="ta-center">Market Sentiment</h3>
+          </div>
+        </div>
+
         <SentimentTrends sentimentData={this.state.sentimentData} />
+
+        <div className="row">
+          <div className="section-headline col-md-12">
+            <h3 className="ta-center">What People Are Saying</h3>
+          </div>
+        </div>
         <NewsTrends newsData={this.state.newsData} />
+
+        <div className="row">
+          <div className="footer-top col-md-12">
+
+          </div>
+          <div className="footer col-md-12">
+            Footer text goes here
+          </div>
+        </div>
       </div>
     );
   }

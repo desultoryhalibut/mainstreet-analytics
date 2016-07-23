@@ -31,17 +31,36 @@ var channels = {
   'markets': ['dow', 's&p', 'stocks'],
 };
 
+var saveTweet = function(tag, tweet){
+  var sentimentData = sentiment(tweet.text);
+  if(sentimentData.score !== 0 ) {
+    twitterModels.Tweet.create({ tweet: tweet.text, sentiment: sentimentData.score, tag: tag});
+  }
+};
 var stream = client.streamChannels({track:channels});
 
 for(topic in channels) {
   var channel = 'channels/' + topic;
-  stream.on(channel, function(tweet){
-    // var tag = topic;
-    //
-    // var sentimentData = sentiment(tweet.text);
-    // console.log(typeof sentimentData.score, sentimentData.score);
-    // if(sentimentData.score !== 0 ) {
-    //   twitterModels.Tweet.create({ tweet: tweet.text, sentiment: sentimentData.score, tag: tag});
-    // }
-  });
+  var tag = topic;
+
+
+ // BOOOOOOM!!!!
+  stream.on(channel, function() {
+    var tag = topic;
+    return saveTweet.bind(this, tag);
+  }());
 }
+
+
+
+module.exports = {
+  get: function(req, res) {
+    twitterModels.TweetAverage.find().exec()
+    .then(function(tweets) {
+      res.json(tweets);
+    })
+    .catch(function(err) {
+      res.send('Error fetching data');
+    });
+  },
+};

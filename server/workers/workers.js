@@ -54,7 +54,6 @@ function queryGoogleTrends(key, googleTrendResults) {
     });
 }
 
-
 /**
  * function googleTrends.trendData - Updates database for GoogleTrends Summary keywords for dashboard view
  * @param  {[Array]} KEYWORDS [Array of keywords]

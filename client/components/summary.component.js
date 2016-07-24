@@ -10,7 +10,8 @@ class SummaryComponent extends Component {
     this.state = {
       googleTrendsData: null,
       newsData: null,
-      sentimentData: null
+      sentimentData: null,
+      currentCompany: this.props.currentCompany
     };
 
   }
@@ -26,19 +27,6 @@ class SummaryComponent extends Component {
       .catch((err) => {
         console.log(err);
       });
-
-      ////////NEWS VOLUME////////
-    // fetch('api/news', {method: 'GET'})
-    //   .then((res) => {
-    //     return res.json();
-    //   })
-    //   .then((data) => {
-    //     this.setState({newsData: data});
-    //
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
 
     //////NEWS SENTIMENT////////
     fetch('api/news/sentiment', {method: 'GET'})
@@ -66,7 +54,7 @@ class SummaryComponent extends Component {
           </div>
         </div>
 
-        <TwitterChart />
+        <TwitterChart currentCompany={this.state.currentCompany}/>
 
         <div className="row">
           <div className="section-headline col-md-12">
@@ -74,7 +62,7 @@ class SummaryComponent extends Component {
           </div>
         </div>
 
-        <GoogleTrends googleTrendsData={this.state.googleTrendsData} />
+        <GoogleTrends googleTrendsData={this.state.googleTrendsData} currentCompany={this.state.currentCompany}/>
 
         <div className="row">
           <div className="section-headline col-md-12">
@@ -82,7 +70,7 @@ class SummaryComponent extends Component {
           </div>
         </div>
 
-        <SentimentTrends sentimentData={this.state.sentimentData} />
+        <SentimentTrends sentimentData={this.state.sentimentData} currentCompany={this.state.currentCompany}/>
 
         <div className="row">
           <div className="footer-top col-md-12">

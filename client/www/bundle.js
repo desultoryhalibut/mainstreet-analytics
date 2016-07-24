@@ -30574,7 +30574,7 @@
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(AppComponent).call(this, props));
 
 	    _this.state = {
-	      currentSearch: null
+	      currentCompany: null
 	    };
 	    _this.selectCompany = _this.selectCompany.bind(_this);
 	    return _this;
@@ -30583,7 +30583,7 @@
 	  _createClass(AppComponent, [{
 	    key: 'selectCompany',
 	    value: function selectCompany(company) {
-	      this.setState({ currentSearch: company });
+	      this.setState({ currentCompany: company });
 	      alert('I selected this company ' + company);
 	    }
 	  }, {
@@ -30602,7 +30602,7 @@
 	          'div',
 	          { className: 'main-content' },
 	          _react2.default.createElement('img', { className: 'header-image', src: 'http://previews.123rf.com/images/ashdesign/ashdesign1010/ashdesign101000010/8127340-3D-Stock-Market-Data-Blue-Background-Stock-Photo.jpg', alt: 'Main Street Analytics' }),
-	          _react2.default.createElement(_summary2.default, null),
+	          _react2.default.createElement(_summary2.default, { currentCompany: this.state.currentCompany }),
 	          _react2.default.createElement(_footer2.default, null)
 	        )
 	      );
@@ -30661,7 +30661,8 @@
 	    _this.state = {
 	      googleTrendsData: null,
 	      newsData: null,
-	      sentimentData: null
+	      sentimentData: null,
+	      currentCompany: _this.props.currentCompany
 	    };
 
 	    return _this;
@@ -30679,19 +30680,6 @@
 	      }).catch(function (err) {
 	        console.log(err);
 	      });
-
-	      ////////NEWS VOLUME////////
-	      // fetch('api/news', {method: 'GET'})
-	      //   .then((res) => {
-	      //     return res.json();
-	      //   })
-	      //   .then((data) => {
-	      //     this.setState({newsData: data});
-	      //
-	      //   })
-	      //   .catch((err) => {
-	      //     console.log(err);
-	      //   });
 
 	      //////NEWS SENTIMENT////////
 	      fetch('api/news/sentiment', { method: 'GET' }).then(function (res) {
@@ -30724,7 +30712,7 @@
 	            )
 	          )
 	        ),
-	        _react2.default.createElement(_twitter2.default, null),
+	        _react2.default.createElement(_twitter2.default, { currentCompany: this.state.currentCompany }),
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'row' },
@@ -30738,7 +30726,7 @@
 	            )
 	          )
 	        ),
-	        _react2.default.createElement(_googletrends2.default, { googleTrendsData: this.state.googleTrendsData }),
+	        _react2.default.createElement(_googletrends2.default, { googleTrendsData: this.state.googleTrendsData, currentCompany: this.state.currentCompany }),
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'row' },
@@ -30752,7 +30740,7 @@
 	            )
 	          )
 	        ),
-	        _react2.default.createElement(_sentiment2.default, { sentimentData: this.state.sentimentData })
+	        _react2.default.createElement(_sentiment2.default, { sentimentData: this.state.sentimentData, currentCompany: this.state.currentCompany })
 	      );
 	    }
 	  }]);

@@ -5,11 +5,17 @@ class TwitterLiveSummary extends Component {
   
   constructor(props) {
     super(props);
+
     this.state = {
-      test: -2 // units of time from tail to look back and display, decided by user
+      intervals: -1 // units of time from tail to look back and display, decided by user
     }
+
+    this.clickHandler = this.clickHandler.bind(this);
   }
   
+  clickHandler(event){
+    this.setState({intervals: +event.target.value});
+  }
  
 
   render() {
@@ -19,14 +25,14 @@ class TwitterLiveSummary extends Component {
         <div>Loading Twitter Volume data...</div>
       );
     }
-    console.log('XXXYYY: ',this.state)
-    var intervals = this.state.test;
+
+    var intervals = this.state.intervals;
     var yVals = this.props.twitterData.map(function(obj, index, collection){
       return (obj.data.slice( intervals ).reduce(function(a, b){
                return a + b.numTweets;
              }, 0) / -intervals); //find avg volume for 'this.state.test' number of intervals
     })
-    
+
     var chart = <VictoryBar
       height={300}
       padding={75}
@@ -46,9 +52,15 @@ class TwitterLiveSummary extends Component {
     />
 
     return(
-      <div>
-        Inside TwitterLiveSummary component 
-        {chart}    
+
+      <div className="twitter-live-summary">
+        
+        <h4>TwitterLiveSummary Component (update choices once chron job enabled)</h4>
+          {chart}
+        <button onClick={this.clickHandler} value="-1">1 Minute</button>
+        <button onClick={this.clickHandler} value="-3">3 Minutes</button>
+        <button onClick={this.clickHandler} value="-5">5 Minutes</button>
+
       </div>
     )
   }

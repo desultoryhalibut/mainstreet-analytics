@@ -58659,12 +58659,19 @@
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(TwitterLiveSummary).call(this, props));
 
 	    _this.state = {
-	      test: -2 // units of time from tail to look back and display, decided by user
+	      intervals: -1 // units of time from tail to look back and display, decided by user
 	    };
+
+	    _this.clickHandler = _this.clickHandler.bind(_this);
 	    return _this;
 	  }
 
 	  _createClass(TwitterLiveSummary, [{
+	    key: 'clickHandler',
+	    value: function clickHandler(event) {
+	      this.setState({ intervals: +event.target.value });
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 
@@ -58675,8 +58682,8 @@
 	          'Loading Twitter Volume data...'
 	        );
 	      }
-	      console.log('XXXYYY: ', this.state);
-	      var intervals = this.state.test;
+
+	      var intervals = this.state.intervals;
 	      var yVals = this.props.twitterData.map(function (obj, index, collection) {
 	        return obj.data.slice(intervals).reduce(function (a, b) {
 	          return a + b.numTweets;
@@ -58694,9 +58701,28 @@
 
 	      return _react2.default.createElement(
 	        'div',
-	        null,
-	        'Inside TwitterLiveSummary component',
-	        chart
+	        { className: 'twitter-live-summary' },
+	        _react2.default.createElement(
+	          'h4',
+	          null,
+	          'TwitterLiveSummary Component (update choices once chron job enabled)'
+	        ),
+	        chart,
+	        _react2.default.createElement(
+	          'button',
+	          { onClick: this.clickHandler, value: '-1' },
+	          '1 Minute'
+	        ),
+	        _react2.default.createElement(
+	          'button',
+	          { onClick: this.clickHandler, value: '-3' },
+	          '3 Minutes'
+	        ),
+	        _react2.default.createElement(
+	          'button',
+	          { onClick: this.clickHandler, value: '-5' },
+	          '5 Minutes'
+	        )
 	      );
 	    }
 	  }]);

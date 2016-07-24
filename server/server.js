@@ -8,7 +8,7 @@ var tSentiment = require('./sentiment/twitter-sentiment-model');
 var app = express();
 var twitterCron = require('./workers/workers-twitter');
 var CronJob = require('cron').CronJob;
-new CronJob('0 * * * * *', function() {
+new CronJob('*/5 * * * * *', function() {
   twitterCron.getCollections(twitterCron.channels);
 }, null, true, 'America/Los_Angeles');
 

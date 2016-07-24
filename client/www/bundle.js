@@ -61,7 +61,7 @@
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _app = __webpack_require__(173);
+	var _app = __webpack_require__(235);
 
 	var _app2 = _interopRequireDefault(_app);
 
@@ -21104,7 +21104,69 @@
 	module.exports = ReactMount.renderSubtreeIntoContainer;
 
 /***/ },
-/* 173 */
+/* 173 */,
+/* 174 */,
+/* 175 */,
+/* 176 */,
+/* 177 */,
+/* 178 */,
+/* 179 */,
+/* 180 */,
+/* 181 */,
+/* 182 */,
+/* 183 */,
+/* 184 */,
+/* 185 */,
+/* 186 */,
+/* 187 */,
+/* 188 */,
+/* 189 */,
+/* 190 */,
+/* 191 */,
+/* 192 */,
+/* 193 */,
+/* 194 */,
+/* 195 */,
+/* 196 */,
+/* 197 */,
+/* 198 */,
+/* 199 */,
+/* 200 */,
+/* 201 */,
+/* 202 */,
+/* 203 */,
+/* 204 */,
+/* 205 */,
+/* 206 */,
+/* 207 */,
+/* 208 */,
+/* 209 */,
+/* 210 */,
+/* 211 */,
+/* 212 */,
+/* 213 */,
+/* 214 */,
+/* 215 */,
+/* 216 */,
+/* 217 */,
+/* 218 */,
+/* 219 */,
+/* 220 */,
+/* 221 */,
+/* 222 */,
+/* 223 */,
+/* 224 */,
+/* 225 */,
+/* 226 */,
+/* 227 */,
+/* 228 */,
+/* 229 */,
+/* 230 */,
+/* 231 */,
+/* 232 */,
+/* 233 */,
+/* 234 */,
+/* 235 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21119,7 +21181,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _summary = __webpack_require__(174);
+	var _summary = __webpack_require__(236);
 
 	var _summary2 = _interopRequireDefault(_summary);
 
@@ -21162,7 +21224,7 @@
 	exports.default = AppComponent;
 
 /***/ },
-/* 174 */
+/* 236 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21177,19 +21239,19 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _googletrends = __webpack_require__(175);
+	var _googletrends = __webpack_require__(237);
 
 	var _googletrends2 = _interopRequireDefault(_googletrends);
 
-	var _sentiment = __webpack_require__(178);
+	var _sentiment = __webpack_require__(240);
 
 	var _sentiment2 = _interopRequireDefault(_sentiment);
 
-	var _news = __webpack_require__(179);
+	var _news = __webpack_require__(502);
 
 	var _news2 = _interopRequireDefault(_news);
 
-	var _twitter = __webpack_require__(180);
+	var _twitter = __webpack_require__(242);
 
 	var _twitter2 = _interopRequireDefault(_twitter);
 
@@ -21244,19 +21306,15 @@
 	      //     console.log(err);
 	      //   });
 
-	      ////////NEWS SENTIMENT////////
-	      // fetch('api/news/sentiment', {method: 'GET'})
-	      //   .then((res) => {
-	      //     console.log('fetch is working. Response:',res)
-	      //     return res.json();
-	      //   })
-	      //   .then((data) => {
-	      //     this.setState({sentimentData: data});
-	      //
-	      //   })
-	      //   .catch((err) => {
-	      //     console.log(err);
-	      //   });
+	      //////NEWS SENTIMENT////////
+	      fetch('api/news/sentiment', { method: 'GET' }).then(function (res) {
+	        console.log('fetch is working. Response:', res);
+	        return res.json();
+	      }).then(function (data) {
+	        _this2.setState({ sentimentData: data });
+	      }).catch(function (err) {
+	        console.log(err);
+	      });
 	    }
 	  }, {
 	    key: 'render',
@@ -21279,7 +21337,7 @@
 	exports.default = SummaryComponent;
 
 /***/ },
-/* 175 */
+/* 237 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21294,7 +21352,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _linechart = __webpack_require__(176);
+	var _linechart = __webpack_require__(238);
 
 	var _linechart2 = _interopRequireDefault(_linechart);
 
@@ -21402,7 +21460,7 @@
 	exports.default = GoogleTrends;
 
 /***/ },
-/* 176 */
+/* 238 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21417,7 +21475,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _victory = __webpack_require__(177);
+	var _victory = __webpack_require__(239);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21513,7 +21571,7 @@
 	exports.default = LineChart;
 
 /***/ },
-/* 177 */
+/* 239 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function webpackUniversalModuleDefinition(root, factory) {
@@ -51180,67 +51238,7 @@
 	//# sourceMappingURL=victory.js.map
 
 /***/ },
-/* 178 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _react = __webpack_require__(2);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var SentimentTrends = function SentimentTrends(props) {
-
-	  return(
-	    // insert jsx here
-	    _react2.default.createElement(
-	      'h2',
-	      null,
-	      'Sentiment Chart'
-	    )
-	  );
-	};
-
-	exports.default = SentimentTrends;
-
-/***/ },
-/* 179 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _react = __webpack_require__(2);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var NewsTrends = function NewsTrends(props) {
-
-	  return(
-	    // insert jsx here
-	    _react2.default.createElement(
-	      'h2',
-	      null,
-	      'News Chart'
-	    )
-	  );
-	};
-
-	exports.default = NewsTrends;
-
-/***/ },
-/* 180 */
+/* 240 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -51255,7 +51253,195 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _victory = __webpack_require__(177);
+	var _linechart = __webpack_require__(238);
+
+	var _linechart2 = _interopRequireDefault(_linechart);
+
+	var _barchart = __webpack_require__(241);
+
+	var _barchart2 = _interopRequireDefault(_barchart);
+
+	var _victory = __webpack_require__(239);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var SentimentTrends = function (_Component) {
+	  _inherits(SentimentTrends, _Component);
+
+	  function SentimentTrends(props) {
+	    _classCallCheck(this, SentimentTrends);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(SentimentTrends).call(this, props));
+
+	    _this.state = {
+	      data: _this.props.sentimentData
+	    };
+	    return _this;
+	  }
+
+	  _createClass(SentimentTrends, [{
+	    key: 'render',
+	    value: function render() {
+	      console.log('props:', this.props.sentimentData);
+	      if (!this.props.sentimentData) {
+	        return _react2.default.createElement(
+	          'p',
+	          null,
+	          'Loading Sentiment Data...'
+	        );
+	      }
+
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'sentiment-chart' },
+	        _react2.default.createElement(
+	          'h2',
+	          null,
+	          'Consumer/Economic Sentiment - News in Past Two Months'
+	        ),
+	        _react2.default.createElement(_barchart2.default, {
+	          data: this.props.sentimentData,
+	          x: 'newsTopic',
+	          y: 'sentimentScore',
+	          height: 300,
+	          width: 500
+	        })
+	      );
+	    }
+	  }]);
+
+	  return SentimentTrends;
+	}(_react.Component);
+
+	exports.default = SentimentTrends;
+
+/***/ },
+/* 241 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _victory = __webpack_require__(239);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var CentralAxis = function (_Component) {
+	  _inherits(CentralAxis, _Component);
+
+	  function CentralAxis(props) {
+	    _classCallCheck(this, CentralAxis);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(CentralAxis).call(this, props));
+	  }
+
+	  _createClass(CentralAxis, [{
+	    key: 'render',
+	    value: function render() {
+	      var _React$createElement;
+
+	      return(
+	        // <div className='bar-chart'>
+	        _react2.default.createElement(
+	          'svg',
+	          { width: 500, height: 350 },
+	          _react2.default.createElement(
+	            _victory.VictoryChart,
+	            (_React$createElement = { horizontal: true,
+	              height: 350,
+	              width: 500,
+	              padding: 40,
+	              domain: { x: [-1.2, 1.2], y: [0, 7] },
+	              style: {
+	                data: { width: 50 },
+	                labels: { fontSize: 12 }
+	              }
+	            }, _defineProperty(_React$createElement, 'padding', {
+	              top: 20,
+	              bottom: 60,
+	              left: 20,
+	              right: 20
+	            }), _defineProperty(_React$createElement, 'domainPadding', { x: 15 }), _React$createElement),
+	            _react2.default.createElement(_victory.VictoryAxis, {
+	              label: 'Sentiment',
+	              orientation: 'bottom' }),
+	            _react2.default.createElement(_victory.VictoryAxis, {
+	              domain: { y: [0, 5] },
+	              tickValues: [-1, -0.75, -0.5, -.25, 0, .25, .50, .75, 1],
+	              style: {
+	                labels: { fontSize: 9 },
+	                grid: {
+	                  stroke: "grey",
+	                  strokeWidth: 1
+	                },
+	                axis: { stroke: "transparent" },
+	                ticks: { stroke: "transparent" }
+	              } }),
+	            _react2.default.createElement(_victory.VictoryBar, { horizontal: true,
+	              style: {
+	                data: {
+	                  width: 17,
+	                  labels: { padding: 5, fontSize: 10 },
+	                  fill: function fill(data) {
+	                    return data.y > 0 ? "gold" : "blue";
+	                  }
+	                }
+	              },
+	              data: [{ x: 1, y: -0.51, label: 'EMPLOYMENT' }, { x: 2, y: -0.2, label: 'ECONOMY' }, { x: 3, y: -0.06, label: 'BUSINESS CONDITIONS' }, { x: 4, y: 0.13, label: 'GOLD' }, { x: 5, y: 0.46, label: 'CONSUMER SPENDING' }, { x: 6, y: 0.52, label: 'INCOME' }, { x: 7, y: 0.9, label: 'RESTAURANTS' }]
+	            })
+	          )
+	        )
+	        // </div>
+
+	      );
+	    }
+	  }]);
+
+	  return CentralAxis;
+	}(_react.Component);
+
+	exports.default = CentralAxis;
+
+/***/ },
+/* 242 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _victory = __webpack_require__(239);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -51293,6 +51479,295 @@
 	}(_react.Component);
 
 	exports.default = TwitterChart;
+
+/***/ },
+/* 243 */,
+/* 244 */,
+/* 245 */,
+/* 246 */,
+/* 247 */,
+/* 248 */,
+/* 249 */,
+/* 250 */,
+/* 251 */,
+/* 252 */,
+/* 253 */,
+/* 254 */,
+/* 255 */,
+/* 256 */,
+/* 257 */,
+/* 258 */,
+/* 259 */,
+/* 260 */,
+/* 261 */,
+/* 262 */,
+/* 263 */,
+/* 264 */,
+/* 265 */,
+/* 266 */,
+/* 267 */,
+/* 268 */,
+/* 269 */,
+/* 270 */,
+/* 271 */,
+/* 272 */,
+/* 273 */,
+/* 274 */,
+/* 275 */,
+/* 276 */,
+/* 277 */,
+/* 278 */,
+/* 279 */,
+/* 280 */,
+/* 281 */,
+/* 282 */,
+/* 283 */,
+/* 284 */,
+/* 285 */,
+/* 286 */,
+/* 287 */,
+/* 288 */,
+/* 289 */,
+/* 290 */,
+/* 291 */,
+/* 292 */,
+/* 293 */,
+/* 294 */,
+/* 295 */,
+/* 296 */,
+/* 297 */,
+/* 298 */,
+/* 299 */,
+/* 300 */,
+/* 301 */,
+/* 302 */,
+/* 303 */,
+/* 304 */,
+/* 305 */,
+/* 306 */,
+/* 307 */,
+/* 308 */,
+/* 309 */,
+/* 310 */,
+/* 311 */,
+/* 312 */,
+/* 313 */,
+/* 314 */,
+/* 315 */,
+/* 316 */,
+/* 317 */,
+/* 318 */,
+/* 319 */,
+/* 320 */,
+/* 321 */,
+/* 322 */,
+/* 323 */,
+/* 324 */,
+/* 325 */,
+/* 326 */,
+/* 327 */,
+/* 328 */,
+/* 329 */,
+/* 330 */,
+/* 331 */,
+/* 332 */,
+/* 333 */,
+/* 334 */,
+/* 335 */,
+/* 336 */,
+/* 337 */,
+/* 338 */,
+/* 339 */,
+/* 340 */,
+/* 341 */,
+/* 342 */,
+/* 343 */,
+/* 344 */,
+/* 345 */,
+/* 346 */,
+/* 347 */,
+/* 348 */,
+/* 349 */,
+/* 350 */,
+/* 351 */,
+/* 352 */,
+/* 353 */,
+/* 354 */,
+/* 355 */,
+/* 356 */,
+/* 357 */,
+/* 358 */,
+/* 359 */,
+/* 360 */,
+/* 361 */,
+/* 362 */,
+/* 363 */,
+/* 364 */,
+/* 365 */,
+/* 366 */,
+/* 367 */,
+/* 368 */,
+/* 369 */,
+/* 370 */,
+/* 371 */,
+/* 372 */,
+/* 373 */,
+/* 374 */,
+/* 375 */,
+/* 376 */,
+/* 377 */,
+/* 378 */,
+/* 379 */,
+/* 380 */,
+/* 381 */,
+/* 382 */,
+/* 383 */,
+/* 384 */,
+/* 385 */,
+/* 386 */,
+/* 387 */,
+/* 388 */,
+/* 389 */,
+/* 390 */,
+/* 391 */,
+/* 392 */,
+/* 393 */,
+/* 394 */,
+/* 395 */,
+/* 396 */,
+/* 397 */,
+/* 398 */,
+/* 399 */,
+/* 400 */,
+/* 401 */,
+/* 402 */,
+/* 403 */,
+/* 404 */,
+/* 405 */,
+/* 406 */,
+/* 407 */,
+/* 408 */,
+/* 409 */,
+/* 410 */,
+/* 411 */,
+/* 412 */,
+/* 413 */,
+/* 414 */,
+/* 415 */,
+/* 416 */,
+/* 417 */,
+/* 418 */,
+/* 419 */,
+/* 420 */,
+/* 421 */,
+/* 422 */,
+/* 423 */,
+/* 424 */,
+/* 425 */,
+/* 426 */,
+/* 427 */,
+/* 428 */,
+/* 429 */,
+/* 430 */,
+/* 431 */,
+/* 432 */,
+/* 433 */,
+/* 434 */,
+/* 435 */,
+/* 436 */,
+/* 437 */,
+/* 438 */,
+/* 439 */,
+/* 440 */,
+/* 441 */,
+/* 442 */,
+/* 443 */,
+/* 444 */,
+/* 445 */,
+/* 446 */,
+/* 447 */,
+/* 448 */,
+/* 449 */,
+/* 450 */,
+/* 451 */,
+/* 452 */,
+/* 453 */,
+/* 454 */,
+/* 455 */,
+/* 456 */,
+/* 457 */,
+/* 458 */,
+/* 459 */,
+/* 460 */,
+/* 461 */,
+/* 462 */,
+/* 463 */,
+/* 464 */,
+/* 465 */,
+/* 466 */,
+/* 467 */,
+/* 468 */,
+/* 469 */,
+/* 470 */,
+/* 471 */,
+/* 472 */,
+/* 473 */,
+/* 474 */,
+/* 475 */,
+/* 476 */,
+/* 477 */,
+/* 478 */,
+/* 479 */,
+/* 480 */,
+/* 481 */,
+/* 482 */,
+/* 483 */,
+/* 484 */,
+/* 485 */,
+/* 486 */,
+/* 487 */,
+/* 488 */,
+/* 489 */,
+/* 490 */,
+/* 491 */,
+/* 492 */,
+/* 493 */,
+/* 494 */,
+/* 495 */,
+/* 496 */,
+/* 497 */,
+/* 498 */,
+/* 499 */,
+/* 500 */,
+/* 501 */,
+/* 502 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var NewsTrends = function NewsTrends(props) {
+
+	  return(
+	    // insert jsx here
+	    _react2.default.createElement(
+	      'h2',
+	      null,
+	      'News Chart'
+	    )
+	  );
+	};
+
+	exports.default = NewsTrends;
 
 /***/ }
 /******/ ]);

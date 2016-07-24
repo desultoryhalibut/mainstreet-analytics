@@ -58,12 +58,18 @@ class TwitterChart extends Component {
     //     </section>
 
     // );
+
+    if (!this.props.twitterData) {
+      return (
+        <div>Loading Twitter data for detail view component!</div>
+      );
+    }
+
+
     const styles = this.getStyles();
     return(
       <div>
         Inside TwitterChart component
-       {console.log('IN component: ', this.props.twitterData)}
-       <img src={'http://binarycallputoption.com/wp-content/uploads/2016/02/Drawing-1.png'} className="img-responsive"/>
       <svg style={styles.parent} viewBox="0 0 500 300">
             {/*  <VictoryAxis
                 style={{

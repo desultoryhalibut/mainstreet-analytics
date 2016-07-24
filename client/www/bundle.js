@@ -21404,9 +21404,9 @@
 	        _react2.default.createElement(
 	          'div',
 	          null,
-	          console.log('THIS', this.state.twitterData),
 	          _react2.default.createElement(_twitterLiveSummary2.default, { twitterData: this.state.twitterData, currentCompany: this.state.currentCompany }),
 	          _react2.default.createElement(_twitter2.default, { twitterData: this.state.twitterData, currentCompany: this.state.currentCompany }),
+	          _react2.default.createElement(_twitterLive2.default, { twitterData: this.state.twitterData, currentCompany: this.state.currentCompany }),
 	          _react2.default.createElement(_googletrends2.default, { googleTrendsData: this.state.googleTrendsData }),
 	          _react2.default.createElement(_sentiment2.default, { sentimentData: this.state.sentimentData }),
 	          _react2.default.createElement(_news2.default, { newsData: this.state.newsData })
@@ -52720,13 +52720,20 @@
 	      //     </section>
 
 	      // );
+
+	      if (!this.props.twitterData) {
+	        return _react2.default.createElement(
+	          'div',
+	          null,
+	          'Loading Twitter data for detail view component!'
+	        );
+	      }
+
 	      var styles = this.getStyles();
 	      return _react2.default.createElement(
 	        'div',
 	        null,
 	        'Inside TwitterChart component',
-	        console.log('IN component: ', this.props.twitterData),
-	        _react2.default.createElement('img', { src: 'http://binarycallputoption.com/wp-content/uploads/2016/02/Drawing-1.png', className: 'img-responsive' }),
 	        _react2.default.createElement(
 	          'svg',
 	          { style: styles.parent, viewBox: '0 0 500 300' },
@@ -52857,7 +52864,7 @@
 	        return _react2.default.createElement(
 	          'div',
 	          null,
-	          'Loading Twitter Volume data...'
+	          'Loading Twitter Volume & Sentiment data...'
 	        );
 	      }
 	      // pull sentiment and volume data from x most recent entries, where x = intervals
@@ -52879,7 +52886,7 @@
 	      var volumeChart = _react2.default.createElement(
 	        _victory.VictoryChart,
 	        {
-	          animate: { duration: 2000 } },
+	          animate: { duration: 5000 } },
 	        _react2.default.createElement(_victory.VictoryAxis, {
 	          orientation: 'bottom',
 	          tickValues: data.map(function (obj) {
@@ -52890,7 +52897,7 @@
 	          }
 	        }),
 	        _react2.default.createElement(_victory.VictoryAxis, { dependentAxis: true,
-	          label: "Number of Tweets",
+	          label: "Tweets per Minute",
 	          style: {
 	            grid: {
 	              stroke: "grey",
@@ -52910,7 +52917,7 @@
 
 	      var sentimentChart = _react2.default.createElement(
 	        _victory.VictoryChart,
-	        { animate: { duration: 2000 } },
+	        { animate: { duration: 5000 } },
 	        _react2.default.createElement(_victory.VictoryAxis, {
 	          orientation: 'bottom',
 	          tickValues: data.map(function (obj) {
@@ -53026,26 +53033,118 @@
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(TwitterLive).call(this, props));
 
 	    _this.state = {
-	      data: _this.props.twitterData // score of most recent interval...use same data as twitter.component,,
-	      // search query or item chosen from dropdown
+	      data: _this.props.twitterData, // score of most recent interval...use same data as twitter.component,,
+	      currentQuery: 'ford' // search query or item chosen from dropdown
 	    };
 
+	    _this.clickHandler = _this.clickHandler.bind(_this);
 	    return _this;
 	  }
 
 	  _createClass(TwitterLive, [{
+	    key: 'clickHandler',
+	    value: function clickHandler(event) {
+	      this.setState({ currentQuery: event.target.value });
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
+	      if (!this.props.twitterData) {
+	        return _react2.default.createElement(
+	          'div',
+	          null,
+	          'Loading Twitter Volume data...for Bullish/Bearish/Neutral component'
+	        );
+	      }
+
+	      var currentQuery = this.state.currentQuery;
+	      var company = this.props.twitterData.filter(function (obj) {
+	        return obj.keyword === currentQuery ? true : false;
+	      })[0];
+
+	      var sentiment = company.data[company.data.length - 1].sentimentAverage;
+	      var numTweets = company.data[company.data.length - 1].numTweets;
+
+	      var graphic;
 	      if (sentiment > 0.5) {
 	        // bullish
-	        return _react2.default.createElement('img', { src: 'http://bit.ly/2adciRq', className: 'img-responsive' });
+	        graphic = _react2.default.createElement('img', { src: 'http://bit.ly/2adciRq', className: 'img-responsive' });
 	      } else if (sentiment < -0.5) {
 	        // bearish
-	        return _react2.default.createElement('img', { src: 'http://bit.ly/2a0Yese', className: 'img-responsive' });
+	        graphic = _react2.default.createElement('img', { src: 'http://bit.ly/2a0Yese', className: 'img-responsive' });
 	      } else {
 	        // neutral
-	        return _react2.default.createElement('img', { src: 'http://bit.ly/2a0hubG', className: 'img-responsive' });
+	        graphic = _react2.default.createElement('img', { src: 'http://bit.ly/2a0hubG', className: 'img-responsive' });
 	      }
+
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'twitter-live' },
+	        _react2.default.createElement(
+	          'h2',
+	          null,
+	          'Twitter Live Snapshot (Style Me and get rid of hard coding)'
+	        ),
+	        _react2.default.createElement(
+	          'h4',
+	          null,
+	          '--------------------------------------------------------'
+	        ),
+	        graphic,
+	        _react2.default.createElement(
+	          'h4',
+	          null,
+	          '---',
+	          numTweets,
+	          ' tweets @ ',
+	          Math.round(sentiment * 100) / 100,
+	          ' average sentiment---'
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          _react2.default.createElement(
+	            'button',
+	            { onClick: this.clickHandler, value: 'nintendo' },
+	            'nintendo'
+	          ),
+	          _react2.default.createElement(
+	            'button',
+	            { onClick: this.clickHandler, value: 'google' },
+	            'google'
+	          ),
+	          _react2.default.createElement(
+	            'button',
+	            { onClick: this.clickHandler, value: 'disney' },
+	            'disney'
+	          ),
+	          _react2.default.createElement(
+	            'button',
+	            { onClick: this.clickHandler, value: 'ford' },
+	            'ford'
+	          ),
+	          _react2.default.createElement(
+	            'button',
+	            { onClick: this.clickHandler, value: 'genentech' },
+	            'genentech'
+	          ),
+	          _react2.default.createElement(
+	            'button',
+	            { onClick: this.clickHandler, value: 'negative' },
+	            'negative'
+	          ),
+	          _react2.default.createElement(
+	            'button',
+	            { onClick: this.clickHandler, value: 'markets' },
+	            'markets'
+	          ),
+	          _react2.default.createElement(
+	            'button',
+	            { onClick: this.clickHandler, value: 'gold' },
+	            'gold'
+	          )
+	        )
+	      );
 	    }
 	  }]);
 

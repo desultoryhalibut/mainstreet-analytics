@@ -70,4 +70,7 @@ const getCollections = function(channels) {
   }
 };
 
-getCollections(channels);
+module.exports = {
+  getCollections: getCollections,
+  channels: channels
+};

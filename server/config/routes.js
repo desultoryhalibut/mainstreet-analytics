@@ -15,8 +15,8 @@ module.exports = function(app) {
 
   app.use('/api/news', NewsRouter);
   app.use('/api/news/sentiment', NewsSentimentRouter);
-  app.use('/api', GoogleTrendsRouter);  //should be api/google?
-  app.use('/api', TwitterRouter);
+  app.use('/api/googletrends', GoogleTrendsRouter);  //should be api/google?
+  app.use('/api/twitter', TwitterRouter);
 
   // app.get('/', function(req, res) {
   //   res.sendFile(path.join(__dirname,  '../../client/www/index.html'));

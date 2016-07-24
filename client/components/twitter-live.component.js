@@ -14,8 +14,8 @@ class TwitterLive extends Component {
     super(props);
 
     this.state = {
-      sentiment:, // score of most recent interval...use same data as twitter.component,,
-      search: '' // search query or item chosen from dropdown
+      data: this.props.twitterData  // score of most recent interval...use same data as twitter.component,,
+                                    // search query or item chosen from dropdown
     };
 
   }

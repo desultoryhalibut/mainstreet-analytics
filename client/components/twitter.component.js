@@ -8,7 +8,7 @@ class TwitterChart extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: entries
+      data: this.props.twitterData
     }
   }
 
@@ -61,6 +61,8 @@ class TwitterChart extends Component {
     const styles = this.getStyles();
     return(
       <div>
+        Inside TwitterChart component
+       {console.log('IN component: ', this.props.twitterData)}
        <img src={'http://binarycallputoption.com/wp-content/uploads/2016/02/Drawing-1.png'} className="img-responsive"/>
       <svg style={styles.parent} viewBox="0 0 500 300">
             {/*  <VictoryAxis

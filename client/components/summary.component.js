@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import GoogleTrends from './googletrends.component';
 import SentimentTrends from './sentiment.component';
+import NewsTrends from './news.component';
+
 import TwitterChart from './twitter.component';
+import TwitterLiveSummary from './twitter-live-summary.component';
+import TwitterLive from './twitter-live.component';
 
 class SummaryComponent extends Component {
   constructor(props) {
@@ -10,7 +14,8 @@ class SummaryComponent extends Component {
     this.state = {
       googleTrendsData: null,
       newsData: null,
-      sentimentData: null
+      sentimentData: null,
+      twitterData: null
     };
 
   }
@@ -51,6 +56,19 @@ class SummaryComponent extends Component {
       .then((data) => {
         this.setState({sentimentData: data});
 
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    fetch('api/twitter', {method: 'GET'})
+      .then((res) => {
+        // console.log('twitter fetch working. Response:',res)
+        return res.json();
+      })
+      .then((data) => {
+        this.setState({twitterData: data});
+        // add setInterval here to retrieve data every X seconds
       })
       .catch((err) => {
         console.log(err);
@@ -99,6 +117,12 @@ class SummaryComponent extends Component {
             Footer text goes here
           </div>
         </div>
+      <div>
+        <TwitterLiveSummary twitterData={this.state.twitterData} />
+        <TwitterChart twitterData={this.state.twitterData} />
+        <GoogleTrends googleTrendsData={this.state.googleTrendsData} />
+        <SentimentTrends sentimentData={this.state.sentimentData} />
+        <NewsTrends newsData={this.state.newsData} />
       </div>
     );
   }

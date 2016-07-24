@@ -26794,11 +26794,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _googletrends = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./googletrends.component\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _googletrends = __webpack_require__(237);
 
 	var _googletrends2 = _interopRequireDefault(_googletrends);
 
-	var _sentiment = __webpack_require__(240);
+	var _sentiment = __webpack_require__(238);
 
 	var _sentiment2 = _interopRequireDefault(_sentiment);
 
@@ -26939,7 +26939,166 @@
 	exports.default = SummaryComponent;
 
 /***/ },
-/* 237 */,
+/* 237 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _linechart = __webpack_require__(239);
+
+	var _linechart2 = _interopRequireDefault(_linechart);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var GoogleTrends = function (_Component) {
+	  _inherits(GoogleTrends, _Component);
+
+	  function GoogleTrends(props) {
+	    _classCallCheck(this, GoogleTrends);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(GoogleTrends).call(this, props));
+
+	    _this.state = {
+	      currentChart: 'car',
+	      data: _this.props.googleTrendsData,
+	      companyGoogleTrendsData: _this.props.companyGoogleTrendsData
+	    };
+
+	    _this.handleClick = _this.handleClick.bind(_this);
+	    return _this;
+	  }
+
+	  _createClass(GoogleTrends, [{
+	    key: 'handleClick',
+	    value: function handleClick(event) {
+	      this.setState({ currentChart: event.target.value });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var partial = void 0;
+
+	      if (!this.props.googleTrendsData) {
+	        return _react2.default.createElement(
+	          'div',
+	          null,
+	          'Loading Google Trends data...'
+	        );
+	      }
+
+	      if (this.state.currentChart === 'car') {
+	        partial = _react2.default.createElement(_linechart2.default, {
+	          data: this.props.googleTrendsData[0].searchVolume,
+	          keyword: this.props.googleTrendsData[0].keyword,
+	          x: 'date',
+	          y: 'volume',
+	          height: 300,
+	          width: 600,
+	          color: 'pink'
+	        });
+	      } else if (this.state.currentChart === 'hedge') {
+	        partial = _react2.default.createElement(_linechart2.default, {
+	          data: this.props.googleTrendsData[2].searchVolume,
+	          keyword: this.props.googleTrendsData[2].keyword,
+	          x: 'date',
+	          y: 'volume',
+	          height: 300,
+	          width: 600,
+	          color: 'blue'
+	        });
+	      } else if (this.state.currentChart === 'dow jones') {
+	        partial = _react2.default.createElement(_linechart2.default, {
+	          data: this.props.googleTrendsData[1].searchVolume,
+	          keyword: this.props.googleTrendsData[1].keyword,
+	          x: 'date',
+	          y: 'volume',
+	          height: 300,
+	          width: 600,
+	          color: 'orange'
+	        });
+	      }
+
+	      return _react2.default.createElement(
+	        'section',
+	        { className: 'google-trends' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'row' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'col-md-8' },
+	            _react2.default.createElement(
+	              'nav',
+	              { className: 'google-trends-nav' },
+	              _react2.default.createElement(
+	                'button',
+	                { onClick: this.handleClick, value: 'car', className: 'btn btn-primary waves-effect' },
+	                'Car'
+	              ),
+	              _react2.default.createElement(
+	                'button',
+	                { onClick: this.handleClick, value: 'dow jones', className: 'btn btn-primary waves-effect' },
+	                'Dow Jones'
+	              ),
+	              _react2.default.createElement(
+	                'button',
+	                { onClick: this.handleClick, value: 'hedge', className: 'btn btn-primary waves-effect' },
+	                'Hedge'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'article',
+	              null,
+	              partial
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'google-summary col-md-4 card card-block' },
+	            _react2.default.createElement(
+	              'p',
+	              null,
+	              _react2.default.createElement(
+	                'b',
+	                null,
+	                'Lorem Ipsum'
+	              ),
+	              ' is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the ',
+	              _react2.default.createElement(
+	                'span',
+	                { className: 'stand-out' },
+	                '1500'
+	              ),
+	              's, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.'
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return GoogleTrends;
+	}(_react.Component);
+
+	exports.default = GoogleTrends;
+
+/***/ },
 /* 238 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -26955,7 +27114,118 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _victory = __webpack_require__(239);
+	var _linechart = __webpack_require__(239);
+
+	var _linechart2 = _interopRequireDefault(_linechart);
+
+	var _barchart = __webpack_require__(241);
+
+	var _barchart2 = _interopRequireDefault(_barchart);
+
+	var _victory = __webpack_require__(240);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var SentimentTrends = function (_Component) {
+	  _inherits(SentimentTrends, _Component);
+
+	  function SentimentTrends(props) {
+	    _classCallCheck(this, SentimentTrends);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(SentimentTrends).call(this, props));
+
+	    _this.state = {
+	      data: _this.props.sentimentData
+	    };
+	    return _this;
+	  }
+
+	  _createClass(SentimentTrends, [{
+	    key: 'render',
+	    value: function render() {
+
+	      console.log('props:', this.props.sentimentData);
+
+	      if (!this.props.sentimentData) {
+	        return _react2.default.createElement(
+	          'p',
+	          null,
+	          'Loading Sentiment Data...'
+	        );
+	      }
+
+	      return _react2.default.createElement(
+	        'section',
+	        { className: 'sentiments' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'center-content' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'row' },
+	            _react2.default.createElement(
+	              'h2',
+	              null,
+	              'Consumer/Economic Sentiment - News in Past Two Months'
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'col-md-8' },
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'sentiment-chart' },
+	                _react2.default.createElement(_barchart2.default, {
+	                  data: this.props.sentimentData,
+	                  x: 'newsTopic',
+	                  y: 'sentimentScore',
+	                  height: 300,
+	                  width: 500
+	                })
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'google-summary col-md-4 card card-block' },
+	              _react2.default.createElement(
+	                'p',
+	                null,
+	                'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.'
+	              )
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return SentimentTrends;
+	}(_react.Component);
+
+	exports.default = SentimentTrends;
+
+/***/ },
+/* 239 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _victory = __webpack_require__(240);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -27048,7 +27318,7 @@
 	exports.default = LineChart;
 
 /***/ },
-/* 239 */
+/* 240 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function webpackUniversalModuleDefinition(root, factory) {
@@ -56715,117 +56985,6 @@
 	//# sourceMappingURL=victory.js.map
 
 /***/ },
-/* 240 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(2);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _linechart = __webpack_require__(238);
-
-	var _linechart2 = _interopRequireDefault(_linechart);
-
-	var _barchart = __webpack_require__(241);
-
-	var _barchart2 = _interopRequireDefault(_barchart);
-
-	var _victory = __webpack_require__(239);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var SentimentTrends = function (_Component) {
-	  _inherits(SentimentTrends, _Component);
-
-	  function SentimentTrends(props) {
-	    _classCallCheck(this, SentimentTrends);
-
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(SentimentTrends).call(this, props));
-
-	    _this.state = {
-	      data: _this.props.sentimentData
-	    };
-	    return _this;
-	  }
-
-	  _createClass(SentimentTrends, [{
-	    key: 'render',
-	    value: function render() {
-
-	      console.log('props:', this.props.sentimentData);
-
-	      if (!this.props.sentimentData) {
-	        return _react2.default.createElement(
-	          'p',
-	          null,
-	          'Loading Sentiment Data...'
-	        );
-	      }
-
-	      return _react2.default.createElement(
-	        'section',
-	        { className: 'sentiments' },
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'center-content' },
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'row' },
-	            _react2.default.createElement(
-	              'h2',
-	              null,
-	              'Consumer/Economic Sentiment - News in Past Two Months'
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'col-md-8' },
-	              _react2.default.createElement(
-	                'div',
-	                { className: 'sentiment-chart' },
-	                _react2.default.createElement(_barchart2.default, {
-	                  data: this.props.sentimentData,
-	                  x: 'newsTopic',
-	                  y: 'sentimentScore',
-	                  height: 300,
-	                  width: 500
-	                })
-	              )
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'google-summary col-md-4 card card-block' },
-	              _react2.default.createElement(
-	                'p',
-	                null,
-	                'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.'
-	              )
-	            )
-	          )
-	        )
-	      );
-	    }
-	  }]);
-
-	  return SentimentTrends;
-	}(_react.Component);
-
-	exports.default = SentimentTrends;
-
-/***/ },
 /* 241 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -56841,7 +57000,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _victory = __webpack_require__(239);
+	var _victory = __webpack_require__(240);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -56945,7 +57104,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _victory = __webpack_require__(239);
+	var _victory = __webpack_require__(240);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -57065,11 +57224,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _googletrends = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./googletrends.component\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _googletrends = __webpack_require__(237);
 
 	var _googletrends2 = _interopRequireDefault(_googletrends);
 
-	var _sentiment = __webpack_require__(240);
+	var _sentiment = __webpack_require__(238);
 
 	var _sentiment2 = _interopRequireDefault(_sentiment);
 

@@ -19,10 +19,6 @@ class GoogleTrends extends Component {
     this.setState({currentChart: event.target.value});
   }
 
-  renderChart(index, color) {
-
-  }
-
   render() {
     let partial;
 
@@ -65,7 +61,6 @@ class GoogleTrends extends Component {
     }
 
     return (
-<<<<<<< HEAD
       <section className="google-trends">
         <div className="row">
           <div className="col-md-8">
@@ -79,18 +74,6 @@ class GoogleTrends extends Component {
               {partial}
             </article>
           </div>
-=======
-      <div className="google-trends-chart">
-        <h2>Google Trends Overview</h2>
-        <nav className="google-trends-nav">
-          <button onClick={this.handleClick} value="car">Car</button>
-          <button onClick={this.handleClick} value="dow jones">Dow Jones</button>
-          <button onClick={this.handleClick} value="hedge">Hedge</button>
-        </nav>
-        <article>
-          {partial}
-        </article>
->>>>>>> master
 
           <div className="google-summary col-md-4 card card-block">
             <p><b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard

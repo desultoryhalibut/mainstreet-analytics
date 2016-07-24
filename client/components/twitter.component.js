@@ -8,6 +8,7 @@ class TwitterChart extends Component {
   }
 
   render() {
+
     return (
         <section className="twitter-component">
           <div className="row">
@@ -39,6 +40,7 @@ class TwitterChart extends Component {
             </div>
           </div>
         </section>
+
     );
   }
 }

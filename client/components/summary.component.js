@@ -28,6 +28,20 @@ class SummaryComponent extends Component {
         console.log(err);
       });
 
+      ////////NEWS VOLUME////////
+    // fetch('api/news', {method: 'GET'})
+    //   .then((res) => {
+    //     return res.json();
+    //   })
+    //   .then((data) => {
+    //     this.setState({newsData: data});
+    //
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+
+
     //////NEWS SENTIMENT////////
     fetch('api/news/sentiment', {method: 'GET'})
       .then((res) => {

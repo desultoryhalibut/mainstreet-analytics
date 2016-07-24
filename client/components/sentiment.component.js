@@ -15,6 +15,9 @@ class SentimentTrends extends Component {
 
 
   render() {
+
+    console.log('props:',this.props.sentimentData)
+
     if (!this.props.sentimentData) {
       return (
         <p>Loading Sentiment Data...</p>
@@ -22,6 +25,7 @@ class SentimentTrends extends Component {
     }
 
     return (
+
 
       <section className="sentiments">
         <div className="center-content">
@@ -47,7 +51,6 @@ class SentimentTrends extends Component {
           </div>
         </div>
       </section>
-
     )
   }
 

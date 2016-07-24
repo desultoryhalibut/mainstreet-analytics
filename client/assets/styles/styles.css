@@ -81,7 +81,10 @@ section {
   min-height: 300px;
 }
 .google-trends .google-summary {
-  padding: 0 0 0 50px;
+  padding: .5em;
+}
+.google-trends .nav {
+  padding-top: 1.5em;
 }
 
 .header-image {

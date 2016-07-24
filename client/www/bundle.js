@@ -52864,30 +52864,100 @@
 	      var intervals = this.state.intervals;
 	      var data = this.props.twitterData.map(function (obj, index, collection) {
 	        return { x: index + 1,
-	          y: obj.data.slice(intervals).reduce(function (a, b) {
+	          volume: obj.data.slice(intervals).reduce(function (a, b) {
 	            return a + b.numTweets;
 	          }, 0) / -intervals,
-	          label: obj.keyword }; //find avg volume for 'this.state.test' number of intervals
+	          label: obj.keyword,
+	          sentiment: +(obj.data.slice(intervals).reduce(function (a, b) {
+	            return a + b.sentimentAverage;
+	          }, 0) / -intervals) || 0 }; //find avg volume for 'this.state.test' number of intervals
 	      });
 
-	      var chart = _react2.default.createElement(_victory.VictoryBar, {
-	        height: 300,
-	        padding: 75,
-	        style: {
-	          labels: { fontSize: 10 }
-	        },
-	        data: [{ x: 1, y: data[0].y, fill: "gold", label: data[0].label }, { x: 2, y: data[1].y, fill: "orange", label: data[1].label }, { x: 3, y: data[2].y, fill: "tomato", label: data[2].label }, { x: 4, y: data[3].y, fill: "pink", label: data[3].label }, { x: 5, y: data[4].y, fill: "magenta", label: data[4].label }, { x: 6, y: data[5].y, fill: "purple", label: data[5].label }, { x: 7, y: data[6].y, fill: "blue", label: data[6].label }, { x: 8, y: data[7].y, fill: "teal", label: data[7].label }]
-	      });
+	      var chart = _react2.default.createElement(
+	        _victory.VictoryChart,
+	        null,
+	        _react2.default.createElement(_victory.VictoryAxis, {
+	          label: 'Queries',
+	          orientation: 'bottom',
+	          tickValues: data.map(function (obj) {
+	            return '';
+	          }),
+	          style: {
+	            grid: {
+	              stroke: "grey",
+	              strokeWidth: 1
+	            },
+	            axis: { stroke: "transparent" },
+	            ticks: { stroke: "transparent" }
+	          }
+	        }),
+	        _react2.default.createElement(_victory.VictoryBar, {
+	          height: 300,
+	          style: {
+	            labels: { fontSize: 10 }
+	          },
+	          data: [{ x: 1, y: data[0].volume, fill: "gold", label: data[0].label }, { x: 2, y: data[1].volume, fill: "orange", label: data[1].label }, { x: 3, y: data[2].volume, fill: "tomato", label: data[2].label }, { x: 4, y: data[3].volume, fill: "pink", label: data[3].label }, { x: 5, y: data[4].volume, fill: "magenta", label: data[4].label }, { x: 6, y: data[5].volume, fill: "purple", label: data[5].label }, { x: 7, y: data[6].volume, fill: "blue", label: data[6].label }, { x: 8, y: data[7].volume, fill: "teal", label: data[7].label }]
+	        })
+	      );
+
+	      var sentimentChart = _react2.default.createElement(
+	        _victory.VictoryChart,
+	        null,
+	        _react2.default.createElement(_victory.VictoryAxis, {
+	          orientation: 'bottom',
+	          tickValues: data.map(function (obj) {
+	            return '';
+	          }),
+	          style: {
+	            axis: { stroke: "transparent" },
+	            ticks: { stroke: "transparent" }
+	          }
+	        }),
+	        _react2.default.createElement(_victory.VictoryAxis, { dependentAxis: true,
+	          tickValues: [-3, -2, -1, 0, 1, 2, 3],
+	          label: "Sentiment Score",
+	          style: {
+	            grid: {
+	              stroke: "grey",
+	              strokeWidth: 1
+	            },
+	            axis: { stroke: "transparent" },
+	            ticks: { stroke: "transparent" }
+	          } }),
+	        _react2.default.createElement(_victory.VictoryBar, {
+	          height: 300,
+	          style: {
+	            labels: { fontSize: 10 }
+	          },
+	          data: [{ x: .5, y: 0 }, { x: 1, y: data[0].sentiment, fill: "gold", label: data[0].label }, { x: 2, y: data[1].sentiment, fill: "orange", label: data[1].label }, { x: 3, y: data[2].sentiment, fill: "tomato", label: data[2].label }, { x: 4, y: data[3].sentiment, fill: "pink", label: data[3].label }, { x: 5, y: data[4].sentiment, fill: "magenta", label: data[4].label }, { x: 6, y: data[5].sentiment, fill: "purple", label: data[5].label }, { x: 7, y: data[6].sentiment, fill: "blue", label: data[6].label }, { x: 8, y: data[7].sentiment, fill: "teal", label: data[7].label }, { x: 8.5, y: 0 }]
+	        })
+	      );
 
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'twitter-live-summary' },
+	        _react2.default.createElement(
+	          'button',
+	          { onClick: this.clickHandler, value: '-1' },
+	          '1 Minute'
+	        ),
+	        _react2.default.createElement(
+	          'button',
+	          { onClick: this.clickHandler, value: '-3' },
+	          '3 Minutes'
+	        ),
+	        _react2.default.createElement(
+	          'button',
+	          { onClick: this.clickHandler, value: '-5' },
+	          '5 Minutes'
+	        ),
 	        _react2.default.createElement(
 	          'h4',
 	          null,
 	          'TwitterLiveSummary Component (update choices once chron job enabled)'
 	        ),
 	        chart,
+	        sentimentChart,
 	        _react2.default.createElement(
 	          'button',
 	          { onClick: this.clickHandler, value: '-1' },

@@ -50,7 +50,7 @@ class SummaryComponent extends Component {
     //////NEWS SENTIMENT////////
     fetch('api/news/sentiment', {method: 'GET'})
       .then((res) => {
-        console.log('fetch is working. Response:',res)
+        //console.log('fetch is working. Response:',res)
         return res.json();
       })
       .then((data) => {
@@ -91,8 +91,6 @@ class SummaryComponent extends Component {
           </div>
         </div>
 
-        <TwitterChart currentCompany={this.state.currentCompany}/>
-
         <div className="row">
           <div className="section-headline col-md-12">
             <h3 className="ta-center">What's Being Searched</h3>
@@ -118,12 +116,14 @@ class SummaryComponent extends Component {
           </div>
         </div>
       <div>
-        <TwitterLiveSummary twitterData={this.state.twitterData} />
-        <TwitterChart twitterData={this.state.twitterData} />
+        {console.log('THIS', this.state.twitterData)}
+        <TwitterLiveSummary twitterData={this.state.twitterData} currentCompany={this.state.currentCompany}/>
+        <TwitterChart twitterData={this.state.twitterData} currentCompany={this.state.currentCompany}/>
         <GoogleTrends googleTrendsData={this.state.googleTrendsData} />
         <SentimentTrends sentimentData={this.state.sentimentData} />
         <NewsTrends newsData={this.state.newsData} />
       </div>
+    </div>
     );
   }
 }

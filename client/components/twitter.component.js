@@ -5,11 +5,7 @@ class TwitterChart extends Component {
 
   constructor(props) {
     super(props);
-<<<<<<< 6197e57f6f98c2a4e44d340ace3fcdb9d2dbc13f
-  }
 
-  render() {
-=======
     this.state = {
       data: this.props.twitterData
     }
@@ -68,6 +64,7 @@ class TwitterChart extends Component {
        {console.log('IN component: ', this.props.twitterData)}
        <img src={'http://binarycallputoption.com/wp-content/uploads/2016/02/Drawing-1.png'} className="img-responsive"/>
       </div>
+      )
             
   }
 }

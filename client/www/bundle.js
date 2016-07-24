@@ -21136,7 +21136,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _summary = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./summary.component\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _summary = __webpack_require__(174);
 
 	var _summary2 = _interopRequireDefault(_summary);
 
@@ -21229,7 +21229,198 @@
 	exports.default = AppComponent;
 
 /***/ },
-/* 174 */,
+/* 174 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _googletrends = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./googletrends.component\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
+	var _googletrends2 = _interopRequireDefault(_googletrends);
+
+	var _sentiment = __webpack_require__(178);
+
+	var _sentiment2 = _interopRequireDefault(_sentiment);
+
+	var _news = __webpack_require__(180);
+
+	var _news2 = _interopRequireDefault(_news);
+
+	var _twitter = __webpack_require__(181);
+
+	var _twitter2 = _interopRequireDefault(_twitter);
+
+	var _twitterLiveSummary = __webpack_require__(183);
+
+	var _twitterLiveSummary2 = _interopRequireDefault(_twitterLiveSummary);
+
+	var _twitterLive = __webpack_require__(184);
+
+	var _twitterLive2 = _interopRequireDefault(_twitterLive);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var SummaryComponent = function (_Component) {
+	  _inherits(SummaryComponent, _Component);
+
+	  function SummaryComponent(props) {
+	    _classCallCheck(this, SummaryComponent);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(SummaryComponent).call(this, props));
+
+	    _this.state = {
+	      googleTrendsData: null,
+	      newsData: null,
+	      sentimentData: null,
+	      twitterData: null
+	    };
+
+	    return _this;
+	  }
+
+	  _createClass(SummaryComponent, [{
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      var _this2 = this;
+
+	      fetch('api/googletrends', { method: 'GET' }).then(function (res) {
+	        return res.json();
+	      }).then(function (data) {
+	        _this2.setState({ googleTrendsData: data });
+	        console.log('Google Trends Data ', data);
+	      }).catch(function (err) {
+	        console.log(err);
+	      });
+
+	      ////////NEWS VOLUME////////
+	      // fetch('api/news', {method: 'GET'})
+	      //   .then((res) => {
+	      //     return res.json();
+	      //   })
+	      //   .then((data) => {
+	      //     this.setState({newsData: data});
+	      //
+	      //   })
+	      //   .catch((err) => {
+	      //     console.log(err);
+	      //   });
+
+	      //////NEWS SENTIMENT////////
+	      fetch('api/news/sentiment', { method: 'GET' }).then(function (res) {
+	        //console.log('fetch is working. Response:',res)
+	        return res.json();
+	      }).then(function (data) {
+	        _this2.setState({ sentimentData: data });
+	      }).catch(function (err) {
+	        console.log(err);
+	      });
+
+	      fetch('api/twitter', { method: 'GET' }).then(function (res) {
+	        // console.log('twitter fetch working. Response:',res)
+	        return res.json();
+	      }).then(function (data) {
+	        _this2.setState({ twitterData: data });
+	        // add setInterval here to retrieve data every X seconds
+	      }).catch(function (err) {
+	        console.log(err);
+	      });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'container' },
+	        _react2.default.createElement('img', { className: 'header-image', src: 'http://previews.123rf.com/images/ashdesign/ashdesign1010/ashdesign101000010/8127340-3D-Stock-Market-Data-Blue-Background-Stock-Photo.jpg', alt: 'Main Street Analytics' }),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'row' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'section-headline col-md-12' },
+	            _react2.default.createElement(
+	              'h3',
+	              { className: 'ta-center' },
+	              _react2.default.createElement('i', { className: 'fa fa-twitter', 'aria-hidden': 'true' }),
+	              'What\'s Tweeting'
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'row' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'section-headline col-md-12' },
+	            _react2.default.createElement(
+	              'h3',
+	              { className: 'ta-center' },
+	              'What\'s Being Searched'
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(_googletrends2.default, { googleTrendsData: this.state.googleTrendsData, companyGoogleTrendsData: this.props.companyGoogleTrendsData }),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'row' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'section-headline col-md-12' },
+	            _react2.default.createElement(
+	              'h3',
+	              { className: 'ta-center' },
+	              'Market Sentiment'
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(_sentiment2.default, { sentimentData: this.state.sentimentData, currentCompany: this.state.currentCompany }),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'row' },
+	          _react2.default.createElement('div', { className: 'footer-top col-md-12' }),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'footer col-md-12' },
+	            'Footer text goes here'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          console.log('THIS', this.state.twitterData),
+	          _react2.default.createElement(_twitterLiveSummary2.default, { twitterData: this.state.twitterData, currentCompany: this.state.currentCompany }),
+	          _react2.default.createElement(_twitter2.default, { twitterData: this.state.twitterData, currentCompany: this.state.currentCompany }),
+	          _react2.default.createElement(_googletrends2.default, { googleTrendsData: this.state.googleTrendsData }),
+	          _react2.default.createElement(_sentiment2.default, { sentimentData: this.state.sentimentData }),
+	          _react2.default.createElement(_news2.default, { newsData: this.state.newsData })
+	        )
+	      );
+	    }
+	  }]);
+
+	  return SummaryComponent;
+	}(_react.Component);
+
+	exports.default = SummaryComponent;
+
+/***/ },
 /* 175 */,
 /* 176 */
 /***/ function(module, exports, __webpack_require__) {
@@ -52409,7 +52600,36 @@
 	exports.default = CentralAxis;
 
 /***/ },
-/* 180 */,
+/* 180 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var NewsTrends = function NewsTrends(props) {
+
+	  return(
+	    // insert jsx here
+	    _react2.default.createElement(
+	      'h2',
+	      null,
+	      'News Chart'
+	    )
+	  );
+	};
+
+	exports.default = NewsTrends;
+
+/***/ },
 /* 181 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -52583,8 +52803,158 @@
 	module.exports = entries;
 
 /***/ },
-/* 183 */,
-/* 184 */,
+/* 183 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _victory = __webpack_require__(177);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var TwitterLiveSummary = function (_Component) {
+	  _inherits(TwitterLiveSummary, _Component);
+
+	  function TwitterLiveSummary(props) {
+	    _classCallCheck(this, TwitterLiveSummary);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(TwitterLiveSummary).call(this, props));
+
+	    _this.state = {
+	      test: -2 // units of time from tail to look back and display, decided by user
+	    };
+	    return _this;
+	  }
+
+	  _createClass(TwitterLiveSummary, [{
+	    key: 'render',
+	    value: function render() {
+
+	      if (!this.props.twitterData) {
+	        return _react2.default.createElement(
+	          'div',
+	          null,
+	          'Loading Twitter Volume data...'
+	        );
+	      }
+	      console.log('XXXYYY: ', this.state);
+	      var intervals = this.state.test;
+	      var yVals = this.props.twitterData.map(function (obj, index, collection) {
+	        return obj.data.slice(intervals).reduce(function (a, b) {
+	          return a + b.numTweets;
+	        }, 0) / -intervals; //find avg volume for 'this.state.test' number of intervals
+	      });
+
+	      var chart = _react2.default.createElement(_victory.VictoryBar, {
+	        height: 300,
+	        padding: 75,
+	        style: {
+	          labels: { fontSize: 10 }
+	        },
+	        data: [{ x: 1, y: yVals[0], fill: "gold", label: "query1" }, { x: 2, y: yVals[1], fill: "orange", label: "query2" }, { x: 3, y: yVals[2], fill: "tomato", label: "query3" }, { x: 4, y: yVals[3], fill: "pink", label: "query4" }, { x: 5, y: yVals[4], fill: "magenta", label: "query5" }, { x: 6, y: yVals[5], fill: "purple", label: "query6" }, { x: 7, y: yVals[6], fill: "blue", label: "query7" }, { x: 8, y: yVals[7], fill: "teal", label: "query8" }]
+	      });
+
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        'Inside TwitterLiveSummary component',
+	        chart
+	      );
+	    }
+	  }]);
+
+	  return TwitterLiveSummary;
+	}(_react.Component);
+
+	exports.default = TwitterLiveSummary;
+
+/***/ },
+/* 184 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var entries = __webpack_require__(182);
+
+	// This component looks at the most recent time interval 
+	// and renders an image based on + - neutral sentiment
+
+	// Twitter is feeling 
+	//   {image}
+	// about {search} right this minute
+
+	var TwitterLive = function (_Component) {
+	  _inherits(TwitterLive, _Component);
+
+	  function TwitterLive(props) {
+	    _classCallCheck(this, TwitterLive);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(TwitterLive).call(this, props));
+
+	    _this.state = {
+	      data: _this.props.twitterData // score of most recent interval...use same data as twitter.component,,
+	      // search query or item chosen from dropdown
+	    };
+
+	    return _this;
+	  }
+
+	  _createClass(TwitterLive, [{
+	    key: 'render',
+	    value: function render() {
+	      if (sentiment > 0.5) {
+	        // bullish
+	        return _react2.default.createElement('img', { src: 'http://bit.ly/2adciRq', className: 'img-responsive' });
+	      } else if (sentiment < -0.5) {
+	        // bearish
+	        return _react2.default.createElement('img', { src: 'http://bit.ly/2a0Yese', className: 'img-responsive' });
+	      } else {
+	        // neutral
+	        return _react2.default.createElement('img', { src: 'http://bit.ly/2a0hubG', className: 'img-responsive' });
+	      }
+	    }
+	  }]);
+
+	  return TwitterLive;
+	}(_react.Component);
+
+	exports.default = TwitterLive;
+
+/***/ },
 /* 185 */
 /***/ function(module, exports, __webpack_require__) {
 

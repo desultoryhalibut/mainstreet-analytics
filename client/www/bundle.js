@@ -26806,7 +26806,7 @@
 
 	var _news2 = _interopRequireDefault(_news);
 
-	var _twitter = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./twitter.component\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _twitter = __webpack_require__(243);
 
 	var _twitter2 = _interopRequireDefault(_twitter);
 
@@ -58520,7 +58520,223 @@
 	exports.default = NewsTrends;
 
 /***/ },
-/* 243 */,
+/* 243 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _victory = __webpack_require__(239);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var entries = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./twitter.seed.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
+	var TwitterChart = function (_Component) {
+	  _inherits(TwitterChart, _Component);
+
+	  function TwitterChart(props) {
+	    _classCallCheck(this, TwitterChart);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(TwitterChart).call(this, props));
+
+	    _this.state = {
+	      data: _this.props.twitterData,
+	      currentQuery: 'ford' // may want to add adjustable time interval here
+	    };
+
+	    _this.clickHandler = _this.clickHandler.bind(_this);
+	    return _this;
+	  }
+
+	  _createClass(TwitterChart, [{
+	    key: 'clickHandler',
+	    value: function clickHandler(event) {
+	      this.setState({ currentQuery: event.target.value });
+	    }
+	  }, {
+	    key: 'getStyles',
+	    value: function getStyles() {
+	      return {
+	        parent: {
+	          boxSizing: "border-box",
+	          display: "block",
+	          width: "75%",
+	          height: "65%",
+	          padding: 20
+	        }
+	      };
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      // return (
+	      //     <section className="twitter-component">
+	      //       <div className="row">
+	      //         <div className="col-md-8">
+	      //           <VictoryChart />
+	      //         </div>
+	      //         <div className="trends col-md-4">
+	      //           <div className="row">
+	      //             <article className="orange col-sm-6">
+	      //               <span className="">796</span>
+	      //               <p>Tweets around the world</p>
+	      //             </article>
+	      //             <article className="red col-sm-6">
+	      //               <span className="">Sad</span>
+	      //               <p>Overall feeling</p>
+	      //             </article>
+	      //           </div>
+
+	      //           <div className="row">
+	      //             <article className="brown col-sm-6">
+	      //               <p>Some interesting content</p>
+	      //               <span className=""></span>
+	      //             </article>
+	      //             <article className="gray col-sm-6">
+	      //               <p>Some interesting content</p>
+	      //               <span className=""></span>
+	      //             </article>
+	      //           </div>
+	      //         </div>
+	      //       </div>
+	      //     </section>
+
+	      // );
+
+	      if (!this.props.twitterData) {
+	        return _react2.default.createElement(
+	          'div',
+	          null,
+	          'Loading Twitter data for detail view component!'
+	        );
+	      }
+
+	      var currentQuery = this.state.currentQuery;
+	      var company = this.props.twitterData.filter(function (obj) {
+	        return obj.keyword === currentQuery ? true : false;
+	      })[0];
+
+	      var data = company.data.map(function (obj, index, array) {
+	        return { time: index,
+	          numTweets: obj.numTweets || 0,
+	          sentimentAverage: obj.sentimentAverage * 5 || 0 };
+	      });
+
+	      var styles = this.getStyles();
+
+	      var chart = _react2.default.createElement(
+	        _victory.VictoryChart,
+	        { animate: { duration: 5000 } },
+	        _react2.default.createElement(_victory.VictoryArea, {
+	          interpolation: 'cardinal',
+	          style: {
+	            data: { fill: "tomato" }
+	          },
+	          data: data.slice(-5),
+	          x: "time",
+	          y: "numTweets"
+	        }),
+	        _react2.default.createElement(_victory.VictoryLine, {
+	          interpolation: 'cardinal',
+	          style: {
+	            data: {
+	              stroke: "cornflowerblue",
+	              strokeWidth: 5
+	            },
+	            labels: { fontSize: 8 }
+	          },
+	          data: data.slice(-5),
+	          x: "time",
+	          y: "sentimentAverage",
+	          label: 'Sentiment Score',
+	          standalone: false,
+	          fill: "teal"
+	        })
+	      );
+
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          'Twitter Detail Component'
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          chart
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          _react2.default.createElement(
+	            'button',
+	            { onClick: this.clickHandler, value: 'nintendo' },
+	            'nintendo'
+	          ),
+	          _react2.default.createElement(
+	            'button',
+	            { onClick: this.clickHandler, value: 'google' },
+	            'google'
+	          ),
+	          _react2.default.createElement(
+	            'button',
+	            { onClick: this.clickHandler, value: 'disney' },
+	            'disney'
+	          ),
+	          _react2.default.createElement(
+	            'button',
+	            { onClick: this.clickHandler, value: 'ford' },
+	            'ford'
+	          ),
+	          _react2.default.createElement(
+	            'button',
+	            { onClick: this.clickHandler, value: 'genentech' },
+	            'genentech'
+	          ),
+	          _react2.default.createElement(
+	            'button',
+	            { onClick: this.clickHandler, value: 'negative' },
+	            'negative'
+	          ),
+	          _react2.default.createElement(
+	            'button',
+	            { onClick: this.clickHandler, value: 'markets' },
+	            'markets'
+	          ),
+	          _react2.default.createElement(
+	            'button',
+	            { onClick: this.clickHandler, value: 'gold' },
+	            'gold'
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return TwitterChart;
+	}(_react.Component);
+
+	exports.default = TwitterChart;
+
+/***/ },
 /* 244 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -58776,6 +58992,12 @@
 	      var sentiment = company.data[company.data.length - 1].sentimentAverage;
 	      var numTweets = company.data[company.data.length - 1].numTweets;
 
+	      // Idea: create smaller trailing graphics -- neutral Bullish BULLISH
+	      // var sentiment2 = company.data[company.data.length - 2].sentimentAverage;
+	      // var numTweets2 = company.data[company.data.length - 2].numTweets;
+	      // var sentiment3 = company.data[company.data.length - 3].sentimentAverage;
+	      // var numTweets3 = company.data[company.data.length - 3].numTweets;
+
 	      var graphic;
 	      if (sentiment > 0.5) {
 	        // bullish
@@ -58854,6 +59076,11 @@
 	            { onClick: this.clickHandler, value: 'gold' },
 	            'gold'
 	          )
+	        ),
+	        _react2.default.createElement(
+	          'h4',
+	          null,
+	          '--------------FIX/STYLE ME-----------------------------'
 	        )
 	      );
 	    }
@@ -58888,7 +59115,7 @@
 
 	var _sentiment2 = _interopRequireDefault(_sentiment);
 
-	var _twitter = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./twitter.component\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _twitter = __webpack_require__(243);
 
 	var _twitter2 = _interopRequireDefault(_twitter);
 

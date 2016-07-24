@@ -40,6 +40,12 @@ class TwitterLive extends Component {
     
     var sentiment = company.data[company.data.length - 1].sentimentAverage;
     var numTweets = company.data[company.data.length - 1].numTweets;
+    
+    // Idea: create smaller trailing graphics -- neutral Bullish BULLISH
+    // var sentiment2 = company.data[company.data.length - 2].sentimentAverage;
+    // var numTweets2 = company.data[company.data.length - 2].numTweets;
+    // var sentiment3 = company.data[company.data.length - 3].sentimentAverage;
+    // var numTweets3 = company.data[company.data.length - 3].numTweets;
 
     var graphic;
     if (sentiment > 0.5) {
@@ -69,6 +75,7 @@ class TwitterLive extends Component {
               <button onClick={this.clickHandler} value="markets">markets</button>
               <button onClick={this.clickHandler} value="gold">gold</button>
             </div>
+            <h4>--------------FIX/STYLE ME-----------------------------</h4>
           </div>
           )
 }

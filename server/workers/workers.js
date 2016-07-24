@@ -54,22 +54,23 @@ function queryGoogleTrends(key, googleTrendResults) {
     });
 }
 
+
 /**
  * function googleTrends.trendData - Updates database for GoogleTrends Summary keywords for dashboard view
  * @param  {[Array]} KEYWORDS [Array of keywords]
  */
 
-googleTrends.trendData(KEYWORDS)
-  .then(function(results) {
+// googleTrends.trendData(KEYWORDS)
+//   .then(function(results) {
 
-    KEYWORDS.forEach((key, index) => {
-      queryGoogleTrends(key, results[index]);
-    });
+//     KEYWORDS.forEach((key, index) => {
+//       queryGoogleTrends(key, results[index]);
+//     });
 
-  })
-  .catch(function(err) {
-    console.error('Error updating Google Trends ', err);
-  });
+//   })
+//   .catch(function(err) {
+//     console.error('Error updating Google Trends ', err);
+//   });
 
 
 ////////////////////////////////////////////////////////////////////////

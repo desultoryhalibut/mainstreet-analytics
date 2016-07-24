@@ -22,24 +22,12 @@ class SentimentTrends extends Component {
     }
 
     return (
-<<<<<<< dfb2e261f853bfe7c5e231af29f74a004e3ac6b7
-      <div className="sentiment-chart">
-        <h2>Consumer/Economic Sentiment - News in Past Two Months</h2>
-        <CentralAxis 
-          data={this.props.sentimentData}
-          x={'newsTopic'}
-          y={'sentimentScore'}
-          height={300}
-          width={500}
-        />
 
-      </div>
-=======
       <section className="sentiments">
         <div className="center-content">
-          <div className="grid row">
+          <div className="row">
             <h2>Consumer/Economic Sentiment - News in Past Two Months</h2>
-            <div className="graph column--heavy col-md-8">
+            <div className="col-md-8">
               <div className="sentiment-chart">
                 <CentralAxis
                   data={this.props.sentimentData}
@@ -59,7 +47,7 @@ class SentimentTrends extends Component {
           </div>
         </div>
       </section>
->>>>>>> Feat: Add route for GoogleTrends company search
+
     )
   }
 

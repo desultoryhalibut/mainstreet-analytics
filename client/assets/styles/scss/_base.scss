@@ -27,7 +27,7 @@ header {
 }
 
 section {
-  padding: 0 0 40px;
+  padding: 2em;
 }
 
 .center-content {
@@ -95,9 +95,8 @@ section {
 .section-headline {
   background: $alpha-orange;
   color: $black;
-  background: $white;
-  padding-top: 15px;
-  margin-bottom: 35px;
+  padding: 2em;
+
   h3 {
     line-height: 0.85714285714286em;
   }

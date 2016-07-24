@@ -30,7 +30,7 @@ header .textfield input {
 }
 
 section {
-  padding: 0 0 40px;
+  padding: 2em;
 }
 
 .center-content {
@@ -92,9 +92,7 @@ section {
 .section-headline {
   background: rgba(237, 174, 64, 0.9);
   color: #000;
-  background: #fff;
-  padding-top: 15px;
-  margin-bottom: 35px;
+  padding: 2em;
 }
 .section-headline h3 {
   line-height: 0.85714285714286em;

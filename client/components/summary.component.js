@@ -48,7 +48,10 @@ class SummaryComponent extends Component {
   render() {
 
     return (
-      <div className="container">
+
+      <div>
+        <img className="header-image" src="http://previews.123rf.com/images/ashdesign/ashdesign1010/ashdesign101000010/8127340-3D-Stock-Market-Data-Blue-Background-Stock-Photo.jpg" alt="Main Street Analytics"/>
+
         <div className="row">
           <div className="section-headline col-md-12">
             <h3 className="ta-center"><i className="fa fa-twitter" aria-hidden="true"></i>What's Tweeting</h3>

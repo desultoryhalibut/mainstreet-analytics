@@ -1,4 +1,3 @@
-<<<<<<< 8b28f89622e37af594ea607af47a785dd8967520
 var NewsRouter = require('../news/news-router');
 var NewsSentimentRouter = require('../sentiment/news-sentiment-router');
 var GoogleTrendsRouter = require('../googletrends/google-trends.routes');

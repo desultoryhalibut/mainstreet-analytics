@@ -10,6 +10,11 @@ body {
   font-size: 14px;
 }
 
+footer {
+  background: rgba(81, 85, 87, 0.85);
+  min-height: 150px;
+}
+
 header {
   border-bottom: 1px solid #cecaca;
   background: #fff;
@@ -35,6 +40,10 @@ section {
 
 .center-content {
   margin: 0 auto;
+}
+
+.footer-head {
+  min-height: 2em;
 }
 
 .trends {
@@ -75,6 +84,10 @@ section {
   padding: 0 0 0 50px;
 }
 
+.header-image {
+  width: 100%;
+}
+
 .main-content {
   background: #f5ead6;
   padding: 2em 3em 2em 3em;
@@ -91,11 +104,14 @@ section {
 
 .section-headline {
   background: rgba(237, 174, 64, 0.9);
-  color: #000;
+  color: #fff;
   padding: 2em;
 }
 .section-headline h3 {
   line-height: 0.85714285714286em;
+  font-size: 3em;
+  font-weight: 400;
+  text-transform: uppercase;
 }
 
 .orange {

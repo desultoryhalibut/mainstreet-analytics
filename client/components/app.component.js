@@ -50,13 +50,8 @@ export default class AppComponent extends Component {
         <div className="main-content z-depth-5">
 
           {partial}
-<<<<<<< c50cd257c04a284e91c3f0617af68b39c08d3bce
-          <SummaryComponent companyGoogleTrendsData={this.state.companyGoogleTrendsData}/>
-=======
-
->>>>>>> Feat: Add CompanyComponent
-          <Footer />
         </div>
+        <Footer />
       </div>
     );
   }

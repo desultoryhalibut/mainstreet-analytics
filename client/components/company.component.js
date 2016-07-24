@@ -20,7 +20,6 @@ class CompanyComponent extends Component {
           </div>
         </div>
 
-
         <div className="row">
           <div className="section-headline col-md-12">
             <h3 className="ta-center">What's Being Searched</h3>

@@ -22,6 +22,7 @@ class SummaryComponent extends Component {
       })
       .then((data) => {
         this.setState({googleTrendsData: data});
+        console.log('Google Trends Data ', data);
       })
       .catch((err) => {
         console.log(err);
@@ -49,7 +50,7 @@ class SummaryComponent extends Component {
 
     return (
 
-      <div>
+      <div className="container">
         <img className="header-image" src="http://previews.123rf.com/images/ashdesign/ashdesign1010/ashdesign101000010/8127340-3D-Stock-Market-Data-Blue-Background-Stock-Photo.jpg" alt="Main Street Analytics"/>
 
         <div className="row">

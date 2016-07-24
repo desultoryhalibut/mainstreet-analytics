@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Route, Router, browserHistory } from 'react-router';
-import routes from './routes';
 import AppComponent from './components/app.component';
 import CompanyComponent from './components/company.component';
 

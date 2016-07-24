@@ -19,11 +19,10 @@ export default class AppComponent extends Component {
     this.setState({currentCompany: company, isSummary: false});
     alert(`I selected this company ${company}`);
 
-    // fetch company specific Google Trends data
     fetch('api/googletrends/' + company, {method: 'GET'})
       .then((res) => {
+        console.log(res);
         return res.json();
-
       })
       .then((data) => {
         console.log('Company Google Trends Data ', data);
@@ -32,8 +31,6 @@ export default class AppComponent extends Component {
       .catch((err) => {
         console.log(err);
       });
-
-
   }
 
   render() {
@@ -53,7 +50,7 @@ export default class AppComponent extends Component {
         <div className="main-content z-depth-5">
 
           {partial}
-
+          <SummaryComponent companyGoogleTrendsData={this.state.companyGoogleTrendsData}/>
           <Footer />
         </div>
       </div>

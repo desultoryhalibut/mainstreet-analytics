@@ -2,7 +2,8 @@
     box-sizing: border-box;
 }
 body {
-  background: $black;
+
+  background: $light-gray;
   font-size: 14px;
 }
 
@@ -30,7 +31,6 @@ section {
 }
 
 .center-content {
-  max-width: 1240px;
   margin: 0 auto;
 }
 
@@ -58,16 +58,16 @@ section {
 }
 
 .graph {
-  width: 600px;
-  height: 380px;
+  max-width: 600px;
+  min-height: 380px;
   background: $white;
-  margin-right: 20px;
+  margin-right: 2em;
   border: 1px solid $border-color;
 }
 
 .google-trends {
   .graph {
-    height: 300px;
+    min-height: 300px;
   }
   .google-summary {
     padding: 0 0 0 50px;
@@ -86,13 +86,14 @@ section {
 
 .sentiments {
   .graph {
-    height: 300px;
+    min-height: 300px;
   }
 }
 
 
 // Helper Classes
 .section-headline {
+  background: $alpha-orange;
   color: $black;
   background: $white;
   padding-top: 15px;
@@ -101,18 +102,23 @@ section {
     line-height: 0.85714285714286em;
   }
 }
+
 .orange {
   background: $alpha-orange;
 }
+
 .red {
   background: $alpha-red;
 }
+
 .gray {
   background: $alpha-gray;
 }
+
 .brown {
   background:$alpha-brown;
 }
+
 .stand-out {
   font-size: 30px;
   color: $alpha-red;

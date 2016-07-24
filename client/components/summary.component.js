@@ -10,8 +10,7 @@ class SummaryComponent extends Component {
     this.state = {
       googleTrendsData: null,
       newsData: null,
-      sentimentData: null,
-      currentCompany: this.props.currentCompany
+      sentimentData: null
     };
 
   }
@@ -44,6 +43,8 @@ class SummaryComponent extends Component {
 
   }
 
+
+
   render() {
 
     return (
@@ -62,7 +63,7 @@ class SummaryComponent extends Component {
           </div>
         </div>
 
-        <GoogleTrends googleTrendsData={this.state.googleTrendsData} currentCompany={this.state.currentCompany}/>
+        <GoogleTrends googleTrendsData={this.state.googleTrendsData} companyGoogleTrendsData={this.props.companyGoogleTrendsData}/>
 
         <div className="row">
           <div className="section-headline col-md-12">

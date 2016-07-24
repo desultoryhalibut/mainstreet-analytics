@@ -7,7 +7,6 @@ class LineChart extends Component {
 
   constructor(props) {
     super(props);
-    console.log(this.computeDomain());
   }
 
   computeDomain() {

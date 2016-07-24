@@ -74,6 +74,7 @@ googleTrends.trendData(KEYWORDS)
     console.error('Error updating Google Trends ', err);
   });
 
+
 ////////////////////////////////////////////////////////////////////////
 //////Seed database with news and sentiment API
 ////////////////////////////////////////////////////////////////////////
@@ -95,7 +96,7 @@ googleTrends.trendData(KEYWORDS)
       return: 'enriched.url.title'
     };
     let paramsSentiment = {
-      
+
       targets: ['inflation','unemployment','real estate', 'acquisition','restaurants','dow jones','economy']
     };
 
@@ -128,7 +129,7 @@ googleTrends.trendData(KEYWORDS)
         let newsArray = news.result.docs;
         newsArray = newsArray.map(function(val) {
           return {
-            timestamp: helper.timeConverter(val.timestamp), 
+            timestamp: helper.timeConverter(val.timestamp),
             title: val.source.enriched.url.title
           }
         });
@@ -154,7 +155,7 @@ googleTrends.trendData(KEYWORDS)
           // }
           for (var i = 0; i < sentimentArr; i++) {
             NSentiment.findOneAndUpdate({newsTopic: sentimentArr[i].newsTopic},
-              { $set: { sentimentScore: sentimentArr[i].sentimentScore }}, 
+              { $set: { sentimentScore: sentimentArr[i].sentimentScore }},
               { new: true,
                 upsert:true })
           }
@@ -162,4 +163,4 @@ googleTrends.trendData(KEYWORDS)
         .catch(function(err) {
           console.log(err);
         })
-      })
+      });

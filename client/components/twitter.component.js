@@ -9,35 +9,37 @@ class TwitterChart extends Component {
 
   render() {
     return (
-      <div className="container">
 
+      <section className="center-content clearfix">
         <div className="row">
-          <section className="graph col-md-8 panel">
-            <VictoryChart height={200} width={300}/>
-          </section>
+          <div className="graph column--heavy col-md-8">
+            <VictoryChart />
+          </div>
+          <section className="trends col-md-4">
+            <div className="row">
+              <article className="orange col-sm-6">
+                <span className="">796</span>
+                <p>Tweets around the world</p>
+              </article>
+              <article className="red col-sm-6">
+                <span className="">Sad</span>
+                <p>Overall feeling</p>
+              </article>
+            </div>
 
-          <section className="trends col-md-4 panel">
-            <article className="tweet-square orange col-sm-4">
-              <span className="">796</span>
-              <p>Tweets around the world</p>
-            </article>
-            <article className="tweet-square  red col-sm-4">
-              <span className="">Sad</span>
-              <p>Overall feeling</p>
-            </article>
-
-            <article className="tweet-square  brown col-sm-4">
-              <p>Some interesting content</p>
-              <span className=""></span>
-            </article>
-            <article className="tweet-square  gray col-sm-4">
-              <p>Some interesting content</p>
-              <span className=""></span>
-            </article>
-
+            <div className="row">
+              <article className="brown col-sm-6">
+                <p>Some interesting content</p>
+                <span className=""></span>
+              </article>
+              <article className="gray col-sm-6">
+                <p>Some interesting content</p>
+                <span className=""></span>
+              </article>
+            </div>
           </section>
         </div>
-      </div>
+      </section>
     );
   }
 }

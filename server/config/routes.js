@@ -20,8 +20,13 @@ module.exports = function(app) {
   });
 
   // Handle wildcard requests and asset requests from front-end
-  app.get('/*', function(req, res) {
+  // app.get('/*', function(req, res) {
+  //   res.sendFile(path.join(__dirname, '../../', req.url));
+  // });
+
+  app.get('/client/*', function(req, res) {
     res.sendFile(path.join(__dirname, '../../', req.url));
   });
+
 
 };

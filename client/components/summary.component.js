@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import GoogleTrends from './googletrends.component';
 import SentimentTrends from './sentiment.component';
-import NewsTrends from './news.component';
 import TwitterChart from './twitter.component';
 
 class SummaryComponent extends Component {
@@ -84,13 +83,6 @@ class SummaryComponent extends Component {
         </div>
 
         <SentimentTrends sentimentData={this.state.sentimentData} />
-
-        <div className="row">
-          <div className="section-headline col-md-12">
-            <h3 className="ta-center">What People Are Saying</h3>
-          </div>
-        </div>
-        <NewsTrends newsData={this.state.newsData} />
 
         <div className="row">
           <div className="footer-top col-md-12">

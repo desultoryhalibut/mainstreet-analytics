@@ -22,7 +22,7 @@ class TwitterLiveSummary extends Component {
 
     if (!this.props.twitterData) {
       return (
-        <div>Loading Twitter Volume data...</div>
+        <div>Loading Twitter Volume & Sentiment data...</div>
       );
     }
     // pull sentiment and volume data from x most recent entries, where x = intervals
@@ -43,7 +43,7 @@ class TwitterLiveSummary extends Component {
 
     var volumeChart = 
     <VictoryChart
-      animate={{duration: 2000}}>
+      animate={{duration: 5000}}>
       <VictoryAxis
           orientation="bottom"
           tickValues={data.map((obj)=> {return ''})}
@@ -52,7 +52,7 @@ class TwitterLiveSummary extends Component {
               }}
           />
       <VictoryAxis dependentAxis
-          label={"Number of Tweets"}
+          label={"Tweets per Minute"}
           style={{
             grid: {
               stroke: "grey",
@@ -81,7 +81,7 @@ class TwitterLiveSummary extends Component {
       />
     </VictoryChart>
 
-    var sentimentChart = <VictoryChart animate={{duration: 2000}}>
+    var sentimentChart = <VictoryChart animate={{duration: 5000}}>
                           <VictoryAxis
                               orientation="bottom"
                               tickValues={data.map((obj)=> {return ''})}

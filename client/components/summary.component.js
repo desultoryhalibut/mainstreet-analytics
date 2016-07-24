@@ -116,9 +116,10 @@ class SummaryComponent extends Component {
           </div>
         </div>
       <div>
-        {console.log('THIS', this.state.twitterData)}
         <TwitterLiveSummary twitterData={this.state.twitterData} currentCompany={this.state.currentCompany}/>
         <TwitterChart twitterData={this.state.twitterData} currentCompany={this.state.currentCompany}/>
+        <TwitterLive twitterData={this.state.twitterData} currentCompany={this.state.currentCompany}/>
+
         <GoogleTrends googleTrendsData={this.state.googleTrendsData} />
         <SentimentTrends sentimentData={this.state.sentimentData} />
         <NewsTrends newsData={this.state.newsData} />

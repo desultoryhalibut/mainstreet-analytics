@@ -57,15 +57,101 @@ class TwitterChart extends Component {
     //     </section>
 
     // );
+
+    if (!this.props.twitterData) {
+      return (
+        <div>Loading Twitter data for detail view component!</div>
+      );
+    }
+
+
     const styles = this.getStyles();
     return(
       <div>
         Inside TwitterChart component
+<<<<<<< d76d7d4ef571680d614572d912a364dd7d0bd3ca
        {console.log('IN component: ', this.props.twitterData)}
        <img src={'http://binarycallputoption.com/wp-content/uploads/2016/02/Drawing-1.png'} className="img-responsive"/>
       </div>
       )
             
+=======
+      <svg style={styles.parent} viewBox="0 0 500 300">
+            {/*  <VictoryAxis
+                style={{
+                  data: {
+                    strokeWidth: 2
+                  },
+                  labels: {
+                    fontSize: 16
+                  }
+                }}
+                orientation="bottom"
+                domain={[0, 25]}
+                label="Time"
+                standalone={false}
+              />
+
+              <VictoryAxis dependent
+                style={{
+                  axis: {stroke: "orange", strokeWidth: 2},
+                  ticks: {stroke: "orange"},
+                  tickLabels: {fontSize: 12}
+                }}
+                orientation="left"
+                domain={[0, 1000]}
+                label="Volume"
+                standalone={false}
+              />
+
+              <VictoryAxis dependent
+                style={{
+                  axis: {stroke: "blue", strokeWidth: 2},
+                  ticks: {stroke: "blue"},
+                  tickLabels: {fontSize: 12}
+                }}
+                orientation="right"
+                domain={[-10, 10]}
+                label="Sentiment Score & Tweet Volume"
+                standalone={false}
+              />*/}
+
+              <VictoryLine
+                interpolation="cardinal"
+                style={{
+                  data: {
+                    stroke: "orange",
+                    strokeWidth: 1
+                  },
+                  labels: {fontSize: 8}
+                }}
+                data={entries.slice(-25)}
+                x={"time"}
+                y={"volume"}
+                label="Number of Tweets"
+                standalone={false}
+              />
+
+              <VictoryLine
+                interpolation="cardinal"
+                style={{
+                  data: {
+                    stroke: "blue",
+                    strokeWidth: 1
+                  },
+                  labels: {fontSize: 8}
+                }}
+                data={entries.slice(-25)}
+                x={"time"}
+                y={"score"}
+                label="Sentiment Score"
+                standalone={false}
+                fill={"teal"}
+              />
+            </svg>
+            </div>
+    )
+>>>>>>> Implement working, simple version of twitter live snapshot
   }
 }
 

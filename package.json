@@ -17,6 +17,7 @@
     "mocha": "^2.5.3",
     "mongoose": "^4.5.5",
     "morgan": "^1.7.0",
+    "node-cron": "^1.1.1",
     "react": "^15.2.1",
     "react-bootstrap": "^0.30.0-rc.2",
     "react-dom": "^15.2.1",

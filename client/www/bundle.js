@@ -52860,20 +52860,23 @@
 	          'Loading Twitter Volume data...'
 	        );
 	      }
-
+	      // pull sentiment and volume data from x most recent entries, where x = intervals
 	      var intervals = this.state.intervals;
 	      var data = this.props.twitterData.map(function (obj, index, collection) {
 	        return { x: index + 1,
+
 	          volume: +(obj.data.slice(intervals).reduce(function (a, b) {
 	            return a + b.numTweets;
 	          }, 0) / -intervals) || 0,
+
 	          label: obj.keyword,
+
 	          sentiment: +(obj.data.slice(intervals).reduce(function (a, b) {
 	            return a + b.sentimentAverage;
-	          }, 0) / -intervals) || 0 }; //find avg volume for 'this.state.test' number of intervals
+	          }, 0) / -intervals) || 0 };
 	      });
 
-	      var chart = _react2.default.createElement(
+	      var volumeChart = _react2.default.createElement(
 	        _victory.VictoryChart,
 	        {
 	          animate: { duration: 2000 } },
@@ -52946,7 +52949,7 @@
 	          null,
 	          'TwitterLiveSummary Component (update choices once chron job enabled)'
 	        ),
-	        chart,
+	        volumeChart,
 	        _react2.default.createElement(
 	          'div',
 	          null,

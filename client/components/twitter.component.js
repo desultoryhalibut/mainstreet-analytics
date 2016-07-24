@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { VictoryPie, VictoryChart, VictoryLine, VictoryBar, VictoryAxis } from 'victory';
+import { VictoryPie, VictoryChart, VictoryLine, VictoryBar, VictoryAxis, VictoryArea } from 'victory';
 
 var entries = require('./twitter.seed.js');
 
@@ -7,19 +7,28 @@ class TwitterChart extends Component {
   
   constructor(props) {
     super(props);
+
     this.state = {
-      data: this.props.twitterData
+      data: this.props.twitterData,
+      currentQuery: 'ford'   // may want to add adjustable time interval here
     }
+
+    this.clickHandler = this.clickHandler.bind(this);
   }
+
+  clickHandler(event){
+    this.setState({currentQuery: event.target.value});
+  }
+
 
   getStyles() {
     return {
       parent: {
         boxSizing: "border-box",
         display: "block",
-        width: "90%",
-        height: "90%",
-        padding: 50
+        width: "75%",
+        height: "65%",
+        padding: 20
       }
     };
   }
@@ -65,85 +74,63 @@ class TwitterChart extends Component {
       );
     }
 
+    var currentQuery = this.state.currentQuery;
+    var company = this.props.twitterData.filter(function(obj) {
+      return (obj.keyword === currentQuery) ? true : false;
+    })[0];
+    
+    var data = company.data.map(function(obj, index, array) {
+      return {time: index,
+              numTweets: obj.numTweets || 0,
+              sentimentAverage: (obj.sentimentAverage * 5) || 0}
+    });
 
     const styles = this.getStyles();
-    return(
-      <div>
-        Inside TwitterChart component
-      <svg style={styles.parent} viewBox="0 0 500 300">
-            {/*  <VictoryAxis
-                style={{
-                  data: {
-                    strokeWidth: 2
-                  },
-                  labels: {
-                    fontSize: 16
-                  }
-                }}
-                orientation="bottom"
-                domain={[0, 25]}
-                label="Time"
-                standalone={false}
-              />
-
-              <VictoryAxis dependent
-                style={{
-                  axis: {stroke: "orange", strokeWidth: 2},
-                  ticks: {stroke: "orange"},
-                  tickLabels: {fontSize: 12}
-                }}
-                orientation="left"
-                domain={[0, 1000]}
-                label="Volume"
-                standalone={false}
-              />
-
-              <VictoryAxis dependent
-                style={{
-                  axis: {stroke: "blue", strokeWidth: 2},
-                  ticks: {stroke: "blue"},
-                  tickLabels: {fontSize: 12}
-                }}
-                orientation="right"
-                domain={[-10, 10]}
-                label="Sentiment Score & Tweet Volume"
-                standalone={false}
-              />*/}
+    var chart = <VictoryChart animate={{duration: 5000}}>
+              
+                 <VictoryArea
+                   interpolation="cardinal"
+                   style={{
+                       data: {fill: "tomato"}
+                     }}
+                   data={data.slice(-5)}
+                   x={"time"}
+                   y={"numTweets"}
+                 />
 
               <VictoryLine
                 interpolation="cardinal"
                 style={{
                   data: {
-                    stroke: "orange",
-                    strokeWidth: 1
+                    stroke: "cornflowerblue",
+                    strokeWidth: 5
                   },
                   labels: {fontSize: 8}
                 }}
-                data={entries.slice(-25)}
+                data={data.slice(-5)}
                 x={"time"}
-                y={"volume"}
-                label="Number of Tweets"
-                standalone={false}
-              />
-
-              <VictoryLine
-                interpolation="cardinal"
-                style={{
-                  data: {
-                    stroke: "blue",
-                    strokeWidth: 1
-                  },
-                  labels: {fontSize: 8}
-                }}
-                data={entries.slice(-25)}
-                x={"time"}
-                y={"score"}
+                y={"sentimentAverage"}
                 label="Sentiment Score"
                 standalone={false}
                 fill={"teal"}
               />
-            </svg>
-            </div>
+            </VictoryChart>
+    
+    return(
+      <div>
+        <div>Twitter Detail Component</div>
+        <div>{chart}</div>
+        <div>      
+          <button onClick={this.clickHandler} value="nintendo">nintendo</button>
+          <button onClick={this.clickHandler} value="google">google</button>
+          <button onClick={this.clickHandler} value="disney">disney</button>
+          <button onClick={this.clickHandler} value="ford">ford</button>
+          <button onClick={this.clickHandler} value="genentech">genentech</button>
+          <button onClick={this.clickHandler} value="negative">negative</button>
+          <button onClick={this.clickHandler} value="markets">markets</button>
+          <button onClick={this.clickHandler} value="gold">gold</button>
+        </div>
+      </div>
     )
   }
 }

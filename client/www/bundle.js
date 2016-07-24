@@ -52666,21 +52666,29 @@
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(TwitterChart).call(this, props));
 
 	    _this.state = {
-	      data: _this.props.twitterData
+	      data: _this.props.twitterData,
+	      currentQuery: 'ford' // may want to add adjustable time interval here
 	    };
+
+	    _this.clickHandler = _this.clickHandler.bind(_this);
 	    return _this;
 	  }
 
 	  _createClass(TwitterChart, [{
+	    key: 'clickHandler',
+	    value: function clickHandler(event) {
+	      this.setState({ currentQuery: event.target.value });
+	    }
+	  }, {
 	    key: 'getStyles',
 	    value: function getStyles() {
 	      return {
 	        parent: {
 	          boxSizing: "border-box",
 	          display: "block",
-	          width: "90%",
-	          height: "90%",
-	          padding: 50
+	          width: "75%",
+	          height: "65%",
+	          padding: 20
 	        }
 	      };
 	    }
@@ -52729,45 +52737,104 @@
 	        );
 	      }
 
+	      var currentQuery = this.state.currentQuery;
+	      var company = this.props.twitterData.filter(function (obj) {
+	        return obj.keyword === currentQuery ? true : false;
+	      })[0];
+
+	      var data = company.data.map(function (obj, index, array) {
+	        return { time: index,
+	          numTweets: obj.numTweets || 0,
+	          sentimentAverage: obj.sentimentAverage * 5 || 0 };
+	      });
+
 	      var styles = this.getStyles();
+	      var chart = _react2.default.createElement(
+	        _victory.VictoryChart,
+	        { animate: { duration: 5000 } },
+	        _react2.default.createElement(_victory.VictoryArea, {
+	          interpolation: 'cardinal',
+	          style: {
+	            data: { fill: "tomato" }
+	          },
+	          data: data.slice(-5),
+	          x: "time",
+	          y: "numTweets"
+	        }),
+	        _react2.default.createElement(_victory.VictoryLine, {
+	          interpolation: 'cardinal',
+	          style: {
+	            data: {
+	              stroke: "cornflowerblue",
+	              strokeWidth: 5
+	            },
+	            labels: { fontSize: 8 }
+	          },
+	          data: data.slice(-5),
+	          x: "time",
+	          y: "sentimentAverage",
+	          label: 'Sentiment Score',
+	          standalone: false,
+	          fill: "teal"
+	        })
+	      );
+
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        'Inside TwitterChart component',
 	        _react2.default.createElement(
-	          'svg',
-	          { style: styles.parent, viewBox: '0 0 500 300' },
-	          _react2.default.createElement(_victory.VictoryLine, {
-	            interpolation: 'cardinal',
-	            style: {
-	              data: {
-	                stroke: "orange",
-	                strokeWidth: 1
-	              },
-	              labels: { fontSize: 8 }
-	            },
-	            data: entries.slice(-25),
-	            x: "time",
-	            y: "volume",
-	            label: 'Number of Tweets',
-	            standalone: false
-	          }),
-	          _react2.default.createElement(_victory.VictoryLine, {
-	            interpolation: 'cardinal',
-	            style: {
-	              data: {
-	                stroke: "blue",
-	                strokeWidth: 1
-	              },
-	              labels: { fontSize: 8 }
-	            },
-	            data: entries.slice(-25),
-	            x: "time",
-	            y: "score",
-	            label: 'Sentiment Score',
-	            standalone: false,
-	            fill: "teal"
-	          })
+	          'div',
+	          null,
+	          'Twitter Detail Component'
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          chart
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          _react2.default.createElement(
+	            'button',
+	            { onClick: this.clickHandler, value: 'nintendo' },
+	            'nintendo'
+	          ),
+	          _react2.default.createElement(
+	            'button',
+	            { onClick: this.clickHandler, value: 'google' },
+	            'google'
+	          ),
+	          _react2.default.createElement(
+	            'button',
+	            { onClick: this.clickHandler, value: 'disney' },
+	            'disney'
+	          ),
+	          _react2.default.createElement(
+	            'button',
+	            { onClick: this.clickHandler, value: 'ford' },
+	            'ford'
+	          ),
+	          _react2.default.createElement(
+	            'button',
+	            { onClick: this.clickHandler, value: 'genentech' },
+	            'genentech'
+	          ),
+	          _react2.default.createElement(
+	            'button',
+	            { onClick: this.clickHandler, value: 'negative' },
+	            'negative'
+	          ),
+	          _react2.default.createElement(
+	            'button',
+	            { onClick: this.clickHandler, value: 'markets' },
+	            'markets'
+	          ),
+	          _react2.default.createElement(
+	            'button',
+	            { onClick: this.clickHandler, value: 'gold' },
+	            'gold'
+	          )
 	        )
 	      );
 	    }
@@ -53065,6 +53132,12 @@
 	      var sentiment = company.data[company.data.length - 1].sentimentAverage;
 	      var numTweets = company.data[company.data.length - 1].numTweets;
 
+	      // Idea: create smaller trailing graphics -- neutral Bullish BULLISH
+	      // var sentiment2 = company.data[company.data.length - 2].sentimentAverage;
+	      // var numTweets2 = company.data[company.data.length - 2].numTweets;
+	      // var sentiment3 = company.data[company.data.length - 3].sentimentAverage;
+	      // var numTweets3 = company.data[company.data.length - 3].numTweets;
+
 	      var graphic;
 	      if (sentiment > 0.5) {
 	        // bullish
@@ -53143,6 +53216,11 @@
 	            { onClick: this.clickHandler, value: 'gold' },
 	            'gold'
 	          )
+	        ),
+	        _react2.default.createElement(
+	          'h4',
+	          null,
+	          '--------------FIX/STYLE ME-----------------------------'
 	        )
 	      );
 	    }

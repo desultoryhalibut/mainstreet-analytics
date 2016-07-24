@@ -27038,6 +27038,33 @@
 	        { className: 'google-trends' },
 	        _react2.default.createElement(
 	          'div',
+	          { className: 'row quote' },
+	          _react2.default.createElement(
+	            'quote',
+	            null,
+	            '"Research published today in Nature Scientific Reports finds that ',
+	            _react2.default.createElement(
+	              'span',
+	              { className: 'stand-out' },
+	              'Google search behaviour'
+	            ),
+	            ' is not only a clear indicator of movements in the market; it also ',
+	            _react2.default.createElement(
+	              'span',
+	              { className: 'stand-out' },
+	              'gives insight into the likely future behaviour of economic actors'
+	            ),
+	            '."'
+	          ),
+	          ' ',
+	          _react2.default.createElement(
+	            'small',
+	            null,
+	            '~ Nature.com: Quantifying Trading Behavior in Financial Markets Using Google Trends'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
 	          { className: 'row' },
 	          _react2.default.createElement(
 	            'div',
@@ -27115,46 +27142,124 @@
 	                  'p',
 	                  { className: 'card-text' },
 	                  _react2.default.createElement(
-	                    'strong',
+	                    'ul',
 	                    null,
-	                    'Cars & Restaurants'
-	                  ),
-	                  ': Pulse on consumer spending',
-	                  _react2.default.createElement('br', null),
-	                  _react2.default.createElement(
-	                    'strong',
-	                    null,
-	                    'Real Estate Agent'
-	                  ),
-	                  ': Pulse on housing market demand',
-	                  _react2.default.createElement('br', null),
-	                  _react2.default.createElement(
-	                    'strong',
-	                    null,
-	                    'Unemployment'
-	                  ),
-	                  ': Pulse on jobs',
-	                  _react2.default.createElement('br', null),
-	                  _react2.default.createElement(
-	                    'strong',
-	                    null,
-	                    'Inflation'
-	                  ),
-	                  ': Pulse on inflation',
-	                  _react2.default.createElement('br', null),
-	                  _react2.default.createElement(
-	                    'strong',
-	                    null,
-	                    'Dow Jones'
-	                  ),
-	                  ': Pulse on market volatility',
-	                  _react2.default.createElement('br', null),
-	                  _react2.default.createElement(
-	                    'strong',
-	                    null,
-	                    'Hedge & Panic'
-	                  ),
-	                  ': Pulse on market fear'
+	                    _react2.default.createElement(
+	                      'li',
+	                      null,
+	                      _react2.default.createElement(
+	                        'strong',
+	                        null,
+	                        'Cars & Restaurants'
+	                      ),
+	                      ': Pulse on consumer spending'
+	                    ),
+	                    _react2.default.createElement(
+	                      'li',
+	                      null,
+	                      _react2.default.createElement(
+	                        'strong',
+	                        null,
+	                        'Real Estate Agent'
+	                      ),
+	                      ': Pulse on housing market demand'
+	                    ),
+	                    _react2.default.createElement(
+	                      'li',
+	                      null,
+	                      _react2.default.createElement(
+	                        'strong',
+	                        null,
+	                        'Unemployment'
+	                      ),
+	                      ': Pulse on jobs'
+	                    ),
+	                    _react2.default.createElement(
+	                      'li',
+	                      null,
+	                      _react2.default.createElement(
+	                        'strong',
+	                        null,
+	                        'Inflation'
+	                      ),
+	                      ': Pulse on inflation'
+	                    ),
+	                    _react2.default.createElement(
+	                      'li',
+	                      null,
+	                      _react2.default.createElement(
+	                        'strong',
+	                        null,
+	                        'Dow Jones'
+	                      ),
+	                      ': Pulse on market volatility'
+	                    ),
+	                    _react2.default.createElement(
+	                      'li',
+	                      null,
+	                      _react2.default.createElement(
+	                        'strong',
+	                        null,
+	                        'Hedge & Panic'
+	                      ),
+	                      ': Pulse on market fear'
+	                    )
+	                  )
+	                )
+	              )
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'row' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'card card-danger text-xs-center z-depth-2 col-md-3 infobox' },
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'card-block' },
+	              _react2.default.createElement(
+	                'p',
+	                { className: 'white-text' },
+	                _react2.default.createElement(
+	                  'span',
+	                  { className: 'stand-out-white' },
+	                  '6% increase in searches for "restaurant" from May 2016 to June 2016'
+	                )
+	              )
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'card card-warning text-xs-center z-depth-2 col-md-3 infobox' },
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'card-block' },
+	              _react2.default.createElement(
+	                'p',
+	                { className: 'white-text' },
+	                _react2.default.createElement(
+	                  'span',
+	                  { className: 'stand-out-white' },
+	                  '6% increase in searches for "restaurant" from May 2016 to June 2016'
+	                )
+	              )
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'card card-info text-xs-center z-depth-2 col-md-3 infobox' },
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'card-block' },
+	              _react2.default.createElement(
+	                'p',
+	                { className: 'white-text' },
+	                _react2.default.createElement(
+	                  'span',
+	                  { className: 'stand-out-white' },
+	                  '6% increase in searches for "restaurant" from May 2016 to June 2016'
 	                )
 	              )
 	            )
@@ -27168,14 +27273,6 @@
 	}(_react.Component);
 
 	exports.default = GoogleTrends;
-
-	//
-	// <div className="google-summary col-md-4 card card-block">
-	//   <p><b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard
-	//   dummy text ever since the <span className="stand-out">1500</span>s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-	//   It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-	//   </p>
-	// </div>
 
 /***/ },
 /* 238 */
@@ -27234,13 +27331,13 @@
 	        _react2.default.createElement(
 	          'h4',
 	          null,
-	          'Google searches for ',
 	          _react2.default.createElement(
 	            'strong',
 	            null,
-	            this.props.keyword
-	          ),
-	          ' 2004 - present'
+	            'Google searches for "',
+	            this.props.keyword,
+	            '" 2004 - present'
+	          )
 	        ),
 	        _react2.default.createElement(
 	          'svg',

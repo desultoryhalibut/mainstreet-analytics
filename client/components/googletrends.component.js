@@ -67,6 +67,9 @@ class GoogleTrends extends Component {
 
     return (
       <section className="google-trends">
+        <div className="row quote">
+          <quote>"Research published today in Nature Scientific Reports finds that <span className="stand-out">Google search behaviour</span> is not only a clear indicator of movements in the market; it also <span className="stand-out">gives insight into the likely future behaviour of economic actors</span>."</quote> <small>~ Nature.com: Quantifying Trading Behavior in Financial Markets Using Google Trends</small>
+        </div>
         <div className="row">
           <div className="col-md-8">
             <nav className="google-trends-nav">
@@ -90,24 +93,36 @@ class GoogleTrends extends Component {
                 <div className="card-block">
                     <h4 className="card-title">Google search trends can help you get a pulse on economic and market indicators</h4>
                     <p className="card-text">
-                      <strong>Cars & Restaurants</strong>: Pulse on consumer spending
-                      <br></br>
-                      <strong>Real Estate Agent</strong>: Pulse on housing market demand
-                      <br></br>
-                      <strong>Unemployment</strong>: Pulse on jobs
-                      <br></br>
-                      <strong>Inflation</strong>: Pulse on inflation
-                      <br></br>
-                      <strong>Dow Jones</strong>: Pulse on market volatility
-                      <br></br>
-                      <strong>Hedge & Panic</strong>: Pulse on market fear
+                      <ul>
+                        <li><strong>Cars & Restaurants</strong>: Pulse on consumer spending</li>
+                        <li><strong>Real Estate Agent</strong>: Pulse on housing market demand</li>
+                        <li><strong>Unemployment</strong>: Pulse on jobs</li>
+                        <li><strong>Inflation</strong>: Pulse on inflation</li>
+                        <li><strong>Dow Jones</strong>: Pulse on market volatility</li>
+                        <li><strong>Hedge & Panic</strong>: Pulse on market fear</li>
+                      </ul>
                     </p>
 
                 </div>
             </div>
           </div>
-
-
+        </div>
+        <div className="row">
+          <div className="card card-danger text-xs-center z-depth-2 col-md-3 infobox">
+            <div className="card-block">
+              <p className="white-text"><span className="stand-out-white">6% increase in searches for "restaurant" from May 2016 to June 2016</span></p>
+            </div>
+          </div>
+          <div className="card card-warning text-xs-center z-depth-2 col-md-3 infobox">
+            <div className="card-block">
+              <p className="white-text"><span className="stand-out-white">6% increase in searches for "restaurant" from May 2016 to June 2016</span></p>
+            </div>
+          </div>
+          <div className="card card-info text-xs-center z-depth-2 col-md-3 infobox">
+            <div className="card-block">
+              <p className="white-text"><span className="stand-out-white">6% increase in searches for "restaurant" from May 2016 to June 2016</span></p>
+            </div>
+          </div>
         </div>
       </section>
     );
@@ -116,12 +131,3 @@ class GoogleTrends extends Component {
 }
 
 export default GoogleTrends;
-
-
-//
-// <div className="google-summary col-md-4 card card-block">
-//   <p><b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard
-//   dummy text ever since the <span className="stand-out">1500</span>s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-//   It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-//   </p>
-// </div>

@@ -1,5 +1,3 @@
-
-// require('./config/config.js')
 // Config routing and database for news and sentiment APIs
 var express = require('express');
 var twitterStream = require('./twitter/twitter-controller');

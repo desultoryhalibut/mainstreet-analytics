@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { VictoryPie, VictoryChart, VictoryLine, VictoryBar, VictoryAxis, VictoryStack, VictoryLabel } from 'victory';
+import { VictoryPie, VictoryChart, VictoryLine, VictoryBar, VictoryAxis, VictoryStack, VictoryLabel, VictoryAnimation } from 'victory';
 
 class TwitterLiveSummary extends Component {
   
@@ -29,9 +29,9 @@ class TwitterLiveSummary extends Component {
     var intervals = this.state.intervals;
     var data = this.props.twitterData.map(function(obj, index, collection){
       return {x: index + 1,
-              volume: (obj.data.slice( intervals ).reduce(function(a, b){
+              volume: +(obj.data.slice( intervals ).reduce(function(a, b){
                     return a + b.numTweets;
-                  }, 0) / -intervals),
+                  }, 0) / -intervals) || 0,
               label: obj.keyword,
               sentiment: +(obj.data.slice( intervals ).reduce(function(a, b){
                     return a + b.sentimentAverage;
@@ -39,26 +39,32 @@ class TwitterLiveSummary extends Component {
     })
 
     var chart = 
-    <VictoryChart>
+    <VictoryChart
+      animate={{duration: 2000}}>
       <VictoryAxis
-          label="Queries"
           orientation="bottom"
           tickValues={data.map((obj)=> {return ''})}
           style={{
-                grid: {
-                  stroke: "grey",
-                  strokeWidth: 1
-                },
-                axis: {stroke: "transparent"},
                 ticks: {stroke: "transparent"}
               }}
-          />  
+          />
+      <VictoryAxis dependentAxis
+          label={"Number of Tweets"}
+          style={{
+            grid: {
+              stroke: "grey",
+              strokeWidth: 1
+            },
+            axis: {stroke: "transparent"},
+            ticks: {stroke: "transparent"}
+          }}/>  
       <VictoryBar
         height={300}
         style={{
           labels: {fontSize: 10}
         }}
         data={[
+          {x: 0.5, y: 0},
           {x: 1, y: data[0].volume, fill: "gold", label: data[0].label},
           {x: 2, y: data[1].volume, fill: "orange", label: data[1].label},
           {x: 3, y: data[2].volume, fill: "tomato", label: data[2].label},
@@ -66,12 +72,13 @@ class TwitterLiveSummary extends Component {
           {x: 5, y: data[4].volume, fill: "magenta", label: data[4].label},
           {x: 6, y: data[5].volume, fill: "purple", label: data[5].label},
           {x: 7, y: data[6].volume, fill: "blue", label: data[6].label},
-          {x: 8, y: data[7].volume, fill: "teal", label: data[7].label}
+          {x: 8, y: data[7].volume, fill: "teal", label: data[7].label},
+          {x: 8.5, y: 0}
         ]}
       />
     </VictoryChart>
 
-    var sentimentChart = <VictoryChart>
+    var sentimentChart = <VictoryChart animate={{duration: 2000}}>
                           <VictoryAxis
                               orientation="bottom"
                               tickValues={data.map((obj)=> {return ''})}
@@ -117,15 +124,15 @@ class TwitterLiveSummary extends Component {
     return(
 
       <div className="twitter-live-summary">
-        <button onClick={this.clickHandler} value="-1">1 Minute</button>
-        <button onClick={this.clickHandler} value="-3">3 Minutes</button>
-        <button onClick={this.clickHandler} value="-5">5 Minutes</button>
         <h4>TwitterLiveSummary Component (update choices once chron job enabled)</h4>
-          {chart}{sentimentChart}
-        <button onClick={this.clickHandler} value="-1">1 Minute</button>
-        <button onClick={this.clickHandler} value="-3">3 Minutes</button>
-        <button onClick={this.clickHandler} value="-5">5 Minutes</button>
-
+          {chart}
+        <div>      
+          <button onClick={this.clickHandler} value="-1">1 Minute</button>
+          <button onClick={this.clickHandler} value="-3">3 Minutes</button>
+          <button onClick={this.clickHandler} value="-5">5 Minutes</button>
+          <button onClick={this.clickHandler} value="-10">10 Minutes</button>
+        </div>
+          {sentimentChart}
       </div>
     )
   }

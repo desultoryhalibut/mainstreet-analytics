@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-// This component looks at the most recent time interval 
+// This component looks at the most recent time interval
 // and renders an image based on + - neutral sentiment
 
-// Twitter is feeling 
+// Twitter is feeling
 //   {image}
 // about {search} right this minute
 class TwitterLive extends Component {
@@ -13,7 +13,7 @@ class TwitterLive extends Component {
 
     this.state = {
       data: this.props.twitterData,  // score of most recent interval...use same data as twitter.component,,
-      currentQuery: 'ford'           // search query or item chosen from dropdown
+      currentQuery: this.props.currentCompany           // search query or item chosen from dropdown
     };
 
     this.clickHandler = this.clickHandler.bind(this);
@@ -25,7 +25,7 @@ class TwitterLive extends Component {
 
 
   render() {
-    if (!this.props.twitterData) {
+    if (!this.props.twitterData || !this.props.currentCompany) {
       return (
         <div>Loading Twitter Volume data...for Bullish/Bearish/Neutral component</div>
       );
@@ -35,10 +35,10 @@ class TwitterLive extends Component {
     var company = this.props.twitterData.filter(function(obj) {
       return (obj.keyword === currentQuery) ? true : false;
     })[0];
-    
+
     var sentiment = company.data[company.data.length - 1].sentimentAverage;
     var numTweets = company.data[company.data.length - 1].numTweets;
-    
+
     // Idea: create smaller trailing graphics -- neutral Bullish BULLISH
     // var sentiment2 = company.data[company.data.length - 2].sentimentAverage;
     // var numTweets2 = company.data[company.data.length - 2].numTweets;
@@ -57,13 +57,13 @@ class TwitterLive extends Component {
       graphic = <img src={'http://bit.ly/2a0hubG'} className="img-responsive"/>
     }
 
-    return( 
+    return(
           <div className="twitter-live">
             <h2>Twitter Live Snapshot (Style Me and get rid of hard coding)</h2>
             <h4>--------------------------------------------------------</h4>
             {graphic}
             <h4>---{numTweets} tweets @ {Math.round(sentiment * 100) / 100} average sentiment---</h4>
-            <div>      
+            <div>
               <button onClick={this.clickHandler} value="nintendo">nintendo</button>
               <button onClick={this.clickHandler} value="google">google</button>
               <button onClick={this.clickHandler} value="disney">disney</button>

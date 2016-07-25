@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import LineChart from './linechart.component';
 import SentimentTrends from './sentiment.component';
 import TwitterChart from './twitter.component';
+import TwitterLive from './twitter-live.component';
 
 class CompanyComponent extends Component {
   constructor(props) {
@@ -24,7 +25,8 @@ class CompanyComponent extends Component {
             <h3 className="ta-center">{this.props.currentCompany}</h3>
           </div>
         </div>
-
+        <TwitterChart twitterData={this.props.twitterData} currentCompany={this.props.currentCompany}/>
+        <TwitterLive twitterData={this.props.twitterData} currentCompany={this.props.currentCompany}/>
         <LineChart
           data={this.props.companyGoogleTrendsData.searchVolume}
           keyword={this.props.companyGoogleTrendsData.keyword}

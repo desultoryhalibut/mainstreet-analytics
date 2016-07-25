@@ -130,13 +130,6 @@ class GoogleTrends extends Component {
               <p className="white-text"><span className="stand-out-white">6% increase in searches for "restaurant" from May 2016 to June 2016</span></p>
             </div>
           </div>
-
-
-         <p><b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard
-          dummy text ever since the <span className="stand-out">1500</span>s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-          It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-          </p >
-
         </div>
       </section>
     );

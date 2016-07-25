@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { VictoryPie, VictoryChart, VictoryLine, VictoryBar, VictoryAxis, VictoryArea } from 'victory';
 
 class TwitterChart extends Component {
-  
+
   constructor(props) {
     super(props);
 
     this.state = {
       data: this.props.twitterData,
-      currentQuery: 'ford'   // may want to add adjustable time interval here
+      currentQuery: this.props.currentCompany   // may want to add adjustable time interval here
     }
 
     this.clickHandler = this.clickHandler.bind(this);
@@ -65,7 +65,7 @@ class TwitterChart extends Component {
 
     // );
 
-    if (!this.props.twitterData) {
+    if (!this.props.twitterData || !this.props.currentCompany) {
       return (
         <div>Loading Twitter data for detail view component!</div>
       );
@@ -75,7 +75,7 @@ class TwitterChart extends Component {
     var company = this.props.twitterData.filter(function(obj) {
       return (obj.keyword === currentQuery) ? true : false;
     })[0];
-    
+
     var data = company.data.map(function(obj, index, array) {
       return {time: index,
               numTweets: obj.numTweets || 0,
@@ -84,7 +84,7 @@ class TwitterChart extends Component {
 
     const styles = this.getStyles();
     var chart = <VictoryChart animate={{duration: 5000}}>
-              
+
                  <VictoryArea
                    interpolation="cardinal"
                    style={{
@@ -112,12 +112,12 @@ class TwitterChart extends Component {
                 fill={"teal"}
               />
             </VictoryChart>
-    
+
     return(
       <div>
         <div>Twitter Detail Component</div>
         <div>{chart}</div>
-        <div>      
+        <div>
           <button onClick={this.clickHandler} value="nintendo">nintendo</button>
           <button onClick={this.clickHandler} value="google">google</button>
           <button onClick={this.clickHandler} value="disney">disney</button>
@@ -133,4 +133,3 @@ class TwitterChart extends Component {
 }
 
 export default TwitterChart;
-

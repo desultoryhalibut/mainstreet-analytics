@@ -83,7 +83,7 @@ class TwitterChart extends Component {
     });
 
     const styles = this.getStyles();
-    var chart = <VictoryChart animate={{duration: 4000}}>
+    var chart = <VictoryChart animate={{duration: 5000}}>
               
                  <VictoryArea
                    interpolation="cardinal"

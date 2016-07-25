@@ -43,7 +43,7 @@ class TwitterLiveSummary extends Component {
 
     var volumeChart = 
     <VictoryChart
-      animate={{duration: 4000}}>
+      animate={{duration: 5000}}>
       <VictoryAxis
           orientation="bottom"
           tickValues={data.map((obj)=> {return ''})}
@@ -81,7 +81,7 @@ class TwitterLiveSummary extends Component {
       />
     </VictoryChart>
 
-    var sentimentChart = <VictoryChart animate={{duration: 4000}}>
+    var sentimentChart = <VictoryChart animate={{duration: 5000}}>
                           <VictoryAxis
                               orientation="bottom"
                               tickValues={data.map((obj)=> {return ''})}

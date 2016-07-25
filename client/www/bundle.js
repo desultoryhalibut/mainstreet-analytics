@@ -26930,7 +26930,10 @@
 	              { className: 'ta-center' },
 	              _react2.default.createElement('i', { className: 'fa fa-twitter', 'aria-hidden': 'true' }),
 	              'What\'s Tweeting'
-	            )
+	            ),
+	            _react2.default.createElement(_twitterLiveSummary2.default, { twitterData: this.state.twitterData, currentCompany: this.state.currentCompany }),
+	            _react2.default.createElement(_twitter2.default, { twitterData: this.state.twitterData, currentCompany: this.state.currentCompany }),
+	            _react2.default.createElement(_twitterLive2.default, { twitterData: this.state.twitterData, currentCompany: this.state.currentCompany })
 	          )
 	        ),
 	        _react2.default.createElement(
@@ -26974,11 +26977,6 @@
 	        _react2.default.createElement(
 	          'div',
 	          null,
-	          _react2.default.createElement(_twitterLiveSummary2.default, { twitterData: this.state.twitterData, currentCompany: this.state.currentCompany }),
-	          _react2.default.createElement(_twitter2.default, { twitterData: this.state.twitterData, currentCompany: this.state.currentCompany }),
-	          _react2.default.createElement(_twitterLive2.default, { twitterData: this.state.twitterData, currentCompany: this.state.currentCompany }),
-	          _react2.default.createElement(_googletrends2.default, { googleTrendsData: this.state.googleTrendsData }),
-	          _react2.default.createElement(_sentiment2.default, { sentimentData: this.state.sentimentData }),
 	          _react2.default.createElement(_news2.default, { newsData: this.state.newsData })
 	        )
 	      );
@@ -58481,7 +58479,7 @@
 	      var styles = this.getStyles();
 	      var chart = _react2.default.createElement(
 	        _victory.VictoryChart,
-	        { animate: { duration: 4000 } },
+	        { animate: { duration: 5000 } },
 	        _react2.default.createElement(_victory.VictoryArea, {
 	          interpolation: 'cardinal',
 	          style: {
@@ -58652,7 +58650,7 @@
 	      var volumeChart = _react2.default.createElement(
 	        _victory.VictoryChart,
 	        {
-	          animate: { duration: 4000 } },
+	          animate: { duration: 5000 } },
 	        _react2.default.createElement(_victory.VictoryAxis, {
 	          orientation: 'bottom',
 	          tickValues: data.map(function (obj) {
@@ -58683,7 +58681,7 @@
 
 	      var sentimentChart = _react2.default.createElement(
 	        _victory.VictoryChart,
-	        { animate: { duration: 4000 } },
+	        { animate: { duration: 5000 } },
 	        _react2.default.createElement(_victory.VictoryAxis, {
 	          orientation: 'bottom',
 	          tickValues: data.map(function (obj) {

@@ -18,8 +18,23 @@ class SummaryComponent extends Component {
       twitterData: null
     };
 
+    this.fetchTweets = this.fetchTweets.bind(this);
   }
 
+  fetchTweets () {
+    var self = this;
+      fetch('api/twitter', {method: 'GET'})
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        console.log('SETTINGSTATE', data);
+        this.setState({twitterData: data}).bind(self);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
   componentWillMount() {
     fetch('api/googletrends', {method: 'GET'})
       .then((res) => {
@@ -68,12 +83,15 @@ class SummaryComponent extends Component {
       })
       .then((data) => {
         this.setState({twitterData: data});
-        // add setInterval here to retrieve data every X seconds
       })
       .catch((err) => {
         console.log(err);
       });
 
+  }
+
+  componentDidMount(){
+    setInterval(this.fetchTweets, 10000);
   }
 
 

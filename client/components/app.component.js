@@ -11,10 +11,12 @@ export default class AppComponent extends Component {
       currentCompany: null,
       companyGoogleTrendsData: null,
       isSummary: true,
+      sentimentData : null,
       twitterData: null
     }
     this.selectCompany = this.selectCompany.bind(this);
     this.fetchTweets = this.fetchTweets.bind(this);
+    this.getNews = this.getNews.bind(this);
   }
 
   selectCompany(company) {
@@ -33,6 +35,7 @@ export default class AppComponent extends Component {
       });
   }
 
+
   fetchTweets () {
     var self = this;
       fetch('api/twitter', {method: 'GET'})
@@ -48,16 +51,32 @@ export default class AppComponent extends Component {
       });
   }
 
+
+  getNews() {
+  fetch('api/news', {method: 'GET'})
+    .then((res) => {
+      return res.json();
+    })
+    .then((data) => {
+      this.setState({sentimentData: data});
+
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
+
   componentWillMount() {
+    this.getNews();
     setInterval(this.fetchTweets, 5000);
   }
 
   render() {
     var partial;
     if (this.state.isSummary) {
-      partial = <SummaryComponent twitterData={this.state.twitterData} />
+      partial = <SummaryComponent twitterData={this.state.twitterData} sentimentData={this.state.sentimentData} />
     } else {
-      partial = <CompanyComponent companyGoogleTrendsData={this.state.companyGoogleTrendsData} currentCompany={this.state.currentCompany} twitterData={this.state.twitterData} />
+      partial = <CompanyComponent companyGoogleTrendsData={this.state.companyGoogleTrendsData} currentCompany={this.state.currentCompany} twitterData={this.state.twitterData} sentimentData={this.state.sentimentData} />
     }
 
     return (

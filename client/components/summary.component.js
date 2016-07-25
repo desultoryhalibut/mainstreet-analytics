@@ -109,7 +109,7 @@ class SummaryComponent extends Component {
           </div>
         </div>
 
-        <SentimentTrends sentimentData={this.state.sentimentData} currentCompany={this.state.currentCompany}/>
+        <SentimentTrends sentimentData={this.state.sentimentData} currentCompany={this.state.currentCompany} currentCompany={this.state.currentCompany} />
 
         <div className="row">
           <div className="footer-top col-md-12">

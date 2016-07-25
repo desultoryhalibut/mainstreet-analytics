@@ -26789,10 +26789,12 @@
 	      currentCompany: null,
 	      companyGoogleTrendsData: null,
 	      isSummary: true,
+	      sentimentData: null,
 	      twitterData: null
 	    };
 	    _this.selectCompany = _this.selectCompany.bind(_this);
 	    _this.fetchTweets = _this.fetchTweets.bind(_this);
+	    _this.getNews = _this.getNews.bind(_this);
 	    return _this;
 	  }
 
@@ -26828,8 +26830,22 @@
 	      });
 	    }
 	  }, {
+	    key: 'getNews',
+	    value: function getNews() {
+	      var _this4 = this;
+
+	      fetch('api/news', { method: 'GET' }).then(function (res) {
+	        return res.json();
+	      }).then(function (data) {
+	        _this4.setState({ sentimentData: data });
+	      }).catch(function (err) {
+	        console.log(err);
+	      });
+	    }
+	  }, {
 	    key: 'componentWillMount',
 	    value: function componentWillMount() {
+	      this.getNews();
 	      setInterval(this.fetchTweets, 5000);
 	    }
 	  }, {
@@ -26837,9 +26853,9 @@
 	    value: function render() {
 	      var partial;
 	      if (this.state.isSummary) {
-	        partial = _react2.default.createElement(_summary2.default, { twitterData: this.state.twitterData });
+	        partial = _react2.default.createElement(_summary2.default, { twitterData: this.state.twitterData, sentimentData: this.state.sentimentData });
 	      } else {
-	        partial = _react2.default.createElement(_company2.default, { companyGoogleTrendsData: this.state.companyGoogleTrendsData, currentCompany: this.state.currentCompany, twitterData: this.state.twitterData });
+	        partial = _react2.default.createElement(_company2.default, { companyGoogleTrendsData: this.state.companyGoogleTrendsData, currentCompany: this.state.currentCompany, twitterData: this.state.twitterData, sentimentData: this.state.sentimentData });
 	      }
 
 	      return _react2.default.createElement(
@@ -26906,6 +26922,8 @@
 	var _twitterLive2 = _interopRequireDefault(_twitterLive);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -27038,7 +27056,7 @@
 	            )
 	          )
 	        ),
-	        _react2.default.createElement(_sentiment2.default, { sentimentData: this.state.sentimentData, currentCompany: this.state.currentCompany }),
+	        _react2.default.createElement(_sentiment2.default, _defineProperty({ sentimentData: this.state.sentimentData, currentCompany: this.state.currentCompany }, 'currentCompany', this.state.currentCompany)),
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'row' },
@@ -58415,7 +58433,7 @@
 
 	    _this.state = {
 	      data: _this.props.sentimentData,
-	      current: 'disney'
+	      topic: 'economic'
 	    };
 	    _this.handleClick = _this.handleClick.bind(_this);
 	    return _this;
@@ -58424,7 +58442,34 @@
 	  _createClass(SentimentTrends, [{
 	    key: 'handleClick',
 	    value: function handleClick(event) {
-	      this.setState({ current: event.target.value });
+	      var data = this.state.data.filter(function (item) {
+	        return item.keyword === event;
+	      });
+	      this.setState({ topic: event.target.value });
+	      console.log('SETTING STATE in news:', this.state);
+	    }
+	  }, {
+	    key: 'filterBy',
+	    value: function filterBy(criteria) {
+	      //by company, by economic indicators, by company
+	      console.log('filter by, this.props:', this.props, 'criteria:', criteria);
+	      var economicInd = ['car', 'unemployment', 'inflation', 'real estate', 'acquisition', 'restaurants', 'dow jones', 'economy', 'consumer spending'];
+	      if (criteria === 'company') {
+	        var data = this.props.sentimentData.filter(function (obj) {
+	          return economicInd.indexOf(obj.keyword) === -1;
+	        });
+	      } else if (criteria === 'economic') {
+	        var data = this.props.sentimentData.filter(function (obj) {
+	          return economicInd.indexOf(obj.keyword) > -1;
+	        });
+	      } else {
+	        //need to insert API call to server to get from News database
+	        var data = this.props.sentimentData.filter(function (item) {
+	          return item.keyword === criteria;
+	        });
+	      }
+	      console.log('filter response on criteria:', criteria, 'data:', data);
+	      return data;
 	    }
 	  }, {
 	    key: 'render',
@@ -58437,7 +58482,9 @@
 	          'Loading Sentiment Data...'
 	        );
 	      }
-
+	      var that = this.state.topic;
+	      var currentData = this.filterBy(that);
+	      console.log('this.state.topic: ', this.state.topic);
 	      return _react2.default.createElement(
 	        'section',
 	        { className: 'sentiments' },
@@ -58503,7 +58550,8 @@
 	                  y: 'sentimentScore',
 	                  x: 1,
 	                  height: 400,
-	                  width: 600
+	                  width: 600,
+	                  currentCompany: this.props.currentCompany
 	                })
 	              )
 	            ),
@@ -58516,7 +58564,57 @@
 	                _react2.default.createElement(
 	                  'h3',
 	                  { className: 'card-header red white-text' },
-	                  'Company Details'
+	                  Tips
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'card-block' },
+	                  _react2.default.createElement(
+	                    'h4',
+	                    { className: 'card-title' },
+	                    ' Buy on bad news, sell on good news'
+	                  ),
+	                  _react2.default.createElement(
+	                    'p',
+	                    { className: 'card-text' },
+	                    _react2.default.createElement(
+	                      'ul',
+	                      null,
+	                      _react2.default.createElement(
+	                        'li',
+	                        null,
+	                        _react2.default.createElement(
+	                          'strong',
+	                          null,
+	                          'Why: '
+	                        ),
+	                        'Insiders tend to buy stocks in years when news sentiment is pessimistic (negative score)'
+	                      ),
+	                      _react2.default.createElement(
+	                        'li',
+	                        null,
+	                        _react2.default.createElement(
+	                          'strong',
+	                          null,
+	                          'Sentiment scores '
+	                        ),
+	                        ' range from -1 to 1, -1 being the most negative, 1 being the most positive score'
+	                      )
+	                    )
+	                  )
+	                )
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'col-md-4' },
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'card' },
+	                _react2.default.createElement(
+	                  'h3',
+	                  { className: 'card-header red white-text' },
+	                  this.props.sentimentData[0].keyword.toUpperCase()
 	                ),
 	                _react2.default.createElement(
 	                  'div',
@@ -58528,7 +58626,6 @@
 	                    _react2.default.createElement(
 	                      'ul',
 	                      null,
-	                      console.log("Im getting here"),
 	                      _react2.default.createElement(
 	                        'li',
 	                        null,
@@ -58557,7 +58654,7 @@
 	                          null,
 	                          'Headlines: '
 	                        ),
-	                        this.props.sentimentData[9].data[0].headline.print_headline + '\n'
+	                        this.props.sentimentData[9].data[0].headline.print_headline + '\n' + this.props.sentimentData[9].data[1].headline.print_headline
 	                      )
 	                    )
 	                  )
@@ -58610,7 +58707,7 @@
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(CentralAxis).call(this, props));
 
 	    _this.state = {
-	      x: null
+	      sentimentData: null
 	    };
 	    return _this;
 	  }
@@ -58624,17 +58721,32 @@
 	      return data;
 	    }
 	  }, {
-	    key: 'filterByCompany',
-	    value: function filterByCompany() {
-	      var economicInd = ['car', 'unemployment', 'inflation', 'real estate', 'acquisition', 'restaurants', 'dow jones', 'economy', 'panic', 'consumer spending'];
-	      var data = this.props.data.filter(function (obj) {
-	        return economicInd.indexOf(obj.keyword) === -1;
-	      });
+	    key: 'filterBy',
+	    value: function filterBy(criteria) {
+	      //by company, by economic indicators, by company
+
+	      var economicInd = ['car', 'unemployment', 'inflation', 'real estate', 'acquisition', 'restaurants', 'dow jones', 'economy', 'consumer spending'];
+	      if (criteria === 'company') {
+	        var data = this.props.data.filter(function (obj) {
+	          return economicInd.indexOf(obj.keyword) === -1;
+	        });
+	      } else if (criteria === 'economic') {
+	        var data = this.props.data.filter(function (obj) {
+	          return economicInd.indexOf(obj.keyword) > -1;
+	        });
+	      } else {
+	        //need to insert API call to server to get from News database
+	        var data = this.props.data.filter(function (item) {
+	          return item.keyword === criteria;
+	        });
+	      }
 	      return data;
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var topic = this.props.currentCompany || 'economic';
+	      console.log("This is the topic: ", topic, this.props.currentCompany);
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'bar-chart' },
@@ -58674,7 +58786,7 @@
 	                }
 	              },
 
-	              data: this.sortedList(this.filterByCompany()).map(function (obj, idx) {
+	              data: this.sortedList(this.filterBy(topic)).map(function (obj, idx) {
 	                if (obj.keyword !== 'panic') {
 	                  return {
 	                    x: 1 + idx,
@@ -59386,7 +59498,8 @@
 	          height: 500,
 	          width: 800,
 	          color: 'red'
-	        })
+	        }),
+	        _react2.default.createElement(_sentiment2.default, { sentimentData: this.props.sentimentData, currentCompany: this.props.currentCompany })
 	      );
 	    }
 	  }]);

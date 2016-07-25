@@ -30,8 +30,8 @@ class CompanyComponent extends Component {
           keyword={this.props.companyGoogleTrendsData.keyword}
           x={'date'}
           y={'volume'}
-          height={300}
-          width={600}
+          height={500}
+          width={800}
           color={'red'}
         />
 

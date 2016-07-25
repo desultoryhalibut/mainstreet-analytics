@@ -32,7 +32,7 @@ export default class AppComponent extends Component {
   }
 
   render() {
-    let partial;
+    var partial;
     if (this.state.isSummary) {
       partial = <SummaryComponent />
     } else {
@@ -48,6 +48,7 @@ export default class AppComponent extends Component {
         <div className="main-content z-depth-5">
 
           {partial}
+          
         </div>
         <Footer />
       </div>

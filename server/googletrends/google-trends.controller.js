@@ -4,7 +4,7 @@ const googleTrends = require('google-trends-api');
 function reformatTrendsData(trendsData) {
    return trendsData.map(item => {
      for (var key in item) {
-       let obj = {};
+       var obj = {};
        obj['date'] = key;
        obj['volume'] = item[key];
        return obj;

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { VictoryPie, VictoryChart, VictoryLine, VictoryBar, VictoryAxis, VictoryArea } from 'victory';
 
 class TwitterChart extends Component {
-
+  
   constructor(props) {
     super(props);
 
@@ -83,7 +83,6 @@ class TwitterChart extends Component {
     });
 
     const styles = this.getStyles();
-
     var chart = <VictoryChart animate={{duration: 5000}}>
               
                  <VictoryArea
@@ -95,7 +94,6 @@ class TwitterChart extends Component {
                    x={"time"}
                    y={"numTweets"}
                  />
-
 
               <VictoryLine
                 interpolation="cardinal"
@@ -135,3 +133,4 @@ class TwitterChart extends Component {
 }
 
 export default TwitterChart;
+

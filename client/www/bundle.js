@@ -58675,7 +58675,6 @@
 	      });
 
 	      var styles = this.getStyles();
-
 	      var chart = _react2.default.createElement(
 	        _victory.VictoryChart,
 	        { animate: { duration: 5000 } },

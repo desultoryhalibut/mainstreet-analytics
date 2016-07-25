@@ -19,7 +19,10 @@ module.exports = {
     console.log('getCOmpany', req.url);
     var pos = req.url.lastIndexOf('/');
     var company = req.url.substring(pos + 1, req.url.length);
+<<<<<<< HEAD
 
+=======
+>>>>>>> a7a9310fbcd0f05d510713aa8af3ec2d805eb863
 
     googleTrends.trendData(company)
       .then(function(results) {

@@ -38,6 +38,12 @@ class CentralAxis extends Component {
       }
       return data;
     }
+  filterByCompany() {
+    const economicInd = ['car', 'unemployment', 'inflation', 'real estate', 'acquisition', 'restaurants', 'dow jones', 'economy', 'panic', 'consumer spending']
+    let data = this.props.data.filter(function(obj) {
+      return (economicInd.indexOf(obj.keyword) === -1)
+    })
+    return data;
   }
 
   render() {
@@ -48,6 +54,7 @@ class CentralAxis extends Component {
 
       <div className='bar-chart'>
       <svg width={650} height={350}>
+
        <VictoryChart horizontal
          height={375}
          width={550}
@@ -60,7 +67,6 @@ class CentralAxis extends Component {
          domainPadding={{x: 15}}
         >
         <VictoryAxis
-
           orientation='bottom'
           style={{
             axis: {stroke: "transparent"},
@@ -77,7 +83,9 @@ class CentralAxis extends Component {
              }
            }}
 
-           data={this.sortedList(this.filterBy(topic)).map(function(obj, idx) {
+          //  data={this.sortedList(this.filterBy(topic)).map(function(obj, idx) {   needs to go after />  ->})}
+           data={this.sortedList(this.filterByCompany()).map(function(obj, idx) {
+
               if (obj.keyword !== 'panic') {
                 return {
                   x: 1+idx,
@@ -90,6 +98,7 @@ class CentralAxis extends Component {
               }
             })}
           />
+            {/* })} */}
 
        </VictoryChart>
       </svg>

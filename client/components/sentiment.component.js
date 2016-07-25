@@ -12,6 +12,7 @@ class SentimentTrends extends Component {
       data: this.props.sentimentData,
       topic: 'economic'
       xAxis: 1
+      current: 'disney'
     }
     this.handleClick = this.handleClick.bind(this);
   }
@@ -21,7 +22,7 @@ class SentimentTrends extends Component {
         return item.keyword === event;
       });
       this.setState({topic: event.target.value});
-      console.log('SETTING STATE in news:',this.state)
+      console.log('SETTING STATE in barchart:',this.state)
     }
 
     filterBy(criteria) {
@@ -110,8 +111,10 @@ class SentimentTrends extends Component {
             <div className="col-md-4">
               <div className="card">
                 <h3 className="card-header red white-text">{this.props.sentimentData[0].keyword.toUpperCase() }</h3>
+
                 <div className="card-block">
                   <h4 className='card-title'>
+                    {this.props.sentimentData[9].keyword.toUpperCase()}
                   </h4>
                   <p className='card-text'>
                    <ul>
@@ -122,9 +125,6 @@ class SentimentTrends extends Component {
 
                     </li>
                    </ul>
-
-
-
                   </p>
                 </div>
               </div>

@@ -10,6 +10,7 @@ NewsRouter.get('/dataset/:search', NewsController.searchAPI);
 NewsRouter.get('/dataset/', NewsController.getFromNewsAPI);
 NewsRouter.get('/dataset/companies', NewsController.getCompaniesFromNewsAPI);
 NewsRouter.get('/dataset/strings/', NewsController.inputSentiment);
+
 NewsRouter.get('/getSentiment/', NewsController.alchemyGetSentiment);
 
 module.exports = NewsRouter;

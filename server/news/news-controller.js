@@ -18,7 +18,8 @@ const alchemy_language = watson.alchemy_language({
 
 module.exports = {
 
-  getFromDB: function(req, res) {
+
+ getFromDB: function(req, res) {  //relative route from api/news-model
     News.find().exec()
     .then(function(news) {
       res.send(news);
@@ -30,14 +31,14 @@ module.exports = {
 
   searchAPI: function(req, res) {
     var word = req.params.search;
-    console.log('word is: ',word)
+
     request.get({
       url: "https://api.nytimes.com/svc/search/v2/articlesearch.json",
       qs: {
         'api-key': "cd2a0ddca6c645b38fd40bf4740dc21a",
         'q': word,
         'fq': 'news_desk:("Automobiles" "Business" "Cars" "Culture" "Dining" "Editorial" "Education" "Financial" "Foreign" "Health" "Jobs" "Market Place" "Metro" "Metropolitan" "National" "Opinion" "Personal Investing" "Politics" "Retirement" "Science" "Small Business" "Society" "Sunday Business" "Technology" "Travel" "U.S." "Universal" "Vacation" "Wealth" "Week in Review" "Working" "Workplace" "World" "Your Money") AND body.search:(\""' + word + '\"")',
-        'begin_date': '20160710',
+        'begin_date': '20160101',
         'end_date': '20160723',
         'sort': 'newest',
         'fl': 'web_url,snippet,headline,pub_date,type_of_material'
@@ -49,8 +50,7 @@ module.exports = {
         res.send(body);
     })
   },
-
-  getFromNewsAPI: function(req,res) {
+   getFromNewsAPI: function(req,res) {
 
     const keywords = ['consumer spending', 'unemployment', 'inflation', 'real estate', 'acquisition', 'restaurants', 'dow jones', 'economy', 'panic'];
 
@@ -61,7 +61,20 @@ module.exports = {
 
   },
 
+  getCompaniesFromNewsAPI: function(req,res) {
+    console.log('getCompaniesFromNewsAPI RUNNING');
+
+    const companies = ['nintendo', 'disney', 'ford', 'google', 'gilead'];
+
+      //Loop through to do a separate key word search on news articles within the past year
+      for (var i = 0; i < companies.length; i++) {
+        console.log('getCompaniesFromNewsAPI search on',companies[i])
+        module.exports.addToDB(companies[i]);
+      }
+  },
+
   addToDB: function(keyword) {
+
     request.get({
       url: "https://api.nytimes.com/svc/search/v2/articlesearch.json",
       qs: {
@@ -82,7 +95,8 @@ module.exports = {
       } else {
         body = JSON.parse(body);
         body['keyword'] = keyword;
-        News.update({keyword: keyword}, {
+        console.log('creating entry in database:',keyword)
+        News.create({
           data: body.response.docs,
           hits: body.response.meta.hits,
           keyword: body.keyword
@@ -95,19 +109,23 @@ module.exports = {
       }
     });
   },
-  inputSentiment: function(req, res) {  //relative route from api/news-model
+
+
+  inputSentiment: function(req, res) {
     News.find().exec()
     .then(function(news) {
-      console.log('searching database:', news);
-      var results = { keyword: news.keyword };
-      var n = news[0].data.reduce(function(prev, cur) {
-        return prev += '. ' + cur.headline.print_headline;
-      }, '');
-      results = {
-        string: n,
-        keyword: news[0].keyword
+      var strings = [];
+      for (var i = 0; i < news.length; i++) {
+      console.log('searching database:', news[i]);
+        var n = news[i].data.reduce(function(prev, cur) {
+          return prev += '. ' + cur.headline.print_headline;
+        }, '');
+        results = {
+          string: n,
+          keyword: news[i].keyword
+        }
       }
-      res.send(results);
+      res.send(strings);
     })
     .catch(function(err) {
       console.error(err);
@@ -230,24 +248,6 @@ module.exports = {
         });
       })
     };
-    // News.find().exec()
-    // .then(function(news) {
-    //   console.log('searching database:', news);
-    //   var results = { keyword: news.keyword };
-    //   var n = news[9].data.reduce(function(prev, cur) {
-    //     return prev += '. ' + cur.headline.main;
-    //   }, '');
-    //   results = {
-    //     string: n,
-    //     keyword: news[9].keyword
-    //   }
-    //   res.send(results);
-    // })
-    // .catch(function(err) {
-    //   console.error(err);
-    // })
-
-
     // News.find().exec()
     // .then(function(news) {
     //   console.log('searching database:', news);

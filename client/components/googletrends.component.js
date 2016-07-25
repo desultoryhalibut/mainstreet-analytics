@@ -87,6 +87,7 @@ class GoogleTrends extends Component {
               {partial}
             </article>
           </div>
+<<<<<<< e5274cb259729857b019ca336cf0a5f942eafbc0
           <div className="col-md-4">
             <div className="card">
                 <h3 className="card-header red white-text">What are we looking at?</h3>
@@ -122,6 +123,14 @@ class GoogleTrends extends Component {
             <div className="card-block">
               <p className="white-text"><span className="stand-out-white">6% increase in searches for "restaurant" from May 2016 to June 2016</span></p>
             </div>
+=======
+
+          <div className="google-summary col-md-4 card card-block">
+            <p><b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard
+            dummy text ever since the <span className="stand-out">1500</span>s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+            It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+            </p>
+>>>>>>> Solve merge conflict
           </div>
         </div>
       </section>

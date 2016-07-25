@@ -73,6 +73,7 @@ googleTrends.trendData(KEYWORDS)
     console.error('Error updating Google Trends ', err);
   });
 
+
 ////////////////////////////////////////////////////////////////////////
 //////Seed database with news and sentiment API
 ////////////////////////////////////////////////////////////////////////
@@ -93,6 +94,7 @@ googleTrends.trendData(KEYWORDS)
       'q.enriched.url.enrichedTitle.keywords.keyword.text': 'unemployment^inflation^real estate^acquisition^restaurants^dow jones^economy^panic',
       return: 'enriched.url.title'
     };
+
     const paramsSentiment = {
 
       targets: ['inflation','unemployment','real estate', 'acquisition','restaurants','dow jones','economy']

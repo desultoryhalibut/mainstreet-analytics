@@ -66,12 +66,13 @@ class GoogleTrends extends Component {
     }
 
     return (
-
+       
       <section className="google-trends">
         <div className="row quote">
           <quote>"Research published today in Nature Scientific Reports finds that <span className="stand-out">Google search behaviour</span> is not only a clear indicator of movements in the market; it also <span className="stand-out">gives insight into the likely future behaviour of economic actors</span>."</quote> <small>~ Nature.com: Quantifying Trading Behavior in Financial Markets Using Google Trends</small>
         </div>
         <div className="row">
+          
           <div className="col-md-8">
             <nav className="google-trends-nav">
               <button onClick={this.handleClick} value="car" className="btn btn-warning btn-rounded waves-effect">Car</button>
@@ -104,26 +105,31 @@ class GoogleTrends extends Component {
                         <li><strong>Hedge & Panic</strong>: Pulse on market fear</li>
                       </ul>
                     </p>
-
                 </div>
             </div>
           </div>
+
         </div>
+        
         <div className="row">
+          
           <div className="card card-danger text-xs-center z-depth-2 col-md-3 infobox">
             <div className="card-block">
               <p className="white-text"><span className="stand-out-white">6% increase in searches for "restaurant" from May 2016 to June 2016</span></p>
             </div>
           </div>
+          
           <div className="card card-warning text-xs-center z-depth-2 col-md-3 infobox">
             <div className="card-block">
               <p className="white-text"><span className="stand-out-white">6% increase in searches for "restaurant" from May 2016 to June 2016</span></p>
             </div>
           </div>
+          
           <div className="card card-info text-xs-center z-depth-2 col-md-3 infobox">
             <div className="card-block">
               <p className="white-text"><span className="stand-out-white">6% increase in searches for "restaurant" from May 2016 to June 2016</span></p>
             </div>
+          </div>
 
           <div className="google-summary col-md-4 card card-block">
             <p><b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard
@@ -131,6 +137,7 @@ class GoogleTrends extends Component {
             It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
             </p>
           </div>
+          
         </div>
       </section>
     );

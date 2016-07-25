@@ -21,7 +21,6 @@ module.exports = {
  getFromDB: function(req, res) {  //relative route from api/news-model
     News.find().exec()
     .then(function(news) {
-      console.log('reqest made to get news from DB successful. news:',news)
       res.send(news);
     })
     .catch(function(err) {
@@ -39,7 +38,6 @@ module.exports = {
         'q': word,
         'fq': 'news_desk:("Automobiles" "Business" "Cars" "Culture" "Dining" "Editorial" "Education" "Financial" "Foreign" "Health" "Jobs" "Market Place" "Metro" "Metropolitan" "National" "Opinion" "Personal Investing" "Politics" "Retirement" "Science" "Small Business" "Society" "Sunday Business" "Technology" "Travel" "U.S." "Universal" "Vacation" "Wealth" "Week in Review" "Working" "Workplace" "World" "Your Money") AND body.search:(\""' + word + '\"")',
         'begin_date': '20160101',
-        'end_date': '20160723',
         'sort': 'newest',
         'fl': 'web_url,snippet,headline,pub_date,type_of_material'
       },
@@ -50,7 +48,7 @@ module.exports = {
         res.send(body);
     })
   },
-   getFromNewsAPI: function(req,res) {
+  getFromNewsAPI: function(req,res) {
 
     const keywords = ['consumer spending', 'unemployment', 'inflation', 'real estate', 'acquisition', 'restaurants', 'dow jones', 'economy', 'panic'];
 
@@ -146,6 +144,24 @@ module.exports = {
         });
       })
     };
+
+
+    // News.find().exec()
+    // .then(function(news) {
+    //   console.log('searching database:', news);
+    //   var results = { keyword: news.keyword };
+    //   var n = news[9].data.reduce(function(prev, cur) {
+    //     return prev += '. ' + cur.headline.main;
+    //   }, '');
+    //   results = {
+    //     string: n,
+    //     keyword: news[9].keyword
+    //   } 
+    //   res.send(results);
+    // })
+    // .catch(function(err) {
+    //   console.error(err);
+    // })
 
     News.find().exec()
       .then(function(news) {

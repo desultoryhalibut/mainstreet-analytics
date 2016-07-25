@@ -94,8 +94,7 @@ class CentralAxis extends Component {
        </VictoryChart>
       </svg>
       </div>
-      //
-      //       }}
+
       //       data={this.props.data.map(function(obj, idx) {
       //
       //         return {

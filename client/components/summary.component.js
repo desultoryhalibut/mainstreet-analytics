@@ -106,6 +106,9 @@ class SummaryComponent extends Component {
         <div className="row">
           <div className="section-headline col-md-12">
             <h3 className="ta-center"><i className="fa fa-twitter" aria-hidden="true"></i>What's Tweeting</h3>
+            <TwitterLiveSummary twitterData={this.state.twitterData} currentCompany={this.state.currentCompany}/>
+            <TwitterChart twitterData={this.state.twitterData} currentCompany={this.state.currentCompany}/>
+            <TwitterLive twitterData={this.state.twitterData} currentCompany={this.state.currentCompany}/>
           </div>
         </div>
 
@@ -134,12 +137,6 @@ class SummaryComponent extends Component {
           </div>
         </div>
       <div>
-        <TwitterLiveSummary twitterData={this.state.twitterData} currentCompany={this.state.currentCompany}/>
-        <TwitterChart twitterData={this.state.twitterData} currentCompany={this.state.currentCompany}/>
-        <TwitterLive twitterData={this.state.twitterData} currentCompany={this.state.currentCompany}/>
-
-        <GoogleTrends googleTrendsData={this.state.googleTrendsData} />
-        <SentimentTrends sentimentData={this.state.sentimentData} />
         <NewsTrends newsData={this.state.newsData} />
       </div>
     </div>

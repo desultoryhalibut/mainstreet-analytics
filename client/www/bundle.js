@@ -26798,7 +26798,7 @@
 
 	var _googletrends2 = _interopRequireDefault(_googletrends);
 
-	var _sentiment = __webpack_require__(238);
+	var _sentiment = __webpack_require__(240);
 
 	var _sentiment2 = _interopRequireDefault(_sentiment);
 
@@ -26930,7 +26930,10 @@
 	              { className: 'ta-center' },
 	              _react2.default.createElement('i', { className: 'fa fa-twitter', 'aria-hidden': 'true' }),
 	              'What\'s Tweeting'
-	            )
+	            ),
+	            _react2.default.createElement(_twitterLiveSummary2.default, { twitterData: this.state.twitterData, currentCompany: this.state.currentCompany }),
+	            _react2.default.createElement(_twitter2.default, { twitterData: this.state.twitterData, currentCompany: this.state.currentCompany }),
+	            _react2.default.createElement(_twitterLive2.default, { twitterData: this.state.twitterData, currentCompany: this.state.currentCompany })
 	          )
 	        ),
 	        _react2.default.createElement(
@@ -26974,11 +26977,6 @@
 	        _react2.default.createElement(
 	          'div',
 	          null,
-	          _react2.default.createElement(_twitterLiveSummary2.default, { twitterData: this.state.twitterData, currentCompany: this.state.currentCompany }),
-	          _react2.default.createElement(_twitter2.default, { twitterData: this.state.twitterData, currentCompany: this.state.currentCompany }),
-	          _react2.default.createElement(_twitterLive2.default, { twitterData: this.state.twitterData, currentCompany: this.state.currentCompany }),
-	          _react2.default.createElement(_googletrends2.default, { googleTrendsData: this.state.googleTrendsData }),
-	          _react2.default.createElement(_sentiment2.default, { sentimentData: this.state.sentimentData }),
 	          _react2.default.createElement(_news2.default, { newsData: this.state.newsData })
 	        )
 	      );
@@ -27006,7 +27004,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _linechart = __webpack_require__(239);
+	var _linechart = __webpack_require__(238);
 
 	var _linechart2 = _interopRequireDefault(_linechart);
 
@@ -27362,118 +27360,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _linechart = __webpack_require__(239);
-
-	var _linechart2 = _interopRequireDefault(_linechart);
-
-	var _barchart = __webpack_require__(241);
-
-	var _barchart2 = _interopRequireDefault(_barchart);
-
-	var _victory = __webpack_require__(240);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var SentimentTrends = function (_Component) {
-	  _inherits(SentimentTrends, _Component);
-
-	  function SentimentTrends(props) {
-	    _classCallCheck(this, SentimentTrends);
-
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(SentimentTrends).call(this, props));
-
-	    _this.state = {
-	      data: _this.props.sentimentData
-	    };
-	    return _this;
-	  }
-
-	  _createClass(SentimentTrends, [{
-	    key: 'render',
-	    value: function render() {
-
-	      console.log('props:', this.props.sentimentData);
-
-	      if (!this.props.sentimentData) {
-	        return _react2.default.createElement(
-	          'p',
-	          null,
-	          'Loading Sentiment Data...'
-	        );
-	      }
-
-	      return _react2.default.createElement(
-	        'section',
-	        { className: 'sentiments' },
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'center-content' },
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'row' },
-	            _react2.default.createElement(
-	              'h2',
-	              null,
-	              'Consumer/Economic Sentiment - News in Past Two Months'
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'col-md-8' },
-	              _react2.default.createElement(
-	                'div',
-	                { className: 'sentiment-chart' },
-	                _react2.default.createElement(_barchart2.default, {
-	                  data: this.props.sentimentData,
-	                  x: 'newsTopic',
-	                  y: 'sentimentScore',
-	                  height: 300,
-	                  width: 500
-	                })
-	              )
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'google-summary col-md-4 card card-block' },
-	              _react2.default.createElement(
-	                'p',
-	                null,
-	                'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.'
-	              )
-	            )
-	          )
-	        )
-	      );
-	    }
-	  }]);
-
-	  return SentimentTrends;
-	}(_react.Component);
-
-	exports.default = SentimentTrends;
-
-/***/ },
-/* 239 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(2);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _victory = __webpack_require__(240);
+	var _victory = __webpack_require__(239);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -27571,7 +27458,7 @@
 	exports.default = LineChart;
 
 /***/ },
-/* 240 */
+/* 239 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function webpackUniversalModuleDefinition(root, factory) {
@@ -58426,6 +58313,117 @@
 	//# sourceMappingURL=victory.js.map
 
 /***/ },
+/* 240 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _linechart = __webpack_require__(238);
+
+	var _linechart2 = _interopRequireDefault(_linechart);
+
+	var _barchart = __webpack_require__(241);
+
+	var _barchart2 = _interopRequireDefault(_barchart);
+
+	var _victory = __webpack_require__(239);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var SentimentTrends = function (_Component) {
+	  _inherits(SentimentTrends, _Component);
+
+	  function SentimentTrends(props) {
+	    _classCallCheck(this, SentimentTrends);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(SentimentTrends).call(this, props));
+
+	    _this.state = {
+	      data: _this.props.sentimentData
+	    };
+	    return _this;
+	  }
+
+	  _createClass(SentimentTrends, [{
+	    key: 'render',
+	    value: function render() {
+
+	      console.log('props:', this.props.sentimentData);
+
+	      if (!this.props.sentimentData) {
+	        return _react2.default.createElement(
+	          'p',
+	          null,
+	          'Loading Sentiment Data...'
+	        );
+	      }
+
+	      return _react2.default.createElement(
+	        'section',
+	        { className: 'sentiments' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'center-content' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'row' },
+	            _react2.default.createElement(
+	              'h2',
+	              null,
+	              'Consumer/Economic Sentiment - News in Past Two Months'
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'col-md-8' },
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'sentiment-chart' },
+	                _react2.default.createElement(_barchart2.default, {
+	                  data: this.props.sentimentData,
+	                  x: 'newsTopic',
+	                  y: 'sentimentScore',
+	                  height: 300,
+	                  width: 500
+	                })
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'google-summary col-md-4 card card-block' },
+	              _react2.default.createElement(
+	                'p',
+	                null,
+	                'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.'
+	              )
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return SentimentTrends;
+	}(_react.Component);
+
+	exports.default = SentimentTrends;
+
+/***/ },
 /* 241 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -58441,7 +58439,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _victory = __webpack_require__(240);
+	var _victory = __webpack_require__(239);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -58575,7 +58573,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _victory = __webpack_require__(240);
+	var _victory = __webpack_require__(239);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -58680,7 +58678,7 @@
 
 	      var chart = _react2.default.createElement(
 	        _victory.VictoryChart,
-	        { animate: { duration: 4000 } },
+	        { animate: { duration: 5000 } },
 	        _react2.default.createElement(_victory.VictoryArea, {
 	          interpolation: 'cardinal',
 	          style: {
@@ -58790,7 +58788,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _victory = __webpack_require__(240);
+	var _victory = __webpack_require__(239);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -58851,7 +58849,7 @@
 	      var volumeChart = _react2.default.createElement(
 	        _victory.VictoryChart,
 	        {
-	          animate: { duration: 4000 } },
+	          animate: { duration: 5000 } },
 	        _react2.default.createElement(_victory.VictoryAxis, {
 	          orientation: 'bottom',
 	          tickValues: data.map(function (obj) {
@@ -58882,7 +58880,7 @@
 
 	      var sentimentChart = _react2.default.createElement(
 	        _victory.VictoryChart,
-	        { animate: { duration: 4000 } },
+	        { animate: { duration: 5000 } },
 	        _react2.default.createElement(_victory.VictoryAxis, {
 	          orientation: 'bottom',
 	          tickValues: data.map(function (obj) {
@@ -59148,7 +59146,7 @@
 
 	var _googletrends2 = _interopRequireDefault(_googletrends);
 
-	var _sentiment = __webpack_require__(238);
+	var _sentiment = __webpack_require__(240);
 
 	var _sentiment2 = _interopRequireDefault(_sentiment);
 

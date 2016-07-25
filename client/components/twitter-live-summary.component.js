@@ -43,7 +43,7 @@ class TwitterLiveSummary extends Component {
 
     var volumeChart = 
     <VictoryChart
-      animate={{duration: 5000}}>
+      animate={{duration: 4000}}>
       <VictoryAxis
           orientation="bottom"
           tickValues={data.map((obj)=> {return ''})}
@@ -81,7 +81,7 @@ class TwitterLiveSummary extends Component {
       />
     </VictoryChart>
 
-    var sentimentChart = <VictoryChart animate={{duration: 5000}}>
+    var sentimentChart = <VictoryChart animate={{duration: 4000}}>
                           <VictoryAxis
                               orientation="bottom"
                               tickValues={data.map((obj)=> {return ''})}
@@ -127,6 +127,8 @@ class TwitterLiveSummary extends Component {
     return(
 
       <div className="twitter-live-summary">
+            {console.log('RENDERING SOME STUFF')}
+
         <h4>TwitterLiveSummary Component (update choices once chron job enabled)</h4>
           {volumeChart}
         <div>      

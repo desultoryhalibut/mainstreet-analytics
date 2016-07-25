@@ -26794,7 +26794,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _googletrends = __webpack_require__(237);
+	var _googletrends = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./googletrends.component\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 
 	var _googletrends2 = _interopRequireDefault(_googletrends);
 
@@ -26841,18 +26841,34 @@
 	      twitterData: null
 	    };
 
+	    _this.fetchTweets = _this.fetchTweets.bind(_this);
 	    return _this;
 	  }
 
 	  _createClass(SummaryComponent, [{
+	    key: 'fetchTweets',
+	    value: function fetchTweets() {
+	      var _this2 = this;
+
+	      var self = this;
+	      fetch('api/twitter', { method: 'GET' }).then(function (res) {
+	        return res.json();
+	      }).then(function (data) {
+	        console.log('SETTINGSTATE', data);
+	        _this2.setState({ twitterData: data }).bind(self);
+	      }).catch(function (err) {
+	        console.log(err);
+	      });
+	    }
+	  }, {
 	    key: 'componentWillMount',
 	    value: function componentWillMount() {
-	      var _this2 = this;
+	      var _this3 = this;
 
 	      fetch('api/googletrends', { method: 'GET' }).then(function (res) {
 	        return res.json();
 	      }).then(function (data) {
-	        _this2.setState({ googleTrendsData: data });
+	        _this3.setState({ googleTrendsData: data });
 	        console.log('Google Trends Data ', data);
 	      }).catch(function (err) {
 	        console.log(err);
@@ -26876,7 +26892,7 @@
 	        //console.log('fetch is working. Response:',res)
 	        return res.json();
 	      }).then(function (data) {
-	        _this2.setState({ sentimentData: data });
+	        _this3.setState({ sentimentData: data });
 	      }).catch(function (err) {
 	        console.log(err);
 	      });
@@ -26885,11 +26901,15 @@
 	        // console.log('twitter fetch working. Response:',res)
 	        return res.json();
 	      }).then(function (data) {
-	        _this2.setState({ twitterData: data });
-	        // add setInterval here to retrieve data every X seconds
+	        _this3.setState({ twitterData: data });
 	      }).catch(function (err) {
 	        console.log(err);
 	      });
+	    }
+	  }, {
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      setInterval(this.fetchTweets, 10000);
 	    }
 	  }, {
 	    key: 'render',
@@ -26971,342 +26991,7 @@
 	exports.default = SummaryComponent;
 
 /***/ },
-/* 237 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(2);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _linechart = __webpack_require__(238);
-
-	var _linechart2 = _interopRequireDefault(_linechart);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var GoogleTrends = function (_Component) {
-	  _inherits(GoogleTrends, _Component);
-
-	  function GoogleTrends(props) {
-	    _classCallCheck(this, GoogleTrends);
-
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(GoogleTrends).call(this, props));
-
-	    _this.state = {
-	      currentChart: 'car',
-	      data: _this.props.googleTrendsData,
-	      companyGoogleTrendsData: _this.props.companyGoogleTrendsData
-	    };
-
-	    _this.handleClick = _this.handleClick.bind(_this);
-	    return _this;
-	  }
-
-	  _createClass(GoogleTrends, [{
-	    key: 'handleClick',
-	    value: function handleClick(event) {
-	      this.setState({ currentChart: event.target.value });
-	    }
-	  }, {
-	    key: 'renderLineChart',
-	    value: function renderLineChart(index, color) {
-	      return _react2.default.createElement(_linechart2.default, {
-	        data: this.props.googleTrendsData[index].searchVolume,
-	        keyword: this.props.googleTrendsData[index].keyword,
-	        x: 'date',
-	        y: 'volume',
-	        height: 300,
-	        width: 600,
-	        color: color
-	      });
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var partial = void 0;
-
-	      if (!this.props.googleTrendsData) {
-	        return _react2.default.createElement(
-	          'div',
-	          null,
-	          'Loading Google Trends data...'
-	        );
-	      }
-
-	      if (this.state.currentChart === 'car') {
-	        partial = this.renderLineChart(0, 'red');
-	      } else if (this.state.currentChart === 'hedge') {
-	        partial = this.renderLineChart(2, 'blue');
-	      } else if (this.state.currentChart === 'dow jones') {
-	        partial = this.renderLineChart(1, 'green');
-	      } else if (this.state.currentChart === 'unemployment') {
-	        partial = this.renderLineChart(3, 'yellow');
-	      } else if (this.state.currentChart === 'panic') {
-	        partial = this.renderLineChart(4, 'orange');
-	      } else if (this.state.currentChart === 'real estate agent') {
-	        partial = this.renderLineChart(5, 'black');
-	      } else if (this.state.currentChart === 'inflation') {
-	        partial = this.renderLineChart(6, 'gray');
-	      } else if (this.state.currentChart === 'restaurant') {
-	        partial = this.renderLineChart(7, 'pink');
-	      }
-
-	      return _react2.default.createElement(
-	        'section',
-	        { className: 'google-trends' },
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'row quote' },
-	          _react2.default.createElement(
-	            'quote',
-	            null,
-	            '"Research published today in Nature Scientific Reports finds that ',
-	            _react2.default.createElement(
-	              'span',
-	              { className: 'stand-out' },
-	              'Google search behaviour'
-	            ),
-	            ' is not only a clear indicator of movements in the market; it also ',
-	            _react2.default.createElement(
-	              'span',
-	              { className: 'stand-out' },
-	              'gives insight into the likely future behaviour of economic actors'
-	            ),
-	            '."'
-	          ),
-	          ' ',
-	          _react2.default.createElement(
-	            'small',
-	            null,
-	            '~ Nature.com: Quantifying Trading Behavior in Financial Markets Using Google Trends'
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'row' },
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'col-md-8' },
-	            _react2.default.createElement(
-	              'nav',
-	              { className: 'google-trends-nav' },
-	              _react2.default.createElement(
-	                'button',
-	                { onClick: this.handleClick, value: 'car', className: 'btn btn-warning btn-rounded waves-effect' },
-	                'Car'
-	              ),
-	              _react2.default.createElement(
-	                'button',
-	                { onClick: this.handleClick, value: 'dow jones', className: 'btn btn-warning btn-rounded waves-effect' },
-	                'Dow Jones'
-	              ),
-	              _react2.default.createElement(
-	                'button',
-	                { onClick: this.handleClick, value: 'hedge', className: 'btn btn-warning btn-rounded waves-effect' },
-	                'Hedge'
-	              ),
-	              _react2.default.createElement(
-	                'button',
-	                { onClick: this.handleClick, value: 'panic', className: 'btn btn-warning btn-rounded waves-effect' },
-	                'Panic'
-	              ),
-	              _react2.default.createElement(
-	                'button',
-	                { onClick: this.handleClick, value: 'unemployment', className: 'btn btn-warning btn-rounded waves-effect' },
-	                'Unemployment'
-	              ),
-	              _react2.default.createElement(
-	                'button',
-	                { onClick: this.handleClick, value: 'real estate agent', className: 'btn btn-warning btn-rounded waves-effect' },
-	                'Real Estate Agent'
-	              ),
-	              _react2.default.createElement(
-	                'button',
-	                { onClick: this.handleClick, value: 'inflation', className: 'btn btn-warning btn-rounded waves-effect' },
-	                'Inflation'
-	              ),
-	              _react2.default.createElement(
-	                'button',
-	                { onClick: this.handleClick, value: 'restaurant', className: 'btn btn-warning btn-rounded waves-effect' },
-	                'Restaurant'
-	              )
-	            ),
-	            _react2.default.createElement(
-	              'article',
-	              null,
-	              partial
-	            )
-	          ),
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'col-md-4' },
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'card' },
-	              _react2.default.createElement(
-	                'h3',
-	                { className: 'card-header red white-text' },
-	                'What are we looking at?'
-	              ),
-	              _react2.default.createElement(
-	                'div',
-	                { className: 'card-block' },
-	                _react2.default.createElement(
-	                  'h4',
-	                  { className: 'card-title' },
-	                  'Google search trends can help you get a pulse on economic and market indicators'
-	                ),
-	                _react2.default.createElement(
-	                  'p',
-	                  { className: 'card-text' },
-	                  _react2.default.createElement(
-	                    'ul',
-	                    null,
-	                    _react2.default.createElement(
-	                      'li',
-	                      null,
-	                      _react2.default.createElement(
-	                        'strong',
-	                        null,
-	                        'Cars & Restaurants'
-	                      ),
-	                      ': Pulse on consumer spending'
-	                    ),
-	                    _react2.default.createElement(
-	                      'li',
-	                      null,
-	                      _react2.default.createElement(
-	                        'strong',
-	                        null,
-	                        'Real Estate Agent'
-	                      ),
-	                      ': Pulse on housing market demand'
-	                    ),
-	                    _react2.default.createElement(
-	                      'li',
-	                      null,
-	                      _react2.default.createElement(
-	                        'strong',
-	                        null,
-	                        'Unemployment'
-	                      ),
-	                      ': Pulse on jobs'
-	                    ),
-	                    _react2.default.createElement(
-	                      'li',
-	                      null,
-	                      _react2.default.createElement(
-	                        'strong',
-	                        null,
-	                        'Inflation'
-	                      ),
-	                      ': Pulse on inflation'
-	                    ),
-	                    _react2.default.createElement(
-	                      'li',
-	                      null,
-	                      _react2.default.createElement(
-	                        'strong',
-	                        null,
-	                        'Dow Jones'
-	                      ),
-	                      ': Pulse on market volatility'
-	                    ),
-	                    _react2.default.createElement(
-	                      'li',
-	                      null,
-	                      _react2.default.createElement(
-	                        'strong',
-	                        null,
-	                        'Hedge & Panic'
-	                      ),
-	                      ': Pulse on market fear'
-	                    )
-	                  )
-	                )
-	              )
-	            )
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'row' },
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'card card-danger text-xs-center z-depth-2 col-md-3 infobox' },
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'card-block' },
-	              _react2.default.createElement(
-	                'p',
-	                { className: 'white-text' },
-	                _react2.default.createElement(
-	                  'span',
-	                  { className: 'stand-out-white' },
-	                  '6% increase in searches for "restaurant" from May 2016 to June 2016'
-	                )
-	              )
-	            )
-	          ),
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'card card-warning text-xs-center z-depth-2 col-md-3 infobox' },
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'card-block' },
-	              _react2.default.createElement(
-	                'p',
-	                { className: 'white-text' },
-	                _react2.default.createElement(
-	                  'span',
-	                  { className: 'stand-out-white' },
-	                  '6% increase in searches for "restaurant" from May 2016 to June 2016'
-	                )
-	              )
-	            )
-	          ),
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'card card-info text-xs-center z-depth-2 col-md-3 infobox' },
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'card-block' },
-	              _react2.default.createElement(
-	                'p',
-	                { className: 'white-text' },
-	                _react2.default.createElement(
-	                  'span',
-	                  { className: 'stand-out-white' },
-	                  '6% increase in searches for "restaurant" from May 2016 to June 2016'
-	                )
-	              )
-	            )
-	          )
-	        )
-	      );
-	    }
-	  }]);
-
-	  return GoogleTrends;
-	}(_react.Component);
-
-	exports.default = GoogleTrends;
-
-/***/ },
+/* 237 */,
 /* 238 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -58642,13 +58327,13 @@
 
 	      var chart = _react2.default.createElement(
 	        _victory.VictoryChart,
-	        { animate: { duration: 5000 } },
+	        { animate: { duration: 4000 } },
 	        _react2.default.createElement(_victory.VictoryArea, {
 	          interpolation: 'cardinal',
 	          style: {
 	            data: { fill: "tomato" }
 	          },
-	          data: data.slice(-5),
+	          data: data.slice(-20),
 	          x: "time",
 	          y: "numTweets"
 	        }),
@@ -58661,7 +58346,7 @@
 	            },
 	            labels: { fontSize: 8 }
 	          },
-	          data: data.slice(-5),
+	          data: data.slice(-20),
 	          x: "time",
 	          y: "sentimentAverage",
 	          label: 'Sentiment Score',
@@ -58813,7 +58498,7 @@
 	      var volumeChart = _react2.default.createElement(
 	        _victory.VictoryChart,
 	        {
-	          animate: { duration: 5000 } },
+	          animate: { duration: 4000 } },
 	        _react2.default.createElement(_victory.VictoryAxis, {
 	          orientation: 'bottom',
 	          tickValues: data.map(function (obj) {
@@ -58844,7 +58529,7 @@
 
 	      var sentimentChart = _react2.default.createElement(
 	        _victory.VictoryChart,
-	        { animate: { duration: 5000 } },
+	        { animate: { duration: 4000 } },
 	        _react2.default.createElement(_victory.VictoryAxis, {
 	          orientation: 'bottom',
 	          tickValues: data.map(function (obj) {
@@ -58878,6 +58563,7 @@
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'twitter-live-summary' },
+	        console.log('RENDERING SOME STUFF'),
 	        _react2.default.createElement(
 	          'h4',
 	          null,
@@ -59107,7 +58793,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _googletrends = __webpack_require__(237);
+	var _googletrends = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./googletrends.component\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 
 	var _googletrends2 = _interopRequireDefault(_googletrends);
 

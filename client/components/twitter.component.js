@@ -87,14 +87,15 @@ class TwitterChart extends Component {
 
     const styles = this.getStyles();
 
-    var chart = <VictoryChart animate={{duration: 5000}}>
+    var chart = <VictoryChart animate={{duration: 4000}}>
+
               
                  <VictoryArea
                    interpolation="cardinal"
                    style={{
                        data: {fill: "tomato"}
                      }}
-                   data={data.slice(-5)}
+                   data={data.slice(-20)}
                    x={"time"}
                    y={"numTweets"}
                  />
@@ -109,7 +110,7 @@ class TwitterChart extends Component {
                   },
                   labels: {fontSize: 8}
                 }}
-                data={data.slice(-5)}
+                data={data.slice(-20)}
                 x={"time"}
                 y={"sentimentAverage"}
                 label="Sentiment Score"

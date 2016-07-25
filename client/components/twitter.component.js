@@ -20,7 +20,6 @@ class TwitterChart extends Component {
     this.setState({currentQuery: event.target.value});
   }
 
-
   getStyles() {
     return {
       parent: {

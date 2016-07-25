@@ -44,7 +44,6 @@ class SummaryComponent extends Component {
         console.log(err);
       });
 
-
     fetch('api/news', {method: 'GET'})
       .then((res) => {
         return res.json();
@@ -84,9 +83,9 @@ class SummaryComponent extends Component {
             <h3 className="ta-center">What's in the Financial News</h3>
           </div>
         </div>
-        
-        <SentimentTrends sentimentData={this.state.sentimentData} />
-    </div>
+
+        <SentimentTrends sentimentData={this.state.sentimentData} currentCompany={this.state.currentCompany}/>
+      </div>
     );
   }
 }

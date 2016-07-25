@@ -106,7 +106,6 @@ class SentimentTrends extends Component {
     }
     return (
 
-
       <section className="news-sentiment">
         <div className="row quote">
           <quote>

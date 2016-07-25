@@ -8,6 +8,7 @@ var helper = require('../config/utils')
 const keywords = ['car', 'unemployment', 'inflation', 'real estate', 'acquisition', 'restaurants', 'dow jones', 'economy', 'panic']
 const companies = ['nintendo', 'disney', 'ford', 'google', 'gilead']
 
+
 const alchemy_data_news = watson.alchemy_data_news({
   api_key: process.env.apikey
 });
@@ -31,6 +32,7 @@ module.exports = {
   searchAPI: function(req, res) {
     var word = req.params.search;
 
+
     request.get({
       url: "https://api.nytimes.com/svc/search/v2/articlesearch.json",
       qs: {
@@ -38,6 +40,7 @@ module.exports = {
         'q': word,
         'fq': 'news_desk:("Automobiles" "Business" "Cars" "Culture" "Dining" "Editorial" "Education" "Financial" "Foreign" "Health" "Jobs" "Market Place" "Metro" "Metropolitan" "National" "Opinion" "Personal Investing" "Politics" "Retirement" "Science" "Small Business" "Society" "Sunday Business" "Technology" "Travel" "U.S." "Universal" "Vacation" "Wealth" "Week in Review" "Working" "Workplace" "World" "Your Money") AND body.search:(\""' + word + '\"")',
         'begin_date': '20160101',
+        'end_date': '20160723',
         'sort': 'newest',
         'fl': 'web_url,snippet,headline,pub_date,type_of_material'
       },
@@ -48,6 +51,7 @@ module.exports = {
         res.send(body);
     })
   },
+
   getFromNewsAPI: function(req,res) {
 
     const keywords = ['consumer spending', 'unemployment', 'inflation', 'real estate', 'acquisition', 'restaurants', 'dow jones', 'economy', 'panic'];
@@ -71,8 +75,18 @@ module.exports = {
       }
   },
 
-  addToDB: function(keyword) {
+ 
+  getCompaniesFromNewsAPI: function(req,res) {
 
+    const companies = ['nintendo', 'disney', 'ford', 'google', 'gilead'];
+
+      //Loop through to do a separate key word search on news articles within the past year
+      for (var i = 0; i < companies.length; i++) {
+        module.exports.addToDB(companies[i]);
+      }
+  },
+
+  addToDB: function(keyword) {
     request.get({
       url: "https://api.nytimes.com/svc/search/v2/articlesearch.json",
       qs: {
@@ -93,7 +107,6 @@ module.exports = {
       } else {
         body = JSON.parse(body);
         body['keyword'] = keyword;
-        console.log('creating entry in database:',keyword)
         News.create({
           data: body.response.docs,
           hits: body.response.meta.hits,
@@ -105,11 +118,11 @@ module.exports = {
             console.log('saved in db',done);
         });
       }
-    });
-  },
+    })
+  }, 
 
+  inputSentiment: function(req, res) {  //relative route from api/news-model
 
-  inputSentiment: function(req, res) {
     News.find().exec()
     .then(function(news) {
       var strings = [];
@@ -121,7 +134,7 @@ module.exports = {
         results = {
           string: n,
           keyword: news[i].keyword
-        }
+        } 
       }
       res.send(strings);
     })
@@ -144,8 +157,6 @@ module.exports = {
         });
       })
     };
-
-
     // News.find().exec()
     // .then(function(news) {
     //   console.log('searching database:', news);

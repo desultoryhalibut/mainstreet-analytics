@@ -10,6 +10,7 @@ class CentralAxis extends Component {
     }
   }
 
+
   sortedList(list) {
     let data = list.sort(function(a,b) {
       return a.sentimentScore > b.sentimentScore ? 1 : -1;
@@ -17,9 +18,10 @@ class CentralAxis extends Component {
     return data;
   }
 
-  sortedList() {
-    let data = this.props.data.sort(function(a,b) {
-      return a.sentimentScore > b.sentimentScore ? 1 : -1;
+  filterByCompany() {
+    const economicInd = ['car', 'unemployment', 'inflation', 'real estate', 'acquisition', 'restaurants', 'dow jones', 'economy', 'panic', 'consumer spending']
+    let data = this.props.data.filter(function(obj) {
+      return (economicInd.indexOf(obj.keyword) === -1)
     })
     return data;
   }

@@ -26733,13 +26733,11 @@
 	      var _this2 = this;
 
 	      this.setState({ currentCompany: company, isSummary: false });
-	      alert('I selected this company ' + company);
 
-	      // fetch company specific Google Trends data
+	      // fetch company specific Google Trends data directly from API
 	      fetch('api/googletrends/' + company, { method: 'GET' }).then(function (res) {
 	        return res.json();
 	      }).then(function (data) {
-	        console.log('Company Google Trends Data ', data);
 	        _this2.setState({ companyGoogleTrendsData: data });
 	      }).catch(function (err) {
 	        console.log(err);
@@ -26752,7 +26750,7 @@
 	      if (this.state.isSummary) {
 	        partial = _react2.default.createElement(_summary2.default, null);
 	      } else {
-	        partial = _react2.default.createElement(_company2.default, null);
+	        partial = _react2.default.createElement(_company2.default, { companyGoogleTrendsData: this.state.companyGoogleTrendsData, currentCompany: this.state.currentCompany });
 	      }
 
 	      return _react2.default.createElement(
@@ -27139,71 +27137,67 @@
 	                  'Google search trends can help you get a pulse on economic and market indicators'
 	                ),
 	                _react2.default.createElement(
-	                  'p',
+	                  'ul',
 	                  { className: 'card-text' },
 	                  _react2.default.createElement(
-	                    'ul',
+	                    'li',
 	                    null,
 	                    _react2.default.createElement(
-	                      'li',
+	                      'strong',
 	                      null,
-	                      _react2.default.createElement(
-	                        'strong',
-	                        null,
-	                        'Cars & Restaurants'
-	                      ),
-	                      ': Pulse on consumer spending'
+	                      'Cars & Restaurants'
 	                    ),
+	                    ': Pulse on consumer spending'
+	                  ),
+	                  _react2.default.createElement(
+	                    'li',
+	                    null,
 	                    _react2.default.createElement(
-	                      'li',
+	                      'strong',
 	                      null,
-	                      _react2.default.createElement(
-	                        'strong',
-	                        null,
-	                        'Real Estate Agent'
-	                      ),
-	                      ': Pulse on housing market demand'
+	                      'Real Estate Agent'
 	                    ),
+	                    ': Pulse on housing market demand'
+	                  ),
+	                  _react2.default.createElement(
+	                    'li',
+	                    null,
 	                    _react2.default.createElement(
-	                      'li',
+	                      'strong',
 	                      null,
-	                      _react2.default.createElement(
-	                        'strong',
-	                        null,
-	                        'Unemployment'
-	                      ),
-	                      ': Pulse on jobs'
+	                      'Unemployment'
 	                    ),
+	                    ': Pulse on jobs'
+	                  ),
+	                  _react2.default.createElement(
+	                    'li',
+	                    null,
 	                    _react2.default.createElement(
-	                      'li',
+	                      'strong',
 	                      null,
-	                      _react2.default.createElement(
-	                        'strong',
-	                        null,
-	                        'Inflation'
-	                      ),
-	                      ': Pulse on inflation'
+	                      'Inflation'
 	                    ),
+	                    ': Pulse on inflation'
+	                  ),
+	                  _react2.default.createElement(
+	                    'li',
+	                    null,
 	                    _react2.default.createElement(
-	                      'li',
+	                      'strong',
 	                      null,
-	                      _react2.default.createElement(
-	                        'strong',
-	                        null,
-	                        'Dow Jones'
-	                      ),
-	                      ': Pulse on market volatility'
+	                      'Dow Jones'
 	                    ),
+	                    ': Pulse on market volatility'
+	                  ),
+	                  _react2.default.createElement(
+	                    'li',
+	                    null,
 	                    _react2.default.createElement(
-	                      'li',
+	                      'strong',
 	                      null,
-	                      _react2.default.createElement(
-	                        'strong',
-	                        null,
-	                        'Hedge & Panic'
-	                      ),
-	                      ': Pulse on market fear'
-	                    )
+	                      'Hedge & Panic'
+	                    ),
+	                    ': Pulse on market fear'
 	                  )
 	                )
 	              )
@@ -57405,9 +57399,9 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _googletrends = __webpack_require__(237);
+	var _linechart = __webpack_require__(238);
 
-	var _googletrends2 = _interopRequireDefault(_googletrends);
+	var _linechart2 = _interopRequireDefault(_linechart);
 
 	var _sentiment = __webpack_require__(240);
 
@@ -57437,6 +57431,13 @@
 	  _createClass(CompanyComponent, [{
 	    key: 'render',
 	    value: function render() {
+	      if (!this.props.companyGoogleTrendsData) {
+	        return _react2.default.createElement(
+	          'div',
+	          null,
+	          'Loading Google Trends data...'
+	        );
+	      }
 
 	      return _react2.default.createElement(
 	        'div',
@@ -57455,37 +57456,19 @@
 	            _react2.default.createElement(
 	              'h3',
 	              { className: 'ta-center' },
-	              _react2.default.createElement('i', { className: 'fa fa-twitter', 'aria-hidden': 'true' }),
-	              'What\'s Tweeting'
+	              this.props.currentCompany
 	            )
 	          )
 	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'row' },
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'section-headline col-md-12' },
-	            _react2.default.createElement(
-	              'h3',
-	              { className: 'ta-center' },
-	              'What\'s Being Searched'
-	            )
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'row' },
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'section-headline col-md-12' },
-	            _react2.default.createElement(
-	              'h3',
-	              { className: 'ta-center' },
-	              'Market Sentiment'
-	            )
-	          )
-	        )
+	        _react2.default.createElement(_linechart2.default, {
+	          data: this.props.companyGoogleTrendsData.searchVolume,
+	          keyword: this.props.companyGoogleTrendsData.keyword,
+	          x: 'date',
+	          y: 'volume',
+	          height: 300,
+	          width: 600,
+	          color: 'red'
+	        })
 	      );
 	    }
 	  }]);
@@ -57597,11 +57580,6 @@
 	                  _reactBootstrap.MenuItem,
 	                  { onSelect: this.handleClick, eventKey: 'Google' },
 	                  'Google'
-	                ),
-	                _react2.default.createElement(
-	                  _reactBootstrap.MenuItem,
-	                  { onSelect: this.handleClick, eventKey: 'Genentech' },
-	                  'Genentech'
 	                )
 	              )
 	            )

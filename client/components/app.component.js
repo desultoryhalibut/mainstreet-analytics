@@ -17,15 +17,13 @@ export default class AppComponent extends Component {
 
   selectCompany(company) {
     this.setState({currentCompany: company, isSummary: false});
-    alert(`I selected this company ${company}`);
 
-    // fetch company specific Google Trends data
+    // fetch company specific Google Trends data directly from API
     fetch('api/googletrends/' + company, {method: 'GET'})
       .then((res) => {
         return res.json();
       })
       .then((data) => {
-        console.log('Company Google Trends Data ', data);
         this.setState({companyGoogleTrendsData: data});
       })
       .catch((err) => {
@@ -38,7 +36,7 @@ export default class AppComponent extends Component {
     if (this.state.isSummary) {
       partial = <SummaryComponent />
     } else {
-      partial = <CompanyComponent />
+      partial = <CompanyComponent companyGoogleTrendsData={this.state.companyGoogleTrendsData} currentCompany={this.state.currentCompany} />
     }
 
     return (

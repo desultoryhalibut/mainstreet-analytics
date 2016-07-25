@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { VictoryPie, VictoryChart, VictoryLine, VictoryBar, VictoryAxis, VictoryArea } from 'victory';
 
-var entries = require('./twitter.seed.js');
-
 class TwitterChart extends Component {
   
   constructor(props) {

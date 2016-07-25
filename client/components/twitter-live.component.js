@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-var entries = require('./twitter.seed.js');
-
 // This component looks at the most recent time interval 
 // and renders an image based on + - neutral sentiment
 

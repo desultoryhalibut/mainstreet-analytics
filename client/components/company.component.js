@@ -36,6 +36,7 @@ class CompanyComponent extends Component {
           width={800}
           color={'red'}
         />
+      <SentimentTrends sentimentData={this.props.sentimentData} currentCompany={this.props.currentCompany} />
 
       </div>
     );

@@ -25,7 +25,7 @@ class GoogleTrends extends Component {
       keyword={this.props.googleTrendsData[index].keyword}
       x={'date'}
       y={'volume'}
-      height={300}
+      height={400}
       width={600}
       color={color}
     />;
@@ -104,6 +104,7 @@ class GoogleTrends extends Component {
                         <li><strong>Hedge & Panic</strong>: Pulse on market fear</li>
                       </ul>
                     </p>
+
                 </div>
             </div>
           </div>

@@ -26733,13 +26733,11 @@
 	      var _this2 = this;
 
 	      this.setState({ currentCompany: company, isSummary: false });
-	      alert('I selected this company ' + company);
 
-	      // fetch company specific Google Trends data
+	      // fetch company specific Google Trends data directly from API
 	      fetch('api/googletrends/' + company, { method: 'GET' }).then(function (res) {
 	        return res.json();
 	      }).then(function (data) {
-	        console.log('Company Google Trends Data ', data);
 	        _this2.setState({ companyGoogleTrendsData: data });
 	      }).catch(function (err) {
 	        console.log(err);
@@ -26748,11 +26746,11 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var partial = void 0;
+	      var partial;
 	      if (this.state.isSummary) {
 	        partial = _react2.default.createElement(_summary2.default, null);
 	      } else {
-	        partial = _react2.default.createElement(_company2.default, null);
+	        partial = _react2.default.createElement(_company2.default, { companyGoogleTrendsData: this.state.companyGoogleTrendsData, currentCompany: this.state.currentCompany });
 	      }
 
 	      return _react2.default.createElement(
@@ -27047,7 +27045,7 @@
 	        keyword: this.props.googleTrendsData[index].keyword,
 	        x: 'date',
 	        y: 'volume',
-	        height: 300,
+	        height: 400,
 	        width: 600,
 	        color: color
 	      });
@@ -27415,15 +27413,18 @@
 	          _react2.default.createElement(_victory.VictoryLine, {
 	            data: this.props.data,
 	            x: this.props.x,
-	            y: this.props.y,
+	            y: function y(data) {
+	              return data.volume;
+	            },
 	            label: this.props.keyword,
-	            standalone: false,
 	            height: this.props.height,
+	            interpolation: 'cardinal',
 	            width: this.props.width,
+	            standalone: false,
 	            style: {
 	              data: {
 	                stroke: this.props.color,
-	                strokeWidth: 2
+	                strokeWidth: 3
 	              }
 	            }
 	          }),
@@ -59141,9 +59142,9 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _googletrends = __webpack_require__(237);
+	var _linechart = __webpack_require__(238);
 
-	var _googletrends2 = _interopRequireDefault(_googletrends);
+	var _linechart2 = _interopRequireDefault(_linechart);
 
 	var _sentiment = __webpack_require__(240);
 
@@ -59173,6 +59174,13 @@
 	  _createClass(CompanyComponent, [{
 	    key: 'render',
 	    value: function render() {
+	      if (!this.props.companyGoogleTrendsData) {
+	        return _react2.default.createElement(
+	          'div',
+	          null,
+	          'Loading Google Trends data...'
+	        );
+	      }
 
 	      return _react2.default.createElement(
 	        'div',
@@ -59191,37 +59199,19 @@
 	            _react2.default.createElement(
 	              'h3',
 	              { className: 'ta-center' },
-	              _react2.default.createElement('i', { className: 'fa fa-twitter', 'aria-hidden': 'true' }),
-	              'What\'s Tweeting'
+	              this.props.currentCompany
 	            )
 	          )
 	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'row' },
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'section-headline col-md-12' },
-	            _react2.default.createElement(
-	              'h3',
-	              { className: 'ta-center' },
-	              'What\'s Being Searched'
-	            )
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'row' },
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'section-headline col-md-12' },
-	            _react2.default.createElement(
-	              'h3',
-	              { className: 'ta-center' },
-	              'Market Sentiment'
-	            )
-	          )
-	        )
+	        _react2.default.createElement(_linechart2.default, {
+	          data: this.props.companyGoogleTrendsData.searchVolume,
+	          keyword: this.props.companyGoogleTrendsData.keyword,
+	          x: 'date',
+	          y: 'volume',
+	          height: 500,
+	          width: 800,
+	          color: 'red'
+	        })
 	      );
 	    }
 	  }]);
@@ -59333,11 +59323,6 @@
 	                  _reactBootstrap.MenuItem,
 	                  { onSelect: this.handleClick, eventKey: 'Google' },
 	                  'Google'
-	                ),
-	                _react2.default.createElement(
-	                  _reactBootstrap.MenuItem,
-	                  { onSelect: this.handleClick, eventKey: 'Genentech' },
-	                  'Genentech'
 	                )
 	              )
 	            )

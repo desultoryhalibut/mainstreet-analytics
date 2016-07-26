@@ -14,7 +14,7 @@ export default class NavBar extends Component {
   render() {
 
     return (
-        <nav className="navbar navbar-fixed-top navbar-dark red bg-primary">
+        <nav className="navbar navbar-fixed-top navbar-dark bg-primary">
 
             <button className="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#collapseEx2">
                 <i className="fa fa-bars"></i>

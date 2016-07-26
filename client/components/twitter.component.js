@@ -31,39 +31,6 @@ class TwitterChart extends Component {
   }
 
   render() {
-    // return (
-    //     <section className="twitter-component">
-    //       <div className="row">
-    //         <div className="col-md-8">
-    //           <VictoryChart />
-    //         </div>
-    //         <div className="trends col-md-4">
-    //           <div className="row">
-    //             <article className="orange col-sm-6">
-    //               <span className="">796</span>
-    //               <p>Tweets around the world</p>
-    //             </article>
-    //             <article className="red col-sm-6">
-    //               <span className="">Sad</span>
-    //               <p>Overall feeling</p>
-    //             </article>
-    //           </div>
-
-    //           <div className="row">
-    //             <article className="brown col-sm-6">
-    //               <p>Some interesting content</p>
-    //               <span className=""></span>
-    //             </article>
-    //             <article className="gray col-sm-6">
-    //               <p>Some interesting content</p>
-    //               <span className=""></span>
-    //             </article>
-    //           </div>
-    //         </div>
-    //       </div>
-    //     </section>
-
-    // );
 
     if (!this.props.twitterData || !this.props.currentCompany) {
       return (
@@ -115,18 +82,7 @@ class TwitterChart extends Component {
 
     return(
       <div>
-        <div>Twitter Detail Component</div>
         <div>{chart}</div>
-        <div>
-          <button onClick={this.clickHandler} value="nintendo">nintendo</button>
-          <button onClick={this.clickHandler} value="google">google</button>
-          <button onClick={this.clickHandler} value="disney">disney</button>
-          <button onClick={this.clickHandler} value="ford">ford</button>
-          <button onClick={this.clickHandler} value="genentech">genentech</button>
-          <button onClick={this.clickHandler} value="negative">negative</button>
-          <button onClick={this.clickHandler} value="markets">markets</button>
-          <button onClick={this.clickHandler} value="gold">gold</button>
-        </div>
       </div>
     )
   }

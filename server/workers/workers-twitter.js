@@ -1,11 +1,8 @@
 const twitterModels = require('../twitter/twitter-model');
 const request = require('request');
 const mongoose = require('mongoose');
-var uri = 'mongodb://QuinKinser:Ron1680.@ds031608.mlab.com:31608/leaderboards';
-db = mongoose.connect(uri);
 
-
-
+// keywords used for live Twitter stream
 const channels = {
   'nintendo' : ['nintendo'],
   'google' : ['google'],
@@ -17,6 +14,8 @@ const channels = {
   'markets': ['dow', 's&p', 'stocks'],
 };
 
+
+// worker connects to Twitter API and starts stream
 
 const averageTweets = function(tweets, topic) {
   var tweets;

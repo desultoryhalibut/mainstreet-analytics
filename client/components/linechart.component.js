@@ -11,11 +11,11 @@ class LineChart extends Component {
   }
 
   computeDomain() {
-    var volumeArray = this.props.data.map(item => {
+    let volumeArray = this.props.data.map(item => {
       return item['volume'];
     });
-    var max = Math.max.apply(null, volumeArray);
-    var min = Math.min.apply(null, volumeArray);
+    let max = Math.max.apply(null, volumeArray);
+    let min = Math.min.apply(null, volumeArray);
 
     return [min, max];
   }

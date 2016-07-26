@@ -59,24 +59,26 @@ class TwitterLive extends Component {
 
     return(
           <div className="col-md-8">
-          <div className="twitter-live">
-            {graphic}
-            <h4>---{numTweets} tweets @ {Math.round(sentiment * 100) / 100} average sentiment---</h4>
-            <div>
-              <button onClick={this.clickHandler} value="nintendo" className="btn">nintendo</button>
-              <button onClick={this.clickHandler} value="google" className="btn">google</button>
-              <button onClick={this.clickHandler} value="disney" className="btn">disney</button>
-              <button onClick={this.clickHandler} value="ford" className="btn">ford</button>
-              <button onClick={this.clickHandler} value="genentech" className="btn">genentech</button>
-              <button onClick={this.clickHandler} value="negative" className="btn">negative</button>
-              <button onClick={this.clickHandler} value="markets" className="btn">markets</button>
-              <button onClick={this.clickHandler} value="gold" className="btn">gold</button>
+            <div className="twitter-live">
+              {graphic}
+              <h4><strong>{numTweets} tweets @ {Math.round(sentiment * 100) / 100} average sentiment</strong></h4>
+
             </div>
           </div>
-          </div>
-          )
+        );
 }
 
 }
 
 export default TwitterLive;
+
+{/*<div>
+  <button onClick={this.clickHandler} value="nintendo" className="btn">nintendo</button>
+  <button onClick={this.clickHandler} value="google" className="btn">google</button>
+  <button onClick={this.clickHandler} value="disney" className="btn">disney</button>
+  <button onClick={this.clickHandler} value="ford" className="btn">ford</button>
+  <button onClick={this.clickHandler} value="genentech" className="btn">genentech</button>
+  <button onClick={this.clickHandler} value="negative" className="btn">negative</button>
+  <button onClick={this.clickHandler} value="markets" className="btn">markets</button>
+  <button onClick={this.clickHandler} value="gold" className="btn">gold</button>
+</div>*/}

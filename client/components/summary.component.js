@@ -59,25 +59,7 @@ class SummaryComponent extends Component {
         console.log(err);
       });
 
-
-  //   fetch('api/twitter', {method: 'GET'})
-  //     .then((res) => {
-  //       return res.json();
-  //     })
-  //     .then((data) => {
-  //       this.setState({twitterData: data});
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  //
   }
-  //
-  // componentDidMount(){
-  //   setInterval(this.fetchTweets, 10000);
-  // }
-
-
 
   render() {
 
@@ -103,6 +85,9 @@ class SummaryComponent extends Component {
           <div className="section-headline col-md-12">
             <h3 className="ta-center">Market Sentiment</h3>
           </div>
+        </div>
+
+        <div className="SImg">
         </div>
     </div>
     );

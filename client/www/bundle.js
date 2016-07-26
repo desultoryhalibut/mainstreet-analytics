@@ -26803,6 +26803,15 @@
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'main-content z-depth-5' },
+	          _react2.default.createElement(
+	            'h1',
+	            null,
+	            _react2.default.createElement(
+	              'strong',
+	              null,
+	              'Mainstreet INSIGHTS'
+	            )
+	          ),
 	          partial
 	        ),
 	        _react2.default.createElement(_footer2.default, null)
@@ -26977,7 +26986,8 @@
 	              'Market Sentiment'
 	            )
 	          )
-	        )
+	        ),
+	        _react2.default.createElement('div', { className: 'SImg' })
 	      );
 	    }
 	  }]);
@@ -58838,50 +58848,6 @@
 	          'div',
 	          null,
 	          chart
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          null,
-	          _react2.default.createElement(
-	            'button',
-	            { onClick: this.clickHandler, value: 'nintendo' },
-	            'nintendo'
-	          ),
-	          _react2.default.createElement(
-	            'button',
-	            { onClick: this.clickHandler, value: 'google' },
-	            'google'
-	          ),
-	          _react2.default.createElement(
-	            'button',
-	            { onClick: this.clickHandler, value: 'disney' },
-	            'disney'
-	          ),
-	          _react2.default.createElement(
-	            'button',
-	            { onClick: this.clickHandler, value: 'ford' },
-	            'ford'
-	          ),
-	          _react2.default.createElement(
-	            'button',
-	            { onClick: this.clickHandler, value: 'genentech' },
-	            'genentech'
-	          ),
-	          _react2.default.createElement(
-	            'button',
-	            { onClick: this.clickHandler, value: 'negative' },
-	            'negative'
-	          ),
-	          _react2.default.createElement(
-	            'button',
-	            { onClick: this.clickHandler, value: 'markets' },
-	            'markets'
-	          ),
-	          _react2.default.createElement(
-	            'button',
-	            { onClick: this.clickHandler, value: 'gold' },
-	            'gold'
-	          )
 	        )
 	      );
 	    }
@@ -58891,6 +58857,18 @@
 	}(_react.Component);
 
 	exports.default = TwitterChart;
+
+
+	{/*<div>
+	   <button onClick={this.clickHandler} value="nintendo">nintendo</button>
+	   <button onClick={this.clickHandler} value="google">google</button>
+	   <button onClick={this.clickHandler} value="disney">disney</button>
+	   <button onClick={this.clickHandler} value="ford">ford</button>
+	   <button onClick={this.clickHandler} value="genentech">genentech</button>
+	   <button onClick={this.clickHandler} value="negative">negative</button>
+	   <button onClick={this.clickHandler} value="markets">markets</button>
+	   <button onClick={this.clickHandler} value="gold">gold</button>
+	  </div>*/}
 
 /***/ },
 /* 244 */
@@ -59181,54 +59159,13 @@
 	          _react2.default.createElement(
 	            'h4',
 	            null,
-	            '---',
-	            numTweets,
-	            ' tweets @ ',
-	            Math.round(sentiment * 100) / 100,
-	            ' average sentiment---'
-	          ),
-	          _react2.default.createElement(
-	            'div',
-	            null,
 	            _react2.default.createElement(
-	              'button',
-	              { onClick: this.clickHandler, value: 'nintendo', className: 'btn' },
-	              'nintendo'
-	            ),
-	            _react2.default.createElement(
-	              'button',
-	              { onClick: this.clickHandler, value: 'google', className: 'btn' },
-	              'google'
-	            ),
-	            _react2.default.createElement(
-	              'button',
-	              { onClick: this.clickHandler, value: 'disney', className: 'btn' },
-	              'disney'
-	            ),
-	            _react2.default.createElement(
-	              'button',
-	              { onClick: this.clickHandler, value: 'ford', className: 'btn' },
-	              'ford'
-	            ),
-	            _react2.default.createElement(
-	              'button',
-	              { onClick: this.clickHandler, value: 'genentech', className: 'btn' },
-	              'genentech'
-	            ),
-	            _react2.default.createElement(
-	              'button',
-	              { onClick: this.clickHandler, value: 'negative', className: 'btn' },
-	              'negative'
-	            ),
-	            _react2.default.createElement(
-	              'button',
-	              { onClick: this.clickHandler, value: 'markets', className: 'btn' },
-	              'markets'
-	            ),
-	            _react2.default.createElement(
-	              'button',
-	              { onClick: this.clickHandler, value: 'gold', className: 'btn' },
-	              'gold'
+	              'strong',
+	              null,
+	              numTweets,
+	              ' tweets @ ',
+	              Math.round(sentiment * 100) / 100,
+	              ' average sentiment'
 	            )
 	          )
 	        )
@@ -59240,6 +59177,18 @@
 	}(_react.Component);
 
 	exports.default = TwitterLive;
+
+
+	{/*<div>
+	   <button onClick={this.clickHandler} value="nintendo" className="btn">nintendo</button>
+	   <button onClick={this.clickHandler} value="google" className="btn">google</button>
+	   <button onClick={this.clickHandler} value="disney" className="btn">disney</button>
+	   <button onClick={this.clickHandler} value="ford" className="btn">ford</button>
+	   <button onClick={this.clickHandler} value="genentech" className="btn">genentech</button>
+	   <button onClick={this.clickHandler} value="negative" className="btn">negative</button>
+	   <button onClick={this.clickHandler} value="markets" className="btn">markets</button>
+	   <button onClick={this.clickHandler} value="gold" className="btn">gold</button>
+	  </div>*/}
 
 /***/ },
 /* 246 */

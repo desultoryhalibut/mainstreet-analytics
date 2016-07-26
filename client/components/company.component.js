@@ -11,12 +11,11 @@ class CompanyComponent extends Component {
 
   render() {
 
-    // if (!this.props.companyGoogleTrendsData) {
-    //   return (
-    //     <div>Loading Google Trends data...</div>
-    //   );
-    // }
-
+    if (!this.props.companyGoogleTrendsData) {
+      return (
+        <div>Loading Company View data...</div>
+      );
+    }
 
     return (
       <div className="container">
@@ -25,6 +24,18 @@ class CompanyComponent extends Component {
           <div className="section-headline col-md-12">
             <h3 className="ta-center">{this.props.currentCompany}</h3>
           </div>
+        </div>
+
+        <div className="row">
+          <LineChart
+            data={this.props.companyGoogleTrendsData.searchVolume}
+            keyword={this.props.companyGoogleTrendsData.keyword}
+            x={'date'}
+            y={'volume'}
+            height={500}
+            width={800}
+            color={'red'}
+          />
         </div>
 
 
@@ -37,20 +48,10 @@ class CompanyComponent extends Component {
           </div>
         </div>
       </div>
+
+
     );
   }
 }
 
 export default CompanyComponent;
-
-{/*<div className="row">
-<LineChart
-  data={this.props.companyGoogleTrendsData.searchVolume}
-  keyword={this.props.companyGoogleTrendsData.keyword}
-  x={'date'}
-  y={'volume'}
-  height={500}
-  width={800}
-  color={'red'}
-/>
-</div>*/}

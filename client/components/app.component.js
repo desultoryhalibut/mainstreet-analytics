@@ -22,17 +22,17 @@ export default class AppComponent extends Component {
   selectCompany(company) {
     this.setState({currentCompany: company.toLowerCase(), isSummary: false});
 
-    // fetch company specific Google Trends data directly from API
-    // fetch('api/googletrends/' + company, {method: 'GET'})
-    //   .then((res) => {
-    //     return res.json();
-    //   })
-    //   .then((data) => {
-    //     this.setState({companyGoogleTrendsData: data});
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    //fetch company specific Google Trends data directly from API
+    fetch('api/googletrends/' + company, {method: 'GET'})
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        this.setState({companyGoogleTrendsData: data});
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
 
@@ -86,7 +86,7 @@ export default class AppComponent extends Component {
         </header>
 
         <div className="main-content z-depth-5">
-
+          <h1><strong>Mainstreet INSIGHTS</strong></h1>
           {partial}
 
         </div>

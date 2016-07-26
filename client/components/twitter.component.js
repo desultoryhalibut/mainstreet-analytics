@@ -83,16 +83,6 @@ class TwitterChart extends Component {
     return(
       <div>
         <div>{chart}</div>
-        <div>
-          <button onClick={this.clickHandler} value="nintendo">nintendo</button>
-          <button onClick={this.clickHandler} value="google">google</button>
-          <button onClick={this.clickHandler} value="disney">disney</button>
-          <button onClick={this.clickHandler} value="ford">ford</button>
-          <button onClick={this.clickHandler} value="genentech">genentech</button>
-          <button onClick={this.clickHandler} value="negative">negative</button>
-          <button onClick={this.clickHandler} value="markets">markets</button>
-          <button onClick={this.clickHandler} value="gold">gold</button>
-        </div>
       </div>
     )
   }

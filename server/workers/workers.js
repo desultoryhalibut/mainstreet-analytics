@@ -8,8 +8,6 @@ const config = require('../config/config');
 const watson = require('watson-developer-cloud');
 const helper = require('../config/utils')
 
-// future CronJob implementation to run monthly
-// const CronJob = require('cron').CronJob;
 
 // Keywords for Dashboard Summary view
 const KEYWORDS = ['car', 'real estate agent', 'inflation', 'restaurant', 'unemployment', 'dow jones', 'hedge', 'panic'];

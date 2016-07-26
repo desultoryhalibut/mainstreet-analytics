@@ -26734,30 +26734,31 @@
 	  _createClass(AppComponent, [{
 	    key: 'selectCompany',
 	    value: function selectCompany(company) {
-	      var _this2 = this;
-
 	      this.setState({ currentCompany: company.toLowerCase(), isSummary: false });
 
 	      // fetch company specific Google Trends data directly from API
-	      fetch('api/googletrends/' + company, { method: 'GET' }).then(function (res) {
-	        return res.json();
-	      }).then(function (data) {
-	        _this2.setState({ companyGoogleTrendsData: data });
-	      }).catch(function (err) {
-	        console.log(err);
-	      });
+	      // fetch('api/googletrends/' + company, {method: 'GET'})
+	      //   .then((res) => {
+	      //     return res.json();
+	      //   })
+	      //   .then((data) => {
+	      //     this.setState({companyGoogleTrendsData: data});
+	      //   })
+	      //   .catch((err) => {
+	      //     console.log(err);
+	      //   });
 	    }
 	  }, {
 	    key: 'fetchTweets',
 	    value: function fetchTweets() {
-	      var _this3 = this;
+	      var _this2 = this;
 
 	      var self = this;
 	      fetch('api/twitter', { method: 'GET' }).then(function (res) {
 	        return res.json();
 	      }).then(function (data) {
 	        console.log('SETTINGSTATE', data);
-	        _this3.setState({ twitterData: data }).bind(self);
+	        _this2.setState({ twitterData: data }).bind(self);
 	      }).catch(function (err) {
 	        console.log(err);
 	      });
@@ -26765,12 +26766,12 @@
 	  }, {
 	    key: 'getNews',
 	    value: function getNews() {
-	      var _this4 = this;
+	      var _this3 = this;
 
 	      fetch('api/news', { method: 'GET' }).then(function (res) {
 	        return res.json();
 	      }).then(function (data) {
-	        _this4.setState({ sentimentData: data });
+	        _this3.setState({ sentimentData: data });
 	      }).catch(function (err) {
 	        console.log(err);
 	      });
@@ -26834,14 +26835,6 @@
 
 	var _googletrends2 = _interopRequireDefault(_googletrends);
 
-	var _sentiment = __webpack_require__(240);
-
-	var _sentiment2 = _interopRequireDefault(_sentiment);
-
-	var _news = __webpack_require__(242);
-
-	var _news2 = _interopRequireDefault(_news);
-
 	var _twitter = __webpack_require__(243);
 
 	var _twitter2 = _interopRequireDefault(_twitter);
@@ -26855,8 +26848,6 @@
 	var _twitterLive2 = _interopRequireDefault(_twitterLive);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -26944,8 +26935,7 @@
 
 	      return _react2.default.createElement(
 	        'div',
-	        { className: 'container' },
-	        _react2.default.createElement('img', { className: 'header-image', src: 'http://previews.123rf.com/images/ashdesign/ashdesign1010/ashdesign101000010/8127340-3D-Stock-Market-Data-Blue-Background-Stock-Photo.jpg', alt: 'Main Street Analytics' }),
+	        null,
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'row' },
@@ -26957,9 +26947,9 @@
 	              { className: 'ta-center' },
 	              _react2.default.createElement('i', { className: 'fa fa-twitter', 'aria-hidden': 'true' }),
 	              'What\'s Tweeting'
-	            ),
-	            _react2.default.createElement(_twitterLiveSummary2.default, { twitterData: this.props.twitterData, currentCompany: this.state.currentCompany })
-	          )
+	            )
+	          ),
+	          _react2.default.createElement(_twitterLiveSummary2.default, { twitterData: this.props.twitterData, currentCompany: this.state.currentCompany })
 	        ),
 	        _react2.default.createElement(
 	          'div',
@@ -26987,22 +26977,6 @@
 	              'Market Sentiment'
 	            )
 	          )
-	        ),
-	        _react2.default.createElement(_sentiment2.default, _defineProperty({ sentimentData: this.state.sentimentData, currentCompany: this.state.currentCompany }, 'currentCompany', this.state.currentCompany)),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'row' },
-	          _react2.default.createElement('div', { className: 'footer-top col-md-12' }),
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'footer col-md-12' },
-	            'Footer text goes here'
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          null,
-	          _react2.default.createElement(_news2.default, { newsData: this.state.newsData })
 	        )
 	      );
 	    }
@@ -27143,51 +27117,7 @@
 	          { className: 'row' },
 	          _react2.default.createElement(
 	            'div',
-	            { className: 'col-md-8' },
-	            _react2.default.createElement(
-	              'nav',
-	              { className: 'google-trends-nav' },
-	              _react2.default.createElement(
-	                'button',
-	                { onClick: this.handleClick, value: 'car', className: 'btn btn-warning btn-rounded waves-effect' },
-	                'Car'
-	              ),
-	              _react2.default.createElement(
-	                'button',
-	                { onClick: this.handleClick, value: 'dow jones', className: 'btn btn-warning btn-rounded waves-effect' },
-	                'Dow Jones'
-	              ),
-	              _react2.default.createElement(
-	                'button',
-	                { onClick: this.handleClick, value: 'hedge', className: 'btn btn-warning btn-rounded waves-effect' },
-	                'Hedge'
-	              ),
-	              _react2.default.createElement(
-	                'button',
-	                { onClick: this.handleClick, value: 'panic', className: 'btn btn-warning btn-rounded waves-effect' },
-	                'Panic'
-	              ),
-	              _react2.default.createElement(
-	                'button',
-	                { onClick: this.handleClick, value: 'unemployment', className: 'btn btn-warning btn-rounded waves-effect' },
-	                'Unemployment'
-	              ),
-	              _react2.default.createElement(
-	                'button',
-	                { onClick: this.handleClick, value: 'real estate agent', className: 'btn btn-warning btn-rounded waves-effect' },
-	                'Real Estate Agent'
-	              ),
-	              _react2.default.createElement(
-	                'button',
-	                { onClick: this.handleClick, value: 'inflation', className: 'btn btn-warning btn-rounded waves-effect' },
-	                'Inflation'
-	              ),
-	              _react2.default.createElement(
-	                'button',
-	                { onClick: this.handleClick, value: 'restaurant', className: 'btn btn-warning btn-rounded waves-effect' },
-	                'Restaurant'
-	              )
-	            ),
+	            { className: 'col-md-7' },
 	            _react2.default.createElement(
 	              'article',
 	              null,
@@ -27196,13 +27126,13 @@
 	          ),
 	          _react2.default.createElement(
 	            'div',
-	            { className: 'col-md-4' },
+	            { className: 'col-md-5 info-google' },
 	            _react2.default.createElement(
 	              'div',
 	              { className: 'card' },
 	              _react2.default.createElement(
 	                'h3',
-	                { className: 'card-header red white-text' },
+	                { className: 'card-header white-text' },
 	                'What are we looking at?'
 	              ),
 	              _react2.default.createElement(
@@ -27289,8 +27219,52 @@
 	          'div',
 	          { className: 'row' },
 	          _react2.default.createElement(
+	            'nav',
+	            { className: 'google-trends-nav' },
+	            _react2.default.createElement(
+	              'button',
+	              { onClick: this.handleClick, value: 'car', className: 'btn btn-warning btn-rounded waves-effect' },
+	              'Car'
+	            ),
+	            _react2.default.createElement(
+	              'button',
+	              { onClick: this.handleClick, value: 'dow jones', className: 'btn btn-warning btn-rounded waves-effect' },
+	              'Dow Jones'
+	            ),
+	            _react2.default.createElement(
+	              'button',
+	              { onClick: this.handleClick, value: 'hedge', className: 'btn btn-warning btn-rounded waves-effect' },
+	              'Hedge'
+	            ),
+	            _react2.default.createElement(
+	              'button',
+	              { onClick: this.handleClick, value: 'panic', className: 'btn btn-warning btn-rounded waves-effect' },
+	              'Panic'
+	            ),
+	            _react2.default.createElement(
+	              'button',
+	              { onClick: this.handleClick, value: 'unemployment', className: 'btn btn-warning btn-rounded waves-effect' },
+	              'Unemployment'
+	            ),
+	            _react2.default.createElement(
+	              'button',
+	              { onClick: this.handleClick, value: 'real estate agent', className: 'btn btn-warning btn-rounded waves-effect' },
+	              'Real Estate Agent'
+	            ),
+	            _react2.default.createElement(
+	              'button',
+	              { onClick: this.handleClick, value: 'inflation', className: 'btn btn-warning btn-rounded waves-effect' },
+	              'Inflation'
+	            ),
+	            _react2.default.createElement(
+	              'button',
+	              { onClick: this.handleClick, value: 'restaurant', className: 'btn btn-warning btn-rounded waves-effect' },
+	              'Restaurant'
+	            )
+	          ),
+	          _react2.default.createElement(
 	            'div',
-	            { className: 'card card-danger text-xs-center z-depth-2 col-md-3 infobox' },
+	            { className: 'card card-danger text-xs-center z-depth-2 col-md-4 infobox' },
 	            _react2.default.createElement(
 	              'div',
 	              { className: 'card-block' },
@@ -27300,14 +27274,14 @@
 	                _react2.default.createElement(
 	                  'span',
 	                  { className: 'stand-out-white' },
-	                  '6% increase in searches for "restaurant" from May 2016 to June 2016'
+	                  'Consumer spending is growing stronger.  6% increase in searches for "restaurant" over last month.  14.7% increase in searches for "cars" over last 7 months.'
 	                )
 	              )
 	            )
 	          ),
 	          _react2.default.createElement(
 	            'div',
-	            { className: 'card card-warning text-xs-center z-depth-2 col-md-3 infobox' },
+	            { className: 'card card-warning text-xs-center z-depth-2 col-md-4 infobox' },
 	            _react2.default.createElement(
 	              'div',
 	              { className: 'card-block' },
@@ -27317,14 +27291,14 @@
 	                _react2.default.createElement(
 	                  'span',
 	                  { className: 'stand-out-white' },
-	                  '6% increase in searches for "restaurant" from May 2016 to June 2016'
+	                  'Housing market still positive.  27% increase in searches for "real estate agent" last 9 months.'
 	                )
 	              )
 	            )
 	          ),
 	          _react2.default.createElement(
 	            'div',
-	            { className: 'card card-info text-xs-center z-depth-2 col-md-3 infobox' },
+	            { className: 'card card-info text-xs-center z-depth-2 col-md-4 infobox' },
 	            _react2.default.createElement(
 	              'div',
 	              { className: 'card-block' },
@@ -27334,7 +27308,7 @@
 	                _react2.default.createElement(
 	                  'span',
 	                  { className: 'stand-out-white' },
-	                  '6% increase in searches for "restaurant" from May 2016 to June 2016'
+	                  'We are less scared or interested in inflation.  24% decrease in searches for "inflation" over last 7 months.'
 	                )
 	              )
 	            )
@@ -58742,36 +58716,7 @@
 	exports.default = CentralAxis;
 
 /***/ },
-/* 242 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _react = __webpack_require__(2);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var NewsTrends = function NewsTrends(props) {
-
-	  return(
-	    // insert jsx here
-	    _react2.default.createElement(
-	      'h2',
-	      null,
-	      'News Chart'
-	    )
-	  );
-	};
-
-	exports.default = NewsTrends;
-
-/***/ },
+/* 242 */,
 /* 243 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -58835,39 +58780,6 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      // return (
-	      //     <section className="twitter-component">
-	      //       <div className="row">
-	      //         <div className="col-md-8">
-	      //           <VictoryChart />
-	      //         </div>
-	      //         <div className="trends col-md-4">
-	      //           <div className="row">
-	      //             <article className="orange col-sm-6">
-	      //               <span className="">796</span>
-	      //               <p>Tweets around the world</p>
-	      //             </article>
-	      //             <article className="red col-sm-6">
-	      //               <span className="">Sad</span>
-	      //               <p>Overall feeling</p>
-	      //             </article>
-	      //           </div>
-
-	      //           <div className="row">
-	      //             <article className="brown col-sm-6">
-	      //               <p>Some interesting content</p>
-	      //               <span className=""></span>
-	      //             </article>
-	      //             <article className="gray col-sm-6">
-	      //               <p>Some interesting content</p>
-	      //               <span className=""></span>
-	      //             </article>
-	      //           </div>
-	      //         </div>
-	      //       </div>
-	      //     </section>
-
-	      // );
 
 	      if (!this.props.twitterData || !this.props.currentCompany) {
 	        return _react2.default.createElement(
@@ -58922,11 +58834,6 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        _react2.default.createElement(
-	          'div',
-	          null,
-	          'Twitter Detail Component'
-	        ),
 	        _react2.default.createElement(
 	          'div',
 	          null,
@@ -59126,39 +59033,45 @@
 
 	      return _react2.default.createElement(
 	        'div',
-	        { className: 'twitter-live-summary' },
-	        console.log('RENDERING SOME STUFF'),
-	        _react2.default.createElement(
-	          'h4',
-	          null,
-	          'TwitterLiveSummary Component (update choices once chron job enabled)'
-	        ),
-	        volumeChart,
+	        null,
 	        _react2.default.createElement(
 	          'div',
-	          null,
+	          { className: 'col-md-6' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'twitter-live-summary' },
+	            volumeChart
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'col-md-6' },
+	          sentimentChart
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'btn-containers' },
 	          _react2.default.createElement(
 	            'button',
-	            { onClick: this.clickHandler, value: '-1' },
+	            { onClick: this.clickHandler, value: '-1', className: 'btn' },
 	            '1 Minute'
 	          ),
 	          _react2.default.createElement(
 	            'button',
-	            { onClick: this.clickHandler, value: '-3' },
+	            { onClick: this.clickHandler, value: '-3', className: 'btn' },
 	            '3 Minutes'
 	          ),
 	          _react2.default.createElement(
 	            'button',
-	            { onClick: this.clickHandler, value: '-5' },
+	            { onClick: this.clickHandler, value: '-5', className: 'btn' },
 	            '5 Minutes'
 	          ),
 	          _react2.default.createElement(
 	            'button',
-	            { onClick: this.clickHandler, value: '-10' },
+	            { onClick: this.clickHandler, value: '-10', className: 'btn' },
 	            '10 Minutes'
 	          )
-	        ),
-	        sentimentChart
+	        )
 	      );
 	    }
 	  }]);
@@ -59260,75 +59173,64 @@
 
 	      return _react2.default.createElement(
 	        'div',
-	        { className: 'twitter-live' },
-	        _react2.default.createElement(
-	          'h2',
-	          null,
-	          'Twitter Live Snapshot (Style Me and get rid of hard coding)'
-	        ),
-	        _react2.default.createElement(
-	          'h4',
-	          null,
-	          '--------------------------------------------------------'
-	        ),
-	        graphic,
-	        _react2.default.createElement(
-	          'h4',
-	          null,
-	          '---',
-	          numTweets,
-	          ' tweets @ ',
-	          Math.round(sentiment * 100) / 100,
-	          ' average sentiment---'
-	        ),
+	        { className: 'col-md-8' },
 	        _react2.default.createElement(
 	          'div',
-	          null,
+	          { className: 'twitter-live' },
+	          graphic,
 	          _react2.default.createElement(
-	            'button',
-	            { onClick: this.clickHandler, value: 'nintendo' },
-	            'nintendo'
+	            'h4',
+	            null,
+	            '---',
+	            numTweets,
+	            ' tweets @ ',
+	            Math.round(sentiment * 100) / 100,
+	            ' average sentiment---'
 	          ),
 	          _react2.default.createElement(
-	            'button',
-	            { onClick: this.clickHandler, value: 'google' },
-	            'google'
-	          ),
-	          _react2.default.createElement(
-	            'button',
-	            { onClick: this.clickHandler, value: 'disney' },
-	            'disney'
-	          ),
-	          _react2.default.createElement(
-	            'button',
-	            { onClick: this.clickHandler, value: 'ford' },
-	            'ford'
-	          ),
-	          _react2.default.createElement(
-	            'button',
-	            { onClick: this.clickHandler, value: 'genentech' },
-	            'genentech'
-	          ),
-	          _react2.default.createElement(
-	            'button',
-	            { onClick: this.clickHandler, value: 'negative' },
-	            'negative'
-	          ),
-	          _react2.default.createElement(
-	            'button',
-	            { onClick: this.clickHandler, value: 'markets' },
-	            'markets'
-	          ),
-	          _react2.default.createElement(
-	            'button',
-	            { onClick: this.clickHandler, value: 'gold' },
-	            'gold'
+	            'div',
+	            null,
+	            _react2.default.createElement(
+	              'button',
+	              { onClick: this.clickHandler, value: 'nintendo', className: 'btn' },
+	              'nintendo'
+	            ),
+	            _react2.default.createElement(
+	              'button',
+	              { onClick: this.clickHandler, value: 'google', className: 'btn' },
+	              'google'
+	            ),
+	            _react2.default.createElement(
+	              'button',
+	              { onClick: this.clickHandler, value: 'disney', className: 'btn' },
+	              'disney'
+	            ),
+	            _react2.default.createElement(
+	              'button',
+	              { onClick: this.clickHandler, value: 'ford', className: 'btn' },
+	              'ford'
+	            ),
+	            _react2.default.createElement(
+	              'button',
+	              { onClick: this.clickHandler, value: 'genentech', className: 'btn' },
+	              'genentech'
+	            ),
+	            _react2.default.createElement(
+	              'button',
+	              { onClick: this.clickHandler, value: 'negative', className: 'btn' },
+	              'negative'
+	            ),
+	            _react2.default.createElement(
+	              'button',
+	              { onClick: this.clickHandler, value: 'markets', className: 'btn' },
+	              'markets'
+	            ),
+	            _react2.default.createElement(
+	              'button',
+	              { onClick: this.clickHandler, value: 'gold', className: 'btn' },
+	              'gold'
+	            )
 	          )
-	        ),
-	        _react2.default.createElement(
-	          'h4',
-	          null,
-	          '--------------FIX/STYLE ME-----------------------------'
 	        )
 	      );
 	    }
@@ -59391,22 +59293,16 @@
 	  _createClass(CompanyComponent, [{
 	    key: 'render',
 	    value: function render() {
-	      if (!this.props.companyGoogleTrendsData) {
-	        return _react2.default.createElement(
-	          'div',
-	          null,
-	          'Loading Google Trends data...'
-	        );
-	      }
+
+	      // if (!this.props.companyGoogleTrendsData) {
+	      //   return (
+	      //     <div>Loading Google Trends data...</div>
+	      //   );
+	      // }
 
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'container' },
-	        _react2.default.createElement(
-	          'h2',
-	          null,
-	          ' Company View'
-	        ),
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'row' },
@@ -59420,18 +59316,20 @@
 	            )
 	          )
 	        ),
-	        _react2.default.createElement(_twitter2.default, { twitterData: this.props.twitterData, currentCompany: this.props.currentCompany }),
-	        _react2.default.createElement(_twitterLive2.default, { twitterData: this.props.twitterData, currentCompany: this.props.currentCompany }),
-	        _react2.default.createElement(_linechart2.default, {
-	          data: this.props.companyGoogleTrendsData.searchVolume,
-	          keyword: this.props.companyGoogleTrendsData.keyword,
-	          x: 'date',
-	          y: 'volume',
-	          height: 500,
-	          width: 800,
-	          color: 'red'
-	        }),
-	        _react2.default.createElement(_sentiment2.default, { sentimentData: this.props.sentimentData, currentCompany: this.props.currentCompany })
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'row' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'col-md-8' },
+	            _react2.default.createElement(_twitter2.default, { twitterData: this.props.twitterData, currentCompany: this.props.currentCompany })
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'col-md-4' },
+	            _react2.default.createElement(_twitterLive2.default, { twitterData: this.props.twitterData, currentCompany: this.props.currentCompany })
+	          )
+	        )
 	      );
 	    }
 	  }]);
@@ -59440,6 +59338,19 @@
 	}(_react.Component);
 
 	exports.default = CompanyComponent;
+
+
+	{/*<div className="row">
+	  <LineChart
+	   data={this.props.companyGoogleTrendsData.searchVolume}
+	   keyword={this.props.companyGoogleTrendsData.keyword}
+	   x={'date'}
+	   y={'volume'}
+	   height={500}
+	   width={800}
+	   color={'red'}
+	  />
+	  </div>*/}
 
 /***/ },
 /* 247 */
@@ -59490,7 +59401,7 @@
 
 	      return _react2.default.createElement(
 	        'nav',
-	        { className: 'navbar navbar-fixed-top navbar-dark red bg-primary' },
+	        { className: 'navbar navbar-fixed-top navbar-dark bg-primary' },
 	        _react2.default.createElement(
 	          'button',
 	          { className: 'navbar-toggler hidden-sm-up', type: 'button', 'data-toggle': 'collapse', 'data-target': '#collapseEx2' },
@@ -77354,7 +77265,7 @@
 	  return _react2.default.createElement(
 	    "div",
 	    null,
-	    _react2.default.createElement("div", { className: "footer-head red" }),
+	    _react2.default.createElement("div", { className: "footer-head" }),
 	    _react2.default.createElement(
 	      "footer",
 	      { className: "footer" },

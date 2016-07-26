@@ -23,16 +23,16 @@ export default class AppComponent extends Component {
     this.setState({currentCompany: company.toLowerCase(), isSummary: false});
 
     // fetch company specific Google Trends data directly from API
-    fetch('api/googletrends/' + company, {method: 'GET'})
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        this.setState({companyGoogleTrendsData: data});
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    // fetch('api/googletrends/' + company, {method: 'GET'})
+    //   .then((res) => {
+    //     return res.json();
+    //   })
+    //   .then((data) => {
+    //     this.setState({companyGoogleTrendsData: data});
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   }
 
 

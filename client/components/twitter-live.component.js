@@ -58,22 +58,21 @@ class TwitterLive extends Component {
     }
 
     return(
+          <div className="col-md-8">
           <div className="twitter-live">
-            <h2>Twitter Live Snapshot (Style Me and get rid of hard coding)</h2>
-            <h4>--------------------------------------------------------</h4>
             {graphic}
             <h4>---{numTweets} tweets @ {Math.round(sentiment * 100) / 100} average sentiment---</h4>
             <div>
-              <button onClick={this.clickHandler} value="nintendo">nintendo</button>
-              <button onClick={this.clickHandler} value="google">google</button>
-              <button onClick={this.clickHandler} value="disney">disney</button>
-              <button onClick={this.clickHandler} value="ford">ford</button>
-              <button onClick={this.clickHandler} value="genentech">genentech</button>
-              <button onClick={this.clickHandler} value="negative">negative</button>
-              <button onClick={this.clickHandler} value="markets">markets</button>
-              <button onClick={this.clickHandler} value="gold">gold</button>
+              <button onClick={this.clickHandler} value="nintendo" className="btn">nintendo</button>
+              <button onClick={this.clickHandler} value="google" className="btn">google</button>
+              <button onClick={this.clickHandler} value="disney" className="btn">disney</button>
+              <button onClick={this.clickHandler} value="ford" className="btn">ford</button>
+              <button onClick={this.clickHandler} value="genentech" className="btn">genentech</button>
+              <button onClick={this.clickHandler} value="negative" className="btn">negative</button>
+              <button onClick={this.clickHandler} value="markets" className="btn">markets</button>
+              <button onClick={this.clickHandler} value="gold" className="btn">gold</button>
             </div>
-            <h4>--------------FIX/STYLE ME-----------------------------</h4>
+          </div>
           </div>
           )
 }

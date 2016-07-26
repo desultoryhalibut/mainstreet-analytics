@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import GoogleTrends from './googletrends.component';
-import SentimentTrends from './sentiment.component';
-import NewsTrends from './news.component';
 
 import TwitterChart from './twitter.component';
 import TwitterLiveSummary from './twitter-live-summary.component';
@@ -85,14 +83,12 @@ class SummaryComponent extends Component {
 
     return (
 
-      <div className="container">
-        <img className="header-image" src="http://previews.123rf.com/images/ashdesign/ashdesign1010/ashdesign101000010/8127340-3D-Stock-Market-Data-Blue-Background-Stock-Photo.jpg" alt="Main Street Analytics"/>
-
+      <div>
         <div className="row">
           <div className="section-headline col-md-12">
             <h3 className="ta-center"><i className="fa fa-twitter" aria-hidden="true"></i>What's Tweeting</h3>
-            <TwitterLiveSummary twitterData={this.props.twitterData} currentCompany={this.state.currentCompany}/>
           </div>
+          <TwitterLiveSummary twitterData={this.props.twitterData} currentCompany={this.state.currentCompany}/>
         </div>
 
         <div className="row">
@@ -108,20 +104,6 @@ class SummaryComponent extends Component {
             <h3 className="ta-center">Market Sentiment</h3>
           </div>
         </div>
-
-        <SentimentTrends sentimentData={this.state.sentimentData} currentCompany={this.state.currentCompany} currentCompany={this.state.currentCompany} />
-
-        <div className="row">
-          <div className="footer-top col-md-12">
-
-          </div>
-          <div className="footer col-md-12">
-            Footer text goes here
-          </div>
-        </div>
-      <div>
-        <NewsTrends newsData={this.state.newsData} />
-      </div>
     </div>
     );
   }

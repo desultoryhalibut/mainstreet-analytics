@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { VictoryPie, VictoryChart, VictoryLine, VictoryBar, VictoryAxis, VictoryStack, VictoryLabel, VictoryAnimation } from 'victory';
 
 class TwitterLiveSummary extends Component {
-  
+
   constructor(props) {
     super(props);
 
@@ -12,11 +12,11 @@ class TwitterLiveSummary extends Component {
 
     this.clickHandler = this.clickHandler.bind(this);
   }
-  
+
   clickHandler(event){
     this.setState({intervals: +event.target.value});
   }
- 
+
 
   render() {
 
@@ -38,10 +38,10 @@ class TwitterLiveSummary extends Component {
 
               sentiment: +(obj.data.slice( intervals ).reduce(function(a, b){
                     return a + b.sentimentAverage;
-                  }, 0) / -intervals) || 0}; 
+                  }, 0) / -intervals) || 0};
     })
 
-    var volumeChart = 
+    var volumeChart =
     <VictoryChart
       animate={{duration: 5000}}>
       <VictoryAxis
@@ -60,7 +60,7 @@ class TwitterLiveSummary extends Component {
             },
             axis: {stroke: "transparent"},
             ticks: {stroke: "transparent"}
-          }}/>  
+          }}/>
       <VictoryBar
         height={300}
         style={{
@@ -122,22 +122,24 @@ class TwitterLiveSummary extends Component {
                         </VictoryChart>
 
 
-        
+
 
     return(
-
-      <div className="twitter-live-summary">
-            {console.log('RENDERING SOME STUFF')}
-
-        <h4>TwitterLiveSummary Component (update choices once chron job enabled)</h4>
-          {volumeChart}
-        <div>      
-          <button onClick={this.clickHandler} value="-1">1 Minute</button>
-          <button onClick={this.clickHandler} value="-3">3 Minutes</button>
-          <button onClick={this.clickHandler} value="-5">5 Minutes</button>
-          <button onClick={this.clickHandler} value="-10">10 Minutes</button>
+      <div>
+        <div className="col-md-6">
+        <div className="twitter-live-summary">
+            {volumeChart}
         </div>
-          {sentimentChart}
+        </div>
+        <div className="col-md-6">
+        {sentimentChart}
+        </div>
+        <div className="btn-containers">
+        <button onClick={this.clickHandler} value="-1" className="btn">1 Minute</button>
+        <button onClick={this.clickHandler} value="-3" className="btn">3 Minutes</button>
+        <button onClick={this.clickHandler} value="-5" className="btn">5 Minutes</button>
+        <button onClick={this.clickHandler} value="-10" className="btn">10 Minutes</button>
+        </div>
       </div>
     )
   }

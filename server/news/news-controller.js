@@ -22,6 +22,7 @@ module.exports = {
  getFromDB: function(req, res) {  //relative route from api/news-model
     News.find().exec()
     .then(function(news) {
+      console.log('reqest made to get news from DB successful. news:',news)
       res.send(news);
     })
     .catch(function(err) {

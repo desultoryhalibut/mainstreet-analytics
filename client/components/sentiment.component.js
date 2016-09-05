@@ -10,25 +10,24 @@ class SentimentTrends extends Component {
 
     this.state = {
       data: this.props.sentimentData,
-      topic: 'economic'
-      xAxis: 1
-      current: 'disney'
+      currentChart: 'economic',
+      currentCompany: 'disney'
     }
     this.handleClick = this.handleClick.bind(this);
   }
 
     handleClick(event) {
-      var data = this.state.data.filter(function(item) {
-        return item.keyword === event;
-      });
-      this.setState({topic: event.target.value});
-      console.log('SETTING STATE in barchart:',this.state)
+      // var data = this.state.data.filter(function(item) {
+      //   return item.keyword === event;
+      // });
+      this.setState({currentChart: event.target.value});
     }
 
     filterBy(criteria) {
       //by company, by economic indicators, by company
-      console.log('filter by, this.props:', this.props, 'criteria:',criteria)
+      //economic indicators:
       const economicInd = ['car', 'unemployment', 'inflation', 'real estate', 'acquisition', 'restaurants', 'dow jones', 'economy', 'consumer spending']
+      //filter by results that are not in the list above
       if (criteria === 'company') {
         var data = this.props.sentimentData.filter(function(obj) {
           return (economicInd.indexOf(obj.keyword) === -1)
@@ -43,27 +42,50 @@ class SentimentTrends extends Component {
           return item.keyword === criteria;
         });
       }
-      console.log('filter response on criteria:',criteria,'data:',data);
+      console.log('filtered data:',data);
       return data;
     }
 
+    renderBarChart(data) {
+      return <CentralAxis
+        data={data}
+        label={'keyword'}
+        y={'sentimentScore'}
+        x={1}
+        height={400}
+        width={600}
+        // currentCompany={this.props.currentCompany}
+      />;
+    }
+
   render() {
+    let partial;
+
     if (!this.props.sentimentData) {
-      console.log(this.props.sentimentData)
+      console.log('this.props.sentiment data in sentiment still not loading')
       return (
         <p>Loading Sentiment Data...</p>
       );
     }
-    var that = this.state.topic;
-    var currentData = this.filterBy(that);
-    console.log('this.state.topic: ',this.state.topic)
+    console.log('this.state.currentChart: ',this.state.currentChart, '\n this props data is:',this.props.sentimentData)
+
+    var currentData = this.filterBy(this.state.currentChart);
+    if (this.state.currentChart === 'economic') {
+      partial = this.renderBarChart(currentData)
+    } else if (this.state.currentChart === 'company') {
+      partial = this.renderBarChart(currentData)
+    }
     return (
 
 
       <section className="sentiments">
-        <div className="row quote">
-          <quote>In simulated trading experiments, average returns based on predictions from <span className='stand-out'>news sentiment scores outperformed </span>that of well-known trading experts.</quote> <small>~ Schumaker and Chen: A Quantitive Stock Prediction System Based on Financial News </small>
-        </div>
+        {/* <div className="row quote">
+          <quote>
+            In simulated trading experiments, average returns based on predictions from
+            <span className='stand-out'>news sentiment scores outperformed </span>
+            that of well-known trading experts.
+          </quote> <small>~ Schumaker and Chen: A Quantitive Stock Prediction System Based on Financial News </small>
+        </div> */}
         <div className="center-content">
           <div className="row">
             <h4><strong> 2016 News Headlines</strong></h4>
@@ -72,23 +94,15 @@ class SentimentTrends extends Component {
               <button onClick={this.handleClick} value="economic" className="btn btn-warning btn-rounded waves-effect">Economic Indicators</button>
               <button onClick={this.handleClick} value="company" className="btn btn-warning btn-rounded waves-effect">Company</button>
             </nav>
-              <div className="sentiment-chart">
+              {/* <div className="sentiment-chart">
 
-                <CentralAxis
-                  data={this.props.sentimentData}
-                  label={'keyword'}
-                  y={'sentimentScore'}
-                  x={1}
-                  height={400}
-                  width={600}
-                  currentCompany={this.props.currentCompany}
-                />
-              </div>
+                {partial}
+              </div> */}
             </div>
 
 
 
-            <div className="col-md-4">
+            {/* <div className="col-md-4">
               <div className="card">
                 <h3 className="card-header red white-text">{ Tips }</h3>
                 <div className="card-block">
@@ -104,11 +118,11 @@ class SentimentTrends extends Component {
 
 
                   </p>
-                </div>
+                </div> */}
               </div>
             </div>
 
-            <div className="col-md-4">
+            {/* <div className="col-md-4">
               <div className="card">
                 <h3 className="card-header red white-text">{this.props.sentimentData[0].keyword.toUpperCase() }</h3>
 
@@ -128,9 +142,9 @@ class SentimentTrends extends Component {
                   </p>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
+            </div> */}
+          {/* </div>
+        </div> */}
       </section>
     )
   }

@@ -18,38 +18,9 @@ class CentralAxis extends Component {
   }
 
 
-    filterBy(criteria) {
-      //by company, by economic indicators, by company
-
-      const economicInd = ['car', 'unemployment', 'inflation', 'real estate', 'acquisition', 'restaurants', 'dow jones', 'economy', 'consumer spending']
-      if (criteria === 'company') {
-        var data = this.props.data.filter(function(obj) {
-          return (economicInd.indexOf(obj.keyword) === -1)
-        })
-      } else if (criteria === 'economic') {
-        var data = this.props.data.filter(function(obj) {
-          return (economicInd.indexOf(obj.keyword) > -1)
-        });
-      } else {
-        //need to insert API call to server to get from News database
-        var data = this.props.data.filter(function(item) {
-          return item.keyword === criteria;
-        });
-      }
-      return data;
-    }
-  filterByCompany() {
-    const economicInd = ['car', 'unemployment', 'inflation', 'real estate', 'acquisition', 'restaurants', 'dow jones', 'economy', 'panic', 'consumer spending']
-    let data = this.props.data.filter(function(obj) {
-      return (economicInd.indexOf(obj.keyword) === -1)
-    })
-    return data;
-  }
-
   render() {
     var topic = this.props.currentCompany || 'economic';
-    console.log("This is the topic: ",topic, this.props.currentCompany );
-
+    var length = this.props.data.length
     return (
 
       <div className='bar-chart'>
@@ -64,10 +35,11 @@ class CentralAxis extends Component {
            left: 40,
            right: 40
          }}
+         domain={{ x: [0, {length}], y: [-1, 1] }}
          domainPadding={{x: 15}}
         >
         <VictoryAxis
-          orientation='bottom'
+          orientation='right'
           style={{
             axis: {stroke: "transparent"},
             ticks: {stroke: "transparent"}
@@ -76,15 +48,18 @@ class CentralAxis extends Component {
          <VictoryBar horizontal
            style={{
              data: {
-               width: 20,
-               labels: {padding: 10, fontSize: 10},
+               width: 10,
+               labels: {
+                 padding: 10,
+                 fontSize: 10,
+                 fontFamily:'Roboto'
+               },
                fill: (data) => data.y > 0 ?
                  "gold" : "blue"
              }
            }}
 
-          //  data={this.sortedList(this.filterBy(topic)).map(function(obj, idx) {   needs to go after />  ->})}
-           data={this.sortedList(this.filterByCompany()).map(function(obj, idx) {
+           data={this.props.data.map((obj, idx) => {
 
               if (obj.keyword !== 'panic') {
                 return {
@@ -98,7 +73,7 @@ class CentralAxis extends Component {
               }
             })}
           />
-            {/* })} */}
+
 
        </VictoryChart>
       </svg>

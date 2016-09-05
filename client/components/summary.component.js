@@ -68,7 +68,7 @@ class SummaryComponent extends Component {
           <div className="section-headline col-md-12">
             <h3 className="ta-center"><i className="fa fa-twitter" aria-hidden="true"></i>What's Tweeting</h3>
           </div>
-          {/* <TwitterLiveSummary twitterData={this.props.twitterData} currentCompany={this.state.currentCompany}/> */}
+          <TwitterLiveSummary twitterData={this.props.twitterData} currentCompany={this.state.currentCompany}/>
         </div>
 
         <div className="row">

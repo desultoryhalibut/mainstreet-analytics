@@ -17,9 +17,6 @@ class SentimentTrends extends Component {
   }
 
     handleClick(event) {
-      // var data = this.state.data.filter(function(item) {
-      //   return item.keyword === event;
-      // });
       this.setState({currentChart: event.target.value});
     }
 

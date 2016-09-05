@@ -19,53 +19,33 @@ class CentralAxis extends Component {
 
 
   render() {
-    var topic = this.props.currentCompany || 'economic';
-    var length = this.props.data.length
+    var length = this.props.data.length;
+
     return (
 
       <div className='bar-chart'>
-      <svg width={650} height={350}>
+      <svg width={650} height={500}>
 
-       <VictoryChart horizontal
-         height={375}
-         width={550}
-         padding={{
-           top: 40,
-           bottom: 40,
-           left: 40,
-           right: 40
-         }}
-         domain={{ x: [0, {length}], y: [-1, 1] }}
-         domainPadding={{x: 15}}
-        >
-        <VictoryAxis
-          orientation='right'
-          style={{
-            axis: {stroke: "transparent"},
-            ticks: {stroke: "transparent"}
-          }}
-        />
-         <VictoryBar horizontal
+         <VictoryBar
+           height={450}
+           padding={45}
            style={{
              data: {
                width: 10,
-               labels: {
-                 padding: 10,
-                 fontSize: 10,
-                 fontFamily:'Roboto'
-               },
-               fill: (data) => data.y > 0 ?
-                 "gold" : "blue"
+               fill: (data) => data.y > 0 ? "blue" : "tomato"
+             },
+             labels: {
+               padding: 5,
+               fontSize: 8
              }
-           }}
-
+            }}
+          //  domain={ {x: [0, {length}], y: [-1, 1]} }
            data={this.props.data.map((obj, idx) => {
-
               if (obj.keyword !== 'panic') {
                 return {
                   x: 1+idx,
                   y: + obj.sentimentScore,
-                  label: obj.keyword.toUpperCase()
+                  label: obj.keyword.toUpperCase()+'('+obj.sentimentScore.toFixed(2)+')'
                 }
               } else return {
                 x: idx,
@@ -73,26 +53,9 @@ class CentralAxis extends Component {
               }
             })}
           />
-
-
-       </VictoryChart>
       </svg>
       </div>
 
-      //       data={this.props.data.map(function(obj, idx) {
-      //
-      //         return {
-      //           x: 1+idx,
-      //           y: + obj.sentimentScore,
-      //           label: obj.newsTopic.toUpperCase()
-      //         }
-      //       })}
-      //     />
-      //   </VictoryChart>
-      //
-      // </svg>
-
-      // </div>
     );
   }
 }

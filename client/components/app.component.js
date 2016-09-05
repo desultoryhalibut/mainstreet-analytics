@@ -43,7 +43,6 @@ export default class AppComponent extends Component {
         return res.json();
       })
       .then((data) => {
-        console.log('SETTINGSTATE', data);
         this.setState({twitterData: data}).bind(self);
       })
       .catch((err) => {

@@ -8,6 +8,7 @@ var tSentiment = require('./sentiment/twitter-sentiment-model');
 var app = express();
 var twitterCron = require('./workers/workers-twitter');
 var CronJob = require('cron').CronJob;
+require("babel-core/register");
 
 // cron job to compute average of Twitter data every 5 seconds to be used by Client
 
@@ -39,7 +40,7 @@ app.use(webpackDevMiddleware(compiler, {
 var server = app.listen(3001, function() {
   var host = server.address().address;
   var port = server.address().port;
-  console.log('app listening at host, port:', host, port);
+  console.log('app listening at host', host, 'and port:',port);
 });
 
 module.exports = app;

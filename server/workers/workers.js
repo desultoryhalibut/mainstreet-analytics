@@ -60,17 +60,17 @@ function queryGoogleTrends(key, googleTrendResults) {
  * @param  {[Array]} KEYWORDS [Array of keywords]
  */
 
-// googleTrends.trendData(KEYWORDS)
-//   .then(function(results) {
+googleTrends.trendData(KEYWORDS)
+  .then(function(results) {
 
-//     KEYWORDS.forEach((key, index) => {
-//       queryGoogleTrends(key, results[index]);
-//     });
+    KEYWORDS.forEach((key, index) => {
+      queryGoogleTrends(key, results[index]);
+    });
 
-//   })
-//   .catch(function(err) {
-//     console.error('Error updating Google Trends ', err);
-//   });
+  })
+  .catch(function(err) {
+    console.error('Error updating Google Trends ', err);
+  });
 
 
 ////////////////////////////////////////////////////////////////////////
@@ -125,7 +125,7 @@ function queryGoogleTrends(key, googleTrendResults) {
     //Grab data from alchemy news API using target keywords
     alchemyGetNews(paramsNews)
       .then(function(news) {
-        const newsArray = news.result.docs;
+        let newsArray = news.result.docs;
         newsArray = newsArray.map(function(val) {
           return {
             timestamp: helper.timeConverter(val.timestamp),

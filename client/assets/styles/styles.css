@@ -87,13 +87,14 @@ section {
 .google-trends .graph {
   min-height: 300px;
 }
-.google-trends .google-summary {
+.google-trends .google-summary .news-sentiment {
   padding: .5em;
 }
 
 .google-trends-nav {
   margin: 0 2em 0 2em;
 }
+
 
 .header-image {
   width: 100%;

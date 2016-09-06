@@ -107,7 +107,7 @@ class SentimentTrends extends Component {
     return (
 
 
-      <section className="sentiments">
+      <section className="news-sentiment">
         <div className="row quote">
           <quote>
             In simulated trading experiments, average returns based on <span className='stand-out'>predictions from
@@ -118,33 +118,35 @@ class SentimentTrends extends Component {
         <div className="center-content">
           <div className="row">
             <h4><strong> 2016 News Sentiment</strong></h4>
-            <div className="col-md-8">
-            <nav className="google-trends-nav">
-              <button onClick={this.handleClick} value="economic" className="btn btn-warning btn-rounded waves-effect">Economic Indicators</button>
-              <button onClick={this.handleClick} value="company" className="btn btn-warning btn-rounded waves-effect">Company</button>
-            </nav>
+            <div className="col-md-7">
               <div className="sentiment-chart">
                 {partial}
               </div>
+              <nav className="google-trends-nav">
+              <button onClick={this.handleClick} value="economic" className="btn btn-warning btn-rounded waves-effect">Economic Indicators</button>
+              <button onClick={this.handleClick} value="company" className="btn btn-warning btn-rounded waves-effect">Company</button>
+              </nav>
             </div>
 
-            <div className="col-md-4 info-google">
+            <div className="col-md-5">
               <div className="card">
-                <h3 className="card-header white-text "> Tips </h3>
+                <h3 className="card-header white-text "> Sentiment-oriented Stock Trading </h3>
                 <div className="card-block">
-                  <h4 className='card-title'> Buy on bad news, sell on good news
+                  <h4 className='card-title'> Go long on positive sentiment stocks, short on negative
                   </h4>
                   <p className='card-text'>
                    <ul>
-                     <li><strong>Why: </strong>Insiders tend to buy stocks in years when news sentiment is pessimistic (negative score)</li>
-                     <li><strong>Sentiment scores </strong> range from -1 to 1</li>
+                     <li><strong>Sentiment scores</strong>: quantified averages of favorable (positive) and unfavorable (negative) words in the news for each entity </li>
+                     <li>Scores range from <strong> -1</strong> to <strong> 1</strong> </li>
+                     <li><strong>Shown to the left: </strong>Economic indicators of market health and four top companies by industry</li>
+                     <li></li>
                    </ul>
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className="col-md-4 ">
+            <div className="col-md-5 ">
               {company}
             </div>
 

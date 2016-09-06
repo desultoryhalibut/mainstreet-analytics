@@ -24,7 +24,35 @@ class CentralAxis extends Component {
     return (
 
       <div className='bar-chart'>
-      <svg width={650} height={500}>
+      <svg width={600} height={400}>
+      <VictoryChart
+        domainPadding={{x:30}} >
+      <VictoryLine
+        style={{
+          axis: {strokeWidth: .5},
+          grid: {strokeWidth: .5}
+        }}
+        data={[
+          {x: 0, y:0},
+          {x: 1, y:0},
+          {x: 2, y:0},
+          {x: 3, y:0},
+          {x: 4, y:0},
+          {x: 5, y:0},
+          {x: 6, y:0},
+          {x: 7, y:0},
+          {x: 8, y:0},
+          {x: 9, y:0},
+        ]}
+      />
+      <VictoryAxis dependentAxis
+        orientation="left"
+        style={{
+          axis: {strokeWidth: .5},
+          fontSize: 8,
+          ticks: {stroke: "transparent"},
+          label: "Sentiment Score"
+        }}/>
 
          <VictoryBar
            height={450}
@@ -53,6 +81,7 @@ class CentralAxis extends Component {
               }
             })}
           />
+          </VictoryChart>
       </svg>
       </div>
 

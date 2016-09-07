@@ -1,6 +1,6 @@
-# desultoryhalibut
+# Mainstreet Analytics
 
-Welcome to our awesome, super organized project.
+Mainstreet Analytics is a real-time data visualization dashboard that collects data from Twitter, Google Trends, and NY Times APIs and uses sentiment analysis to provide unique market insights and trends to help investors "predict the present" about specific companies or the economy.
 
 
 

@@ -18,87 +18,73 @@ class CentralAxis extends Component {
   }
 
 
-    filterBy(criteria) {
-      //by company, by economic indicators, by company
-
-      const economicInd = ['car', 'unemployment', 'inflation', 'real estate', 'acquisition', 'restaurants', 'dow jones', 'economy', 'consumer spending']
-      if (criteria === 'company') {
-        var data = this.props.data.filter(function(obj) {
-          return (economicInd.indexOf(obj.keyword) === -1)
-        })
-      } else if (criteria === 'economic') {
-        var data = this.props.data.filter(function(obj) {
-          return (economicInd.indexOf(obj.keyword) > -1)
-        });
-      } else {
-        //need to insert API call to server to get from News database
-        var data = this.props.data.filter(function(item) {
-          return item.keyword === criteria;
-        });
-      }
-      return data;
-    }
-
   render() {
-    var topic = this.props.currentCompany || 'economic';
-    console.log("This is the topic: ",topic, this.props.currentCompany );
+    var length = this.props.data.length;
+
     return (
 
       <div className='bar-chart'>
+      <svg width={600} height={400}>
+      <VictoryChart
+        domainPadding={{x:30}} >
+      <VictoryLine
+        style={{
+          axis: {strokeWidth: .5},
+          grid: {strokeWidth: .5}
+        }}
+        data={[
+          {x: 0, y:0},
+          {x: 1, y:0},
+          {x: 2, y:0},
+          {x: 3, y:0},
+          {x: 4, y:0},
+          {x: 5, y:0},
+          {x: 6, y:0},
+          {x: 7, y:0},
+          {x: 8, y:0},
+          {x: 9, y:0},
+        ]}
+      />
+      <VictoryAxis dependentAxis
+        orientation="left"
+        style={{
+          axis: {strokeWidth: .5},
+          fontSize: 8,
+          ticks: {stroke: "transparent"},
+          label: "Sentiment Score"
+        }}/>
 
-
-      <svg width={650} height={350}>
-
-       <VictoryChart horizontal
-         height={375}
-         width={550}
-         padding={{
-           top: 40,
-           bottom: 40,
-           left: 40,
-           right: 40
-         }}
-         domainPadding={{x: 15}}
-
-        >
-        <VictoryAxis
-
-          orientation='bottom'
-          style={{
-            axis: {stroke: "transparent"},
-            ticks: {stroke: "transparent"}
-          }}
-        />
-         <VictoryBar horizontal
+         <VictoryBar
+           height={450}
+           padding={45}
            style={{
              data: {
-               width: 20,
-               labels: {padding: 10, fontSize: 10},
-               fill: (data) => data.y > 0 ?
-                 "gold" : "blue"
+               width: 10,
+               fill: (data) => data.y > 0 ? "blue" : "tomato"
+             },
+             labels: {
+               padding: 5,
+               fontSize: 8
              }
-           }}
-
-           data={this.sortedList(this.filterBy(topic)).map(function(obj, idx) {
+            }}
+          //  domain={ {x: [0, {length}], y: [-1, 1]} }
+           data={this.props.data.map((obj, idx) => {
               if (obj.keyword !== 'panic') {
                 return {
                   x: 1+idx,
                   y: + obj.sentimentScore,
-                  label: obj.keyword.toUpperCase()
+                  label: obj.keyword.toUpperCase()+'('+obj.sentimentScore.toFixed(2)+')'
                 }
               } else return {
                 x: idx,
                 y: 0
               }
-
             })}
           />
-
-       </VictoryChart>
-
+          </VictoryChart>
       </svg>
-
       </div>
+
     );
   }
 }

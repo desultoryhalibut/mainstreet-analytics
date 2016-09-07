@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import GoogleTrends from './googletrends.component';
-
+import SentimentTrends from './sentiment.component';
 import TwitterChart from './twitter.component';
 import TwitterLiveSummary from './twitter-live-summary.component';
 import TwitterLive from './twitter-live.component';
@@ -26,7 +26,6 @@ class SummaryComponent extends Component {
         return res.json();
       })
       .then((data) => {
-        console.log('SETTINGSTATE', data);
         this.setState({twitterData: data}).bind(self);
       })
       .catch((err) => {
@@ -40,20 +39,19 @@ class SummaryComponent extends Component {
       })
       .then((data) => {
         this.setState({googleTrendsData: data});
-        console.log('Google Trends Data ', data);
       })
       .catch((err) => {
         console.log(err);
       });
 
-      ////////NEWS VOLUME////////
+
     fetch('api/news', {method: 'GET'})
       .then((res) => {
         return res.json();
       })
       .then((data) => {
         this.setState({sentimentData: data});
-
+        console.log('sentimentData:', data);
       })
       .catch((err) => {
         console.log(err);
@@ -83,11 +81,9 @@ class SummaryComponent extends Component {
 
         <div className="row">
           <div className="section-headline col-md-12">
-            <h3 className="ta-center">Market Sentiment</h3>
+            <h3 className="ta-center">What's in the Financial News</h3>
           </div>
-        </div>
-
-        <div className="SImg">
+          <SentimentTrends sentimentData={this.state.sentimentData} />
         </div>
     </div>
     );

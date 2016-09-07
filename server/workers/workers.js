@@ -54,6 +54,7 @@ function queryGoogleTrends(key, googleTrendResults) {
     });
 }
 
+
 /**
  * function googleTrends.trendData - Updates database for GoogleTrends Summary keywords for dashboard view
  * @param  {[Array]} KEYWORDS [Array of keywords]
@@ -124,7 +125,7 @@ googleTrends.trendData(KEYWORDS)
     //Grab data from alchemy news API using target keywords
     alchemyGetNews(paramsNews)
       .then(function(news) {
-        const newsArray = news.result.docs;
+        let newsArray = news.result.docs;
         newsArray = newsArray.map(function(val) {
           return {
             timestamp: helper.timeConverter(val.timestamp),

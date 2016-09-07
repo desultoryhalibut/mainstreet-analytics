@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Route, Router, browserHistory } from 'react-router';
 import AppComponent from './components/app.component';
 import CompanyComponent from './components/company.component';
+require("babel-core/register")
 
 
 document.addEventListener('DOMContentLoaded', function() {

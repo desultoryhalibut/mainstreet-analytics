@@ -47,5 +47,12 @@ body:before {
 }
 
 .gray {
-  background: rgba(81, 85, 87, 0.85);
+  background: rgba(143, 143, 143, 1.0);
+}
+
+.brown {
+  background: rgba(72, 61, 61, 0.9);
+}
+.bluetint {
+  background: #5bc0de;
 }

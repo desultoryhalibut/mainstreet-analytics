@@ -34,6 +34,8 @@ app.use(webpackDevMiddleware(compiler, {
   historyApiFallback: true,
 }));
 
+console.log('APP LISTENING ON.....',process.env.PORT)
+
 var server = app.listen(process.env.PORT || 3001, function() {
   var host = server.address().address;
   var port = server.address().port;

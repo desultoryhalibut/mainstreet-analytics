@@ -8,7 +8,6 @@ var helper = require('../config/utils')
 const keywords = ['car', 'unemployment', 'inflation', 'real estate', 'acquisition', 'restaurants', 'dow jones', 'economy', 'panic']
 const companies = ['nintendo', 'disney', 'ford', 'google', 'gilead']
 
-
 const alchemy_data_news = watson.alchemy_data_news({
   api_key: process.env.apikey
 });
@@ -18,6 +17,7 @@ const alchemy_language = watson.alchemy_language({
 
 
 module.exports = {
+
 
  getFromDB: function(req, res) {  //relative route from api/news-model
     News.find().exec()
@@ -31,8 +31,6 @@ module.exports = {
 
   searchAPI: function(req, res) {
     var word = req.params.search;
-
-
     request.get({
       url: "https://api.nytimes.com/svc/search/v2/articlesearch.json",
       qs: {
@@ -52,8 +50,8 @@ module.exports = {
     })
   },
 
-  getFromNewsAPI: function(req,res) {
 
+  getFromNewsAPI: function(req,res) {
     const keywords = ['consumer spending', 'unemployment', 'inflation', 'real estate', 'acquisition', 'restaurants', 'dow jones', 'economy', 'panic'];
 
       //Loop through to do a separate key word search on news articles within the past year
@@ -75,51 +73,6 @@ module.exports = {
       }
   },
 
- 
-  getCompaniesFromNewsAPI: function(req,res) {
-
-    const companies = ['nintendo', 'disney', 'ford', 'google', 'gilead'];
-
-      //Loop through to do a separate key word search on news articles within the past year
-      for (var i = 0; i < companies.length; i++) {
-        module.exports.addToDB(companies[i]);
-      }
-  },
-
-  addToDB: function(keyword) {
-    request.get({
-      url: "https://api.nytimes.com/svc/search/v2/articlesearch.json",
-      qs: {
-        'api-key': "cd2a0ddca6c645b38fd40bf4740dc21a",
-        'q': keyword,
-        'fq': 'news_desk:("Automobiles" "Business" "Cars" "Culture" "Dining" "Editorial" "Education" "Financial" "Foreign" "Health" "Jobs" "Market Place" "Metro" "Metropolitan" "National" "Opinion" "Personal Investing" "Politics" "Retirement" "Science" "Small Business" "Society" "Sunday Business" "Technology" "Travel" "U.S." "Universal" "Vacation" "Wealth" "Week in Review" "Working" "Workplace" "World" "Your Money") AND body.search:(\""' + keyword + '\"")',
-        'begin_date': '20160101',
-        'end_date': '20160723',
-        'sort': 'newest',
-        'fl': 'web_url,snippet,headline,pub_date,type_of_material'
-      },
-    }, function(err, response, body) {
-
-      //Once retrieved from API request, create entry in DB
-      if(err) {
-        console.log('Request failure:');
-        console.error(err);
-      } else {
-        body = JSON.parse(body);
-        body['keyword'] = keyword;
-        News.create({
-          data: body.response.docs,
-          hits: body.response.meta.hits,
-          keyword: body.keyword
-        }, function(err, done) {
-          if (err)
-            console.error(err);
-          else
-            console.log('saved in db',done);
-        });
-      }
-    })
-  }, 
 
   inputSentiment: function(req, res) {  //relative route from api/news-model
 
@@ -167,7 +120,7 @@ module.exports = {
     //   results = {
     //     string: n,
     //     keyword: news[9].keyword
-    //   } 
+    //   }
     //   res.send(results);
     // })
     // .catch(function(err) {
@@ -177,12 +130,14 @@ module.exports = {
     News.find().exec()
       .then(function(news) {
         for (var i = 0; i < news.length; i++) {
-          let paramsSentiment = {
+
+          var paramsSentiment = {
             text: news[i].data.reduce(function(prev, cur) {
               return prev += '. ' + cur.headline.main;
             }, ''),
             targets: ['inflation','unemployment','real estate', 'acquisition','restaurants','dow jones','economy']
           };
+
           alchemyGetSentiment(paramsSentiment)
           .then(function(sentiment) {
             News.update({keyword: sentiment.results.text}, {sentimentScore: sentiment.results.score}, function(err, done) {

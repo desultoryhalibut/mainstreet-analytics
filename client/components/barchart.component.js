@@ -10,7 +10,6 @@ class CentralAxis extends Component {
     }
   }
 
-
   sortedList(list) {
     let data = list.sort(function(a,b) {
       return a.sentimentScore > b.sentimentScore ? 1 : -1;
@@ -18,13 +17,6 @@ class CentralAxis extends Component {
     return data;
   }
 
-  filterByCompany() {
-    const economicInd = ['car', 'unemployment', 'inflation', 'real estate', 'acquisition', 'restaurants', 'dow jones', 'economy', 'panic', 'consumer spending']
-    let data = this.props.data.filter(function(obj) {
-      return (economicInd.indexOf(obj.keyword) === -1)
-    })
-    return data;
-  }
 
   render() {
     var length = this.props.data.length;
@@ -62,9 +54,6 @@ class CentralAxis extends Component {
           label: "Sentiment Score"
         }}/>
 
-
-       </VictoryChart>
-
          <VictoryBar
            height={450}
            padding={45}
@@ -92,9 +81,10 @@ class CentralAxis extends Component {
               }
             })}
           />
-        </VictoryChart>
+          </VictoryChart>
       </svg>
       </div>
+
     );
   }
 }

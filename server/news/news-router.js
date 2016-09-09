@@ -1,5 +1,3 @@
-
-
 //express middleware to help route
 
 const NewsController = require('./news-controller');

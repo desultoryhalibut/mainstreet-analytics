@@ -44,6 +44,7 @@ class SummaryComponent extends Component {
         console.log(err);
       });
 
+
     fetch('api/news', {method: 'GET'})
       .then((res) => {
         return res.json();
@@ -69,7 +70,6 @@ class SummaryComponent extends Component {
           </div>
           <TwitterLiveSummary twitterData={this.props.twitterData} currentCompany={this.state.currentCompany}/>
         </div>
-
         <div className="row">
           <div className="section-headline col-md-12">
             <h3 className="ta-center">What's Being Searched</h3>
@@ -89,5 +89,4 @@ class SummaryComponent extends Component {
     );
   }
 }
-
 export default SummaryComponent;

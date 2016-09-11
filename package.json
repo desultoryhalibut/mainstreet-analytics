@@ -9,7 +9,7 @@
   "scripts": {
     "compile": "webpack --watch",
     "start": "nodemon server/server.js | webpack --watch",
-    "test": "mocha --compilers js:babel-core/register"
+    "test": "mocha test"
   },
   "dependencies": {
     "babel-core": "^6.11.4",

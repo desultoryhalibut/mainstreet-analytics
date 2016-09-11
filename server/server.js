@@ -8,25 +8,22 @@ var tSentiment = require('./sentiment/twitter-sentiment-model');
 var app = express();
 var twitterCron = require('./workers/workers-twitter');
 var CronJob = require('cron').CronJob;
-require("babel-core/register");
-
-// cron job to compute average of Twitter data every 5 seconds to be used by Client
-
-new CronJob('*/5 * * * * *', function() {
-  twitterCron.getCollections(twitterCron.channels);
-}, null, true, 'America/Los_Angeles');
-
 var compiler = webpack(webpackConfig);
-
+require("babel-core/register");
 require('./config/mongoose')();
 require('./config/express')(app);
 require('./config/routes')(app);
 require('./workers/workers.js');
 
-// set static page
+// Cron job to compute average of Twitter data every 5 seconds to be used by Client
+new CronJob('*/5 * * * * *', function() {
+  twitterCron.getCollections(twitterCron.channels);
+}, null, true, 'America/Los_Angeles');
+
+// Set static page
 app.use(express.static(__dirname + '/../client/www'));
 
-// boilerplate code, investigate further
+// Webpack set-up
 app.use(webpackDevMiddleware(compiler, {
   hot: true,
   filename: 'bundle.js',

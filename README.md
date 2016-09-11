@@ -3,7 +3,6 @@
 > Mainstreet Analytics is a real-time data visualization dashboard.   It collects data from Twitter API, Google Trends API, and NY Times API and uses AlchemyAPI sentiment analysis to provide company specific and overall market insights as a resource to help investors make investment decisions by "predicting the present."
 
 ![mainstreet-analytics-screenshot](client/assets/img/mainstreet-analytics-screenshot.png)
-![mainstreet-analytics-screenshot2](client/assets/img/mainstreet-analytics-screenshot2.png)
 
 ## Table of Contents
 

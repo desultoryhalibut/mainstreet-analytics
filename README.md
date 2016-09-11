@@ -28,6 +28,16 @@ From within the root directory:
 npm install
 ```
 
+### Configuring API keys
+
+You'll need to sign-up for access to Twitter API and IBM Watson AlchemyAPI to run this application.  Once you receive your keys/access tokens, follow below instructions:
+
+```sh
+- Make a copy of _config.js file (found in the server/config folder)
+- Re-name the file to config.js
+- Insert your Twitter API keys and access tokens
+```
+
 ### Starting the Application
 
 ```sh

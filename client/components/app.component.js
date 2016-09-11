@@ -83,9 +83,9 @@ export default class AppComponent extends Component {
         <header>
           <NavBar selectCompany={this.selectCompany}/>
         </header>
-
         <div className="main-content z-depth-5">
-          <h1><strong>Mainstreet INSIGHTS</strong></h1>
+          <h1><strong>Mainstreet Analytics Dashboard</strong></h1>
+
           {partial}
 
         </div>

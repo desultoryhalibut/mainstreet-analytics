@@ -83,8 +83,9 @@ class SummaryComponent extends Component {
           <div className="section-headline col-md-12">
             <h3 className="ta-center">What's in the Financial News</h3>
           </div>
-          <SentimentTrends sentimentData={this.state.sentimentData} />
         </div>
+        
+        <SentimentTrends sentimentData={this.state.sentimentData} />
     </div>
     );
   }

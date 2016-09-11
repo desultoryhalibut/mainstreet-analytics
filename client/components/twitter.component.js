@@ -34,7 +34,7 @@ class TwitterChart extends Component {
 
     if (!this.props.twitterData || !this.props.currentCompany) {
       return (
-        <div>Loading Twitter data for detail view component!</div>
+        <div>Loading Twitter data...</div>
       );
     }
 
@@ -51,38 +51,40 @@ class TwitterChart extends Component {
 
     const styles = this.getStyles();
     var chart = <VictoryChart animate={{duration: 5000}}>
+       <VictoryArea
+         interpolation="cardinal"
+         style={{
+             data: {fill: "tomato"}
+           }}
+         data={data.slice(-20)}
+         x={"time"}
+         y={"numTweets"}
+       />
 
-                 <VictoryArea
-                   interpolation="cardinal"
-                   style={{
-                       data: {fill: "tomato"}
-                     }}
-                   data={data.slice(-20)}
-                   x={"time"}
-                   y={"numTweets"}
-                 />
-
-              <VictoryLine
-                interpolation="cardinal"
-                style={{
-                  data: {
-                    stroke: "cornflowerblue",
-                    strokeWidth: 5
-                  },
-                  labels: {fontSize: 8}
-                }}
-                data={data.slice(-20)}
-                x={"time"}
-                y={"sentimentAverage"}
-                label="Sentiment Score"
-                standalone={false}
-                fill={"teal"}
-              />
-            </VictoryChart>
+      <VictoryLine
+        interpolation="cardinal"
+        style={{
+          data: {
+            stroke: "cornflowerblue",
+            strokeWidth: 5
+          },
+          labels: {fontSize: 8}
+        }}
+        data={data.slice(-20)}
+        x={"time"}
+        y={"sentimentAverage"}
+        label="Sentiment"
+        standalone={false}
+        fill={"teal"}
+      />
+    </VictoryChart>
 
     return(
       <div>
-        <div>{chart}</div>
+        <div className="twitter-chart center">
+          <h4><strong>Live Volume of Tweets (red) & Sentiment Average (blue)</strong></h4>
+          {chart}
+        </div>
       </div>
     )
   }

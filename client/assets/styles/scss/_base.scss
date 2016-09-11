@@ -7,10 +7,6 @@ body {
   font-size: 14px;
 }
 
-.container-fluid {
-  padding: 0;
-}
-
 footer {
   background: $white;
   min-height: 150px;
@@ -39,14 +35,103 @@ section {
   padding: 2em;
 }
 
+// Classes
+
 .center-content {
   margin: 0 auto;
   max-width: 1240px;
   width: 100%;
 }
 
+.container-fluid {
+  padding: 0;
+}
+
 .footer-head {
   min-height: 2em;
+}
+
+.btn-containers {
+  margin: 0 auto;
+  width: 810px;
+  .btn {
+    width: 160px;
+    height: 45px;
+    margin-right: 10px;
+    background: $alpha-orange;
+    border-radius: 3px;
+    margin-right: 35px;
+  }
+}
+
+.graph {
+  max-width: 600px;
+  min-height: 380px;
+  background: $white;
+  margin-right: 2em;
+  border: 1px solid $border-color;
+}
+
+.google-trends-nav {
+  .btn {
+    border-radius: 3px;
+  }
+}
+
+.google-trends {
+  .graph {
+    min-height: 300px;
+  }
+  .google-summary {
+    padding: .5em;
+  }
+}
+
+.google-trends-nav {
+  margin: 2em;
+}
+
+.header-image {
+  width: 100%
+}
+
+.infobox {
+  min-height: 375;
+}
+
+.info-google {
+  margin-top: 60px;
+  .card-header {
+    background: #5bc0de;
+  }
+}
+
+.main-content {
+  background: $white;
+  padding: 2em 3em 2em 3em;
+  width: 1240px;
+  margin: 0 auto;
+}
+
+.quote {
+  background-color: #f5f5f5;
+  border-radius: 11px;
+  font-family:  $font1;
+  font-size: 2em;
+  font-weight: 500;
+  margin-bottom: 2em;
+  padding: 1em;
+}
+
+.results-copy {
+  margin-top: 45px;
+  font-size: 30px;
+}
+
+.sentiments {
+  .graph {
+    min-height: 300px;
+  }
 }
 
 .trends {
@@ -72,102 +157,23 @@ section {
   }
 }
 
-.graph {
-  max-width: 600px;
-  min-height: 380px;
-  background: $white;
-  margin-right: 2em;
-  border: 1px solid $border-color;
+.twitter-chart {
+  padding-top: 2em;
 }
 
-.google-trends {
-  .graph {
-    min-height: 300px;
-  }
-  .google-summary {
-    padding: .5em;
-  }
+.twitter-live {
+  margin-top: 2em;
 }
 
-.google-trends-nav {
-  margin: 0 2em 0 2em;
+.twitter-live-img {
+  background-color: #eeeeee;
+  border: 1px solid lightgray;
+  border-radius: 3px;
+  margin: 2em;
+  padding: 20px;
 }
 
-.header-image {
-  width: 100%
-}
-
-.infobox {
-  margin: 40px 0;
-}
-
-.main-content {
-  background: $white;
-  padding: 2em 3em 2em 3em;
-  width: 1240px;
-  margin: 0 auto;
-}
-
-.quote {
-  background-color: $white;
-  font-family:  $font1;
-  font-size: 2em;
-  font-weight: 500;
-  margin-bottom: 2em;
-  padding: 1em;
-}
-
-.results-copy {
-  margin-top: 45px;
-  font-size: 30px;
-}
-
-.sentiments {
-  .graph {
-    min-height: 300px;
-  }
-}
-
-.btn-containers {
-  margin: 0 auto;
-  width: 810px;
-  .btn {
-    width: 160px;
-    height: 45px;
-    margin-right: 10px;
-    background: $alpha-orange;
-    border-radius: 3px;
-    margin-right: 35px;
-  }
-}
-.google-trends-nav {
-  .btn {
-    border-radius: 3px;
-  }
-}
-.info-google {
-  margin-top: 60px;
-  .card-header {
-    background: #5bc0de;
-  }
-}
-// Helper Classes
-.section-headline {
-  color: #fff;
-  padding: 2em;
-  background: rgb(22, 174, 253);
-  margin-top: 60px;
-  border-top-left-radius: 11px;
-  border-top-right-radius: 11px;
-  border-bottom: 3px solid #0c7ae2;
-
-  h3 {
-    font-size: 24px;
-    font: 400 24px/0.85714285714286em $font2;
-    text-transform: uppercase;
-  }
-}
-
+// Colors
 .orange {
   background: $alpha-orange;
 }
@@ -184,23 +190,46 @@ section {
   background:$alpha-brown;
 }
 
+// Utility Classes
+
+.center {
+  margin: auto 0;
+  text-align: center;
+}
+
+.section-headline {
+  color: #fff;
+  padding: 2em;
+  background: rgb(22, 174, 253);
+  margin-top: 60px;
+  border-top-left-radius: 11px;
+  border-top-right-radius: 11px;
+  border-bottom: 3px solid #0c7ae2;
+
+  h3 {
+    font-size: 24px;
+    font: 400 24px/0.85714285714286em $font2;
+    text-transform: uppercase;
+  }
+}
+
 .stand-out {
-  font-size: 30px;
+  font-size: 35px;
+  font-weight: 600;
+}
+
+.stand-out-red {
   color: $alpha-red;
+  font-size: 30px;
   font-weight: 600;
 }
 
 .stand-out-white {
-  font-size: 30px;
+  font-size: 26px;
   color: $white;
-  font-weight: 600;
+  font-weight: 500;
 }
 
-.SImg {
-  height: 300px;
-  margin-top: 20px;
-  background: url('../img/Market-Sentiment.png') no-repeat center 0;
-}
 .footer {
   display: none !important;
 }

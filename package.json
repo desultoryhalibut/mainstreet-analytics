@@ -1,7 +1,7 @@
 {
   "name": "MainstreetAnalytics",
   "version": "1.0.0",
-  "author": "Tabitha Blagdon (tabitha.blagdon@gmail.com), Christine Chou, Carlos Espinal, Quin Kinser",
+  "author": "Tabitha Blagdon (tabitha.blagdon@gmail.com), Christine Chou (christinejchou@gmail.com), Carlos Espinal (cespinalt@gmail.com), Quin Kinser (quinkinser@gmail.com)",
   "description": "Mainstreet Analytics is a real-time data visualization dashboard.   It collects data from Twitter API, Google Trends API, and NY Times API and uses AlchemyAPI sentiment analysis to provide company specific and overall market insights as a resource to help investors make investment decisions by 'predicting the present.'",
   "keywords": [],
   "license": "ISC",

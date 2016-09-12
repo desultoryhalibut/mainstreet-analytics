@@ -127,9 +127,9 @@ class SentimentTrends extends Component {
               </nav>
             </div>
 
-            <div className="col-md-5">
+            <div className="col-md-5 info-google">
               <div className="card">
-                <h3 className="card-header white-text bluetint"> Sentiment-oriented Stock Trading </h3>
+                <h3 className="card-header white-text "> Sentiment-oriented Stock Trading </h3>
                 <div className="card-block">
                   <h4 className='card-title'> Go long on positive sentiment stocks, short on negative
                   </h4>

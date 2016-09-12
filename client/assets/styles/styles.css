@@ -1,4 +1,3 @@
-<<<<<<< 1030cfd0050d8ae40d8518489f08f669dd45dc69
 /*
 Error: Invalid @import: expected end of line, was ";".
         on line 1 of styles.css
@@ -41,18 +40,3 @@ body:before {
   font-family: monospace;
   content: "Error: Invalid @import: expected end of line, was \";\".\A         on line 1 of styles.css\A \A 1: @import \"https://fonts.googleapis.com/css?family=Open+Sans\";\A 2: @import url(https://fonts.googleapis.com/css?family=Droid+Sans:400,700);\A 3: @import url(bootstrap.min.css);\A 4: @import url(mdb.min.css);\A 5: * {\A 6:   box-sizing: border-box;"; }
 
-
-.red {
-  background: rgba(228, 115, 115, 0.9);
-}
-
-.gray {
-  background: rgba(143, 143, 143, 1.0);
-}
-
-.brown {
-  background: rgba(72, 61, 61, 0.9);
-}
-.bluetint {
-  background: #5bc0de;
-}

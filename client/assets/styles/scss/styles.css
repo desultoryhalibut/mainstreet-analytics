@@ -1,41 +1,39 @@
-* {
-    box-sizing: border-box;
-}
-body {
+@import "https://fonts.googleapis.com/css?family=Open+Sans";
+@import url(https://fonts.googleapis.com/css?family=Droid+Sans:400,700);
+@import url(../bootstrap.min.css);
+@import url(../mdb.min.css);
 
-  background: $white;
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: #fff;
   font-size: 14px;
 }
 
 footer {
-  background: $white;
+  background: #fff;
   min-height: 150px;
 }
 
 header {
-  border-bottom: 1px solid $border-color;
-  background: $white;
+  border-bottom: 1px solid #cecaca;
+  background: #fff;
   padding: 25px 0 0;
-  margin-bottom: 40px;
-  h1 {
-    padding: 0;
-  }
-  form {
-    padding: 0;
-  }
-  .textfield {
-    margin-bottom: 0;
-    input {
-      padding-top: .8rem;
-    }
-  }
-}
+  margin-bottom: 40px; }
+  header h1 {
+    padding: 0; }
+  header form {
+    padding: 0; }
+  header .textfield {
+    margin-bottom: 0; }
+    header .textfield input {
+      padding-top: .8rem; }
 
 section {
   padding: 2em;
 }
-
-// Classes
 
 .center-content {
   margin: 0 auto;
@@ -53,38 +51,26 @@ section {
 
 .btn-containers {
   margin: 0 auto;
-  width: 810px;
-  .btn {
+  width: 810px; }
+  .btn-containers .btn {
     width: 160px;
     height: 45px;
     margin-right: 10px;
-    background: $alpha-orange;
+    background: rgba(237, 174, 64, 0.9);
     border-radius: 3px;
     margin-right: 35px;
-  }
 }
 
 .graph {
   max-width: 600px;
   min-height: 380px;
-  background: $white;
+  background: #fff;
   margin-right: 2em;
-  border: 1px solid $border-color;
+  border: 1px solid #cecaca;
 }
 
-.google-trends-nav {
-  .btn {
-    border-radius: 3px;
-  }
-}
-
-.google-trends {
-  .graph {
-    min-height: 300px;
-  }
-  .google-summary {
-    padding: .5em;
-  }
+.google-trends-nav .btn {
+  border-radius: 3px;
 }
 
 .google-trends-nav {
@@ -92,7 +78,7 @@ section {
 }
 
 .header-image {
-  width: 100%
+  width: 100%;
 }
 
 .infobox {
@@ -101,13 +87,14 @@ section {
 
 .info-google {
   margin-top: 60px;
-  .card-header {
-    background: #5bc0de;
-  }
+}
+
+.info-google .card-header {
+  background: #5bc0de;
 }
 
 .main-content {
-  background: $white;
+  background: #fff;
   padding: 2em 3em 2em 3em;
   width: 1240px;
   margin: 0 auto;
@@ -116,7 +103,7 @@ section {
 .quote {
   background-color: #f5f5f5;
   border-radius: 11px;
-  font-family:  $font1;
+  font-family: "Open Sans", sans-serif;
   font-size: 2em;
   font-weight: 500;
   margin-bottom: 2em;
@@ -128,42 +115,34 @@ section {
   font-size: 30px;
 }
 
-.sentiments {
-  .graph {
-    min-height: 300px;
-  }
+.sentiments .graph {
+  min-height: 300px;
 }
 
 .trends {
-  border: 1px solid $border-color;
-  background: $white;
+  border: 1px solid #cecaca;
+  background: #fff;
   padding: 10px 30px;
   max-width: 410px;
-  margin-right: 0 !important;
-  article {
+  margin-right: 0 !important; }
+  .trends article {
     margin: 0px;
     height: 170px;
-    padding: 15px 0;
-  }
-  p {
-    color: $white;
-    font: 600 14px $font1;
-  }
-  span {
-    font: 600 57px $font1;
+    padding: 15px 0; }
+  .trends p {
+    color: #fff;
+    font: 600 14px "Open Sans", sans-serif; }
+  .trends span {
+    font: 600 57px "Open Sans", sans-serif;
     margin-top: 30px;
     display: inline-block;
-    color: $white;
-  }
-}
+    color: #fff; }
 
 .twitter-chart {
-  padding-top: 2em;
-}
+  padding-top: 2em; }
 
 .twitter-live {
-  margin-top: 2em;
-}
+  margin-top: 2em; }
 
 .twitter-live-img {
   background-color: #eeeeee;
@@ -173,24 +152,21 @@ section {
   padding: 20px;
 }
 
-// Colors
 .orange {
-  background: $alpha-orange;
+  background: rgba(237, 174, 64, 0.9);
 }
 
 .red {
-  background: $alpha-red;
+  background: rgba(228, 115, 115, 0.9);
 }
 
 .gray {
-  background: $alpha-gray;
+  background: rgba(81, 85, 87, 0.85);
 }
 
 .brown {
-  background:$alpha-brown;
+  background: rgba(72, 61, 61, 0.9);
 }
-
-// Utility Classes
 
 .center {
   margin: auto 0;
@@ -200,17 +176,15 @@ section {
 .section-headline {
   color: #fff;
   padding: 2em;
-  background: rgb(22, 174, 253);
+  background: #16aefd;
   margin-top: 60px;
   border-top-left-radius: 11px;
   border-top-right-radius: 11px;
-  border-bottom: 3px solid #0c7ae2;
-
-  h3 {
+  border-bottom: 3px solid #0c7ae2; }
+  .section-headline h3 {
     font-size: 24px;
-    font: 400 24px/0.85714285714286em $font2;
+    font: 400 24px/0.85714em "Droid Sans", sans-serif;
     text-transform: uppercase;
-  }
 }
 
 .stand-out {
@@ -219,17 +193,19 @@ section {
 }
 
 .stand-out-red {
-  color: $alpha-red;
+  color: rgba(228, 115, 115, 0.9);
   font-size: 30px;
   font-weight: 600;
 }
 
 .stand-out-white {
   font-size: 26px;
-  color: $white;
+  color: #fff;
   font-weight: 500;
 }
 
 .footer {
   display: none !important;
 }
+
+/*# sourceMappingURL=styles.css.map */

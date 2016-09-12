@@ -11,11 +11,11 @@ class CompanyComponent extends Component {
 
   render() {
 
-    if (!this.props.companyGoogleTrendsData) {
-      return (
-        <div>Loading Company View data...</div>
-      );
-    }
+    // if (!this.props.companyGoogleTrendsData) {
+    //   return (
+    //     <div>Loading Company View data...</div>
+    //   );
+    // }
 
     return (
       <div className="container">
@@ -26,32 +26,37 @@ class CompanyComponent extends Component {
           </div>
         </div>
 
-        <div className="row">
-          <LineChart
-            data={this.props.companyGoogleTrendsData.searchVolume}
-            keyword={this.props.companyGoogleTrendsData.keyword}
-            x={'date'}
-            y={'volume'}
-            height={500}
-            width={800}
-            color={'red'}
-          />
-        </div>
-
+        {/*Loads Real-Time Company-Specific Twitter Data*/}
 
         <div className="row">
-          <div className="col-md-8">
-            <TwitterChart twitterData={this.props.twitterData} currentCompany={this.props.currentCompany}/>
-          </div>
           <div className="col-md-4">
             <TwitterLive twitterData={this.props.twitterData} currentCompany={this.props.currentCompany}/>
           </div>
+          <div className="col-md-8">
+            <TwitterChart twitterData={this.props.twitterData} currentCompany={this.props.currentCompany}/>
+          </div>
         </div>
       </div>
-
 
     );
   }
 }
 
 export default CompanyComponent;
+
+// GoogleTrends API Current DOWN so component removed - code below
+
+
+// Company Specific Google Trends component
+
+// <div className="row">
+// <LineChart
+// data={this.props.companyGoogleTrendsData.searchVolume}
+// keyword={this.props.companyGoogleTrendsData.keyword}
+// x={'date'}
+// y={'volume'}
+// height={500}
+// width={800}
+// color={'red'}
+// />
+// </div>

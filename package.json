@@ -1,7 +1,18 @@
 {
-  "author": "CCQT",
+  "name": "MainstreetAnalytics",
+  "version": "1.0.0",
+  "author": "Tabitha Blagdon (tabitha.blagdon@gmail.com), Christine Chou (christinejchou@gmail.com), Carlos Espinal (cespinalt@gmail.com), Quin Kinser (quinkinser@gmail.com)",
+  "description": "Mainstreet Analytics is a real-time data visualization dashboard.   It collects data from Twitter API, Google Trends API, and NY Times API and uses AlchemyAPI sentiment analysis to provide company specific and overall market insights as a resource to help investors make investment decisions by 'predicting the present.'",
+  "keywords": [],
+  "license": "ISC",
+  "main": "index.js",
+  "scripts": {
+    "compile": "webpack --watch",
+    "start": "nodemon server/server.js | webpack --watch",
+    "test": "mocha test"
+  },
   "dependencies": {
-    "babel-core": "^6.9.1",
+    "babel-core": "^6.11.4",
     "babel-loader": "^6.2.4",
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-react": "^6.5.0",
@@ -33,18 +44,8 @@
     "webpack": "^1.13.1",
     "webpack-dev-middleware": "^1.6.1"
   },
-  "description": "greenfield project",
-  "keywords": [],
-  "license": "ISC",
-  "main": "index.js",
-  "name": "HALIBUT",
-  "scripts": {
-    "compile": "webpack --watch",
-    "start": "nodemon server/server.js",
-    "test": "mocha --compilers js:babel-core/register"
-  },
-  "version": "1.0.0",
   "devDependencies": {
+    "babel-cli": "^6.11.4",
     "chai": "^3.2.0",
     "chai-http": "^1.0.0",
     "nodemon": "^1.9.2"

@@ -130,13 +130,13 @@ class SentimentTrends extends Component {
 
             <div className="col-md-5">
               <div className="card">
-                <h3 className="card-header white-text "> Sentiment-oriented Stock Trading </h3>
+                <h3 className="card-header"> Sentiment-Oriented Stock Trading </h3>
                 <div className="card-block">
                   <h4 className='card-title'> Go long on positive sentiment stocks, short on negative
                   </h4>
                   <p className='card-text'>
                    <ul>
-                     <li><strong>Sentiment scores</strong>: quantified averages of favorable (positive) and unfavorable (negative) words in the news for each entity </li>
+                     <li><strong>Sentiment scores</strong>: Quantified averages of favorable (positive) and unfavorable (negative) words in the news for each entity </li>
                      <li>Scores range from <strong> -1</strong> to <strong> 1</strong> </li>
                      <li><strong>Shown to the left: </strong>Economic indicators of market health and four top companies by industry</li>
                      <li></li>

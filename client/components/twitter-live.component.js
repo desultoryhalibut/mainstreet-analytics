@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 
 // This component looks at the most recent time interval
 // and renders an image based on + - neutral sentiment
-
 // Twitter is feeling
 //   {image}
 // about {search} right this minute
+
 class TwitterLive extends Component {
 
   constructor(props) {
@@ -23,11 +23,10 @@ class TwitterLive extends Component {
     this.setState({currentQuery: event.target.value});
   }
 
-
   render() {
     if (!this.props.twitterData || !this.props.currentCompany) {
       return (
-        <div>Loading Twitter Volume data...for Bullish/Bearish/Neutral component</div>
+        <div>Loading Twitter Volume data...</div>
       );
     }
 
@@ -48,25 +47,29 @@ class TwitterLive extends Component {
     var graphic;
     if (sentiment > 0.5) {
       // bullish
-      graphic = <img src={'http://bit.ly/2adciRq'} className="img-responsive"/>
+      graphic = <img src={'http://bit.ly/2adciRq'} className="img-responsive twitter-live-img"/>
     } else if (sentiment < -0.5){
       // bearish
-      graphic = <img src={'http://bit.ly/2a0Yese'} className="img-responsive"/>
+      graphic = <img src={'http://bit.ly/2a0Yese'} className="img-responsive twitter-live-img"/>
     } else {
       // neutral
-      graphic = <img src={'http://bit.ly/2a0hubG'} className="img-responsive"/>
+      graphic = <img src={'http://bit.ly/2a0hubG'} className="img-responsive twitter-live-img"/>
     }
 
     return(
-          <div className="col-md-8">
-            <div className="twitter-live">
-              {graphic}
-              <h4><strong>{numTweets} tweets @ {Math.round(sentiment * 100) / 100} average sentiment</strong></h4>
+      <div>
+        <div className="twitter-live">
+          {graphic}
+          <h4><strong># Live Tweets:</strong> {numTweets}</h4>
+          <h4><strong>Avg Sentiment:</strong>  {Math.round(sentiment * 100) / 100}*</h4>
 
-            </div>
-          </div>
-        );
-}
+          <p>
+            <small>* Greater than 0.5 is more bullish and positive, while less than 0.5 is more negative and bearish</small>
+          </p>
+        </div>
+      </div>
+    );
+  }
 
 }
 

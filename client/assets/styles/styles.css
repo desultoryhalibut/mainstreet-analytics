@@ -1,209 +1,41 @@
-@import "https://fonts.googleapis.com/css?family=Open+Sans";
-@import url(https://fonts.googleapis.com/css?family=Droid+Sans:400,700);
-@import url(bootstrap.min.css);
-@import url(mdb.min.css);
-* {
-  box-sizing: border-box;
-}
+/*
+Error: Invalid @import: expected end of line, was ";".
+        on line 1 of styles.css
 
-body {
-  background: #fff;
-  font-size: 14px;
-}
+1: @import "https://fonts.googleapis.com/css?family=Open+Sans";
+2: @import url(https://fonts.googleapis.com/css?family=Droid+Sans:400,700);
+3: @import url(bootstrap.min.css);
+4: @import url(mdb.min.css);
+5: * {
+6:   box-sizing: border-box;
 
-.container-fluid {
-  padding: 0;
-}
-
-footer {
-  background: #fff;
-  min-height: 150px;
-}
-
-header {
-  border-bottom: 1px solid #cecaca;
-  background: #fff;
-  padding: 25px 0 0;
-  margin-bottom: 40px;
-}
-header h1 {
-  padding: 0;
-}
-header form {
-  padding: 0;
-}
-header .textfield {
-  margin-bottom: 0;
-}
-header .textfield input {
-  padding-top: .8rem;
-}
-
-section {
-  padding: 2em;
-}
-
-.center-content {
-  margin: 0 auto;
-  max-width: 1240px;
-  width: 100%;
-}
-
-.footer-head {
-  min-height: 2em;
-}
-
-.trends {
-  border: 1px solid #cecaca;
-  background: #fff;
-  padding: 10px 30px;
-  max-width: 410px;
-  margin-right: 0 !important;
-}
-.trends article {
-  margin: 0px;
-  height: 170px;
-  padding: 15px 0;
-}
-.trends p {
-  color: #fff;
-  font: 600 14px "Open Sans", sans-serif;
-}
-.trends span {
-  font: 600 57px "Open Sans", sans-serif;
-  margin-top: 30px;
-  display: inline-block;
-  color: #fff;
-}
-
-.graph {
-  max-width: 600px;
-  min-height: 380px;
-  background: #fff;
-  margin-right: 2em;
-  border: 1px solid #cecaca;
-}
-
-.google-trends .graph {
-  min-height: 300px;
-}
-.google-trends .google-summary .news-sentiment {
-  padding: .5em;
-}
-
-.google-trends-nav {
-  margin: 0 2em 0 2em;
-}
-
-
-.header-image {
-  width: 100%;
-}
-
-.infobox {
-  margin: 40px 0;
-}
-
-.main-content {
-  background: #fff;
-  padding: 2em 3em 2em 3em;
-  width: 1240px;
-  margin: 0 auto;
-}
-
-.quote {
-  background-color: #fff;
-  font-family: "Open Sans", sans-serif;
-  font-size: 2em;
-  font-weight: 500;
-  margin-bottom: 2em;
-  padding: 1em;
-}
-
-.results-copy {
-  margin-top: 45px;
-  font-size: 30px;
-}
-
-.sentiments .graph {
-  min-height: 300px;
-}
-
-.btn-containers {
-  margin: 0 auto;
-  width: 810px;
-}
-.btn-containers .btn {
-  width: 160px;
-  height: 45px;
-  margin-right: 10px;
-  background: rgba(237, 174, 64, 0.9);
-  border-radius: 3px;
-  margin-right: 35px;
-}
-
-.google-trends-nav .btn {
-  border-radius: 3px;
-}
-
-.info-google {
-  margin-top: 60px;
-}
-.info-google .card-header {
-  background: #5bc0de;
-}
-
-.section-headline {
-  color: #fff;
-  padding: 2em;
-  background: #16aefd;
-  margin-top: 60px;
-  border-top-left-radius: 11px;
-  border-top-right-radius: 11px;
-  border-bottom: 3px solid #0c7ae2;
-}
-.section-headline h3 {
-  font-size: 24px;
-  font: 400 24px/0.85714em "Droid Sans", sans-serif;
-  text-transform: uppercase;
-}
-
-.orange {
-  background: rgba(237, 174, 64, 0.9);
-}
-
-.red {
-  background: rgba(228, 115, 115, 0.9);
-}
-
-.gray {
-  background: rgba(81, 85, 87, 0.85);
-}
-
-.brown {
-  background: rgba(72, 61, 61, 0.9);
-}
-
-.stand-out {
-  font-size: 30px;
-  color: rgba(228, 115, 115, 0.9);
-  font-weight: 600;
-}
-
-.stand-out-white {
-  font-size: 30px;
-  color: #fff;
-  font-weight: 600;
-}
-
-.SImg {
-  height: 300px;
-  margin-top: 20px;
-  background: url("../img/Market-Sentiment.png") no-repeat center 0;
-}
-
-.footer {
-  display: none !important;
-}
-
-/*# sourceMappingURL=styles.css.map */
+Backtrace:
+styles.css:1
+/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/engine.rb:1008:in `parse_import_directive'
+/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/engine.rb:812:in `parse_directive'
+/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/engine.rb:646:in `parse_line'
+/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/engine.rb:536:in `build_tree'
+/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/engine.rb:555:in `block in append_children'
+/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/engine.rb:554:in `each'
+/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/engine.rb:554:in `append_children'
+/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/engine.rb:409:in `_to_tree'
+/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/engine.rb:381:in `_render_with_sourcemap'
+/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/engine.rb:298:in `render_with_sourcemap'
+/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/plugin/compiler.rb:492:in `update_stylesheet'
+/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
+/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/plugin/compiler.rb:209:in `each'
+/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
+/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/plugin/compiler.rb:294:in `watch'
+/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/plugin.rb:109:in `method_missing'
+/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/exec/sass_scss.rb:360:in `watch_or_update'
+/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/exec/sass_scss.rb:51:in `process_result'
+/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/exec/base.rb:52:in `parse'
+/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/exec/base.rb:19:in `parse!'
+/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.22/bin/sass:13:in `<top (required)>'
+/usr/local/bin/sass:23:in `load'
+/usr/local/bin/sass:23:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: Invalid @import: expected end of line, was \";\".\A         on line 1 of styles.css\A \A 1: @import \"https://fonts.googleapis.com/css?family=Open+Sans\";\A 2: @import url(https://fonts.googleapis.com/css?family=Droid+Sans:400,700);\A 3: @import url(bootstrap.min.css);\A 4: @import url(mdb.min.css);\A 5: * {\A 6:   box-sizing: border-box;"; }

@@ -70,7 +70,6 @@ class SummaryComponent extends Component {
           </div>
           <TwitterLiveSummary twitterData={this.props.twitterData} currentCompany={this.state.currentCompany}/>
         </div>
-
         <div className="row">
           <div className="section-headline col-md-12">
             <h3 className="ta-center">What's Being Searched</h3>
@@ -84,11 +83,10 @@ class SummaryComponent extends Component {
             <h3 className="ta-center">What's in the Financial News</h3>
           </div>
         </div>
-        
-        <SentimentTrends sentimentData={this.state.sentimentData} />
-    </div>
+
+        <SentimentTrends sentimentData={this.state.sentimentData} currentCompany={this.state.currentCompany}/>
+      </div>
     );
   }
 }
-
 export default SummaryComponent;

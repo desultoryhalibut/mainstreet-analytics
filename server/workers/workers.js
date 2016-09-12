@@ -46,14 +46,13 @@ function queryGoogleTrends(key, googleTrendResults) {
     .then(function(found) {
       if (found.length > 0) {
         GoogleTrends.update({'keyword': key}, newData);
-        console.log(`Updated Google Trends for ${key}`, newData);
+        console.log(`Updated Google Trends for ${key}`);
       } else {
         GoogleTrends.create(newData);
-        console.log('created data', newData);
+        console.log('Created data.');
       }
     });
 }
-
 
 /**
  * function googleTrends.trendData - Updates database for GoogleTrends Summary keywords for dashboard view
@@ -147,7 +146,6 @@ googleTrends.trendData(KEYWORDS)
               // relevance: obj.relevance
             }
           })
-          console.log('inside worker. sentiment arr:',sentimentArr)
 
           // for (var i = 0; i < sentimentArr; i++) {
           //   NSentiment.findOneAndUpdate({newsTopic: sentimentArr.newsTopic}, {sentimentScore: sentimentArr.sentimentScore}, {new: true, upsert: true})

@@ -56,7 +56,7 @@ class SentimentTrends extends Component {
     }
     renderCompanyInfo(data) {
       return (<div className="card">
-        <h3 className="card-header white-text grey">Company Info</h3>
+        <h3 className="card-header white-text gray">Company Info</h3>
 
 
             {data.map(item => {
@@ -106,7 +106,6 @@ class SentimentTrends extends Component {
     }
     return (
 
-
       <section className="news-sentiment">
         <div className="row quote">
           <quote>
@@ -128,9 +127,9 @@ class SentimentTrends extends Component {
               </nav>
             </div>
 
-            <div className="col-md-5">
+            <div className="col-md-5 info-google">
               <div className="card">
-                <h3 className="card-header"> Sentiment-Oriented Stock Trading </h3>
+                <h3 className="card-header white-text "> Sentiment-Oriented Stock Trading </h3>
                 <div className="card-block">
                   <h4 className='card-title'> Go long on positive sentiment stocks, short on negative
                   </h4>
